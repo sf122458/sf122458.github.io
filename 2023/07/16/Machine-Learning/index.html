@@ -34,7 +34,7 @@
 <meta property="og:image" content="http://example.com/img/post/machine_learning/image-20230609133248526.png">
 <meta property="og:image" content="http://example.com/img/post/machine_learning/image-20230611205829017.png">
 <meta property="article:published_time" content="2023-07-16T13:08:00.000Z">
-<meta property="article:modified_time" content="2023-07-16T16:22:06.510Z">
+<meta property="article:modified_time" content="2023-07-16T16:24:45.867Z">
 <meta property="article:author" content="Eternity">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="http://example.com/img/post/machine_learning/image-20230609094509004.png">
@@ -762,7 +762,7 @@
 </li>
 <li><p>E步：固定参数值，计算概率：<br>$$<br>\gamma(z_{nk})&#x3D;\frac{\pi_kN(x_n|\mu_k,\sigma_k)}{\sum_{j&#x3D;1}^K\pi_jN(x_n|\mu_j,\sigma_j)}<br>$$</p>
 </li>
-<li><p>M步：固定概率，更新参数值：<br>$$<br>\begin{aligned}<br>\mu_k^{new}&amp;&#x3D;\frac{1}{N_k}\sum_{n&#x3D;1}^{N}\gamma(z_{nk})x_n\newline<br>\sigma_k^{new}&#x3D;\frac{1}{N_k}\sum_{n&#x3D;1}^{N}&amp;\gamma(z_{nk})(x_n-\mu_k^{new})(x_n-\mu_k^{new})^T\newline<br>\pi_k^{new}&amp;&#x3D;\frac{N_k}{N}\newline<br>N_k&amp;&#x3D;\sum_{n&#x3D;1}^N\gamma(z_{nk})</p>
+<li><p>M步：固定概率，更新参数值：<br>$$<br>\begin{aligned}<br>\mu_k^{new}&amp;&#x3D;\frac{1}{N_k}\sum_{n&#x3D;1}^{N}\gamma(z_{nk})x_n\newline<br>\sigma_k^{new}&#x3D;\frac{1}{N_k}\sum_{n&#x3D;1}^{N}&amp;\gamma(z_{nk})(x_n-\mu_k^{new})(x_n-\mu_k^{new})^T\newline<br>\pi_k^{new}&amp;&#x3D;\frac{N_k}{N}\newline<br>N_k&amp;&#x3D;\sum_{n&#x3D;1}^N\gamma(z_{nk})\newline</p>
 </li>
 </ul>
 </li>
