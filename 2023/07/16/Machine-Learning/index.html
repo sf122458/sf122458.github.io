@@ -34,7 +34,7 @@
 <meta property="og:image" content="http://example.com/img/post/machine_learning/image-20230609133248526.png">
 <meta property="og:image" content="http://example.com/img/post/machine_learning/image-20230611205829017.png">
 <meta property="article:published_time" content="2023-07-16T13:08:00.000Z">
-<meta property="article:modified_time" content="2023-07-16T16:00:06.495Z">
+<meta property="article:modified_time" content="2023-07-16T16:18:00.549Z">
 <meta property="article:author" content="Eternity">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="http://example.com/img/post/machine_learning/image-20230609094509004.png">
@@ -230,7 +230,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          16k words
+          17k words
         
       </span>
     
@@ -241,7 +241,7 @@
         
         
         
-          136 mins
+          140 mins
         
       </span>
     
@@ -337,8 +337,8 @@
 <hr>
 <p>例题：给定一个2D空间的线性回归方程：$f(x)&#x3D;w_1\cdot x+w_2$，$f(1)&#x3D;5,f(2)&#x3D;7$，假设初始起点$w_1&#x3D;9,w_2&#x3D;10$，学习率为$\alpha&#x3D;0.15$。写出MSE代价函数$J(w)$，并用梯度下降的方法进行两次迭代计算，分别写出两次迭代后$w_1,w_2$的值。</p>
 <hr>
-<p>$$<br>J(w)&#x3D;\frac{1}{2n}\sum_{i&#x3D;1}^{n}(y_i-(w_1\cdot x+w_2))^2\<br>\frac{\partial J}{\partial w_1}&#x3D;-\frac{1}{n}\cdot \sum_{i&#x3D;1}^{n}(y_i-(w_1x_i+w_2))\cdot x_i\<br>\frac{\partial J}{\partial w_2}&#x3D;-\frac{1}{n}\cdot \sum_{i&#x3D;1}^{n}(y_i-(w_1x_i+w_2))\<br>$$</p>
-<p>第一次迭代<br>$$<br>\begin{aligned}<br>w_1&amp;&#x3D;w_1-\alpha\cdot \frac{\partial}{\partial w_1}J(w)\<br>&amp;&#x3D;9+0.15\cdot \frac{1}{2}\cdot\sum_{i&#x3D;1}^{2}(y_i-(w_1\cdot x_i+w_2))\cdot x_i\<br>&amp;&#x3D;9+0.15\cdot0.5\cdot((5-(9\cdot1+10))\cdot1+(7-(9\cdot2+10))\cdot2)\<br>&amp;&#x3D;4.8\<br>w_2&amp;&#x3D;w_2-\alpha\cdot\frac{\partial}{\partial w_2}J(w)\<br>&amp;&#x3D;10+0.15\cdot\frac{1}{2}\sum_{i&#x3D;1}^2(y_i-(w_1\cdot x_i+w_2))\<br>&amp;&#x3D;7.375<br>\end{aligned}<br>$$</p>
+<p>$$<br>\begin{aligned}<br>J(w)&amp;&#x3D;\frac{1}{2n}\sum_{i&#x3D;1}^{n}(y_i-(w_1\cdot x+w_2))^2\newline<br>\frac{\partial J}{\partial w_1}&amp;&#x3D;-\frac{1}{n}\cdot \sum_{i&#x3D;1}^{n}(y_i-(w_1x_i+w_2))\cdot x_i\newline<br>\frac{\partial J}{\partial w_2}&amp;&#x3D;-\frac{1}{n}\cdot<br>\sum_{i&#x3D;1}^{n}(y_i-(w_1x_i+w_2))\newline<br>\end{aligned}<br>$$</p>
+<p>第一次迭代<br>$$<br>\begin{aligned}<br>w_1&amp;&#x3D;w_1-\alpha\cdot \frac{\partial}{\partial w_1}J(w)\newline<br>&amp;&#x3D;9+0.15\cdot \frac{1}{2}\cdot\sum_{i&#x3D;1}^{2}(y_i-(w_1\cdot x_i+w_2))\cdot x_i\newline<br>&amp;&#x3D;9+0.15\cdot0.5\cdot((5-(9\cdot1+10))\cdot1+(7-(9\cdot2+10))\cdot2)\newline<br>&amp;&#x3D;4.8\newline<br>w_2&amp;&#x3D;w_2-\alpha\cdot\frac{\partial}{\partial w_2}J(w)\newline<br>&amp;&#x3D;10+0.15\cdot\frac{1}{2}\sum_{i&#x3D;1}^2(y_i-(w_1\cdot x_i+w_2))\newline<br>&amp;&#x3D;7.375<br>\end{aligned}<br>$$</p>
 <h3 id="4、多元线性回归与逻辑回归"><a href="#4、多元线性回归与逻辑回归" class="headerlink" title="4、多元线性回归与逻辑回归"></a>4、多元线性回归与逻辑回归</h3><ul>
 <li>线性回归<ul>
 <li>模型：$h_{\theta}(x)&#x3D;\sum_{i&#x3D;1}^m\theta_ix_i$</li>
@@ -456,7 +456,7 @@
 </li>
 <li><p>假定样本集合中第$k$类样本所占比例为$p_k(k&#x3D;1,2,…,|\gamma|)$，则信息熵定义为<br>$$<br>Ent(D)&#x3D;-\sum_{k&#x3D;1}^{|\gamma|}p_k\log_2p_k<br>$$<br>约定$p&#x3D;0,p\log_2p&#x3D;0$；$Ent(D)$的最小值为0，最大值为$\log_2|\gamma|$</p>
 </li>
-<li><p>离散属性$a$的取值：${a^1,a^2,…,a^V}$，$D^v$为$a^v$对应的样本集合，$Gain(D,a)&#x3D;Ent(D)-\sum_{v&#x3D;1}^V\frac{|D^v|}{D}Ent(D^v)$，信息增益最大的选为划分属性&lt;img <img src="/%5Cimg%5Cpost%5Cmachine_learning%5Cimage-20230609112853730.png" srcset="/img/loading.gif" lazyload></p>
+<li><p>离散属性$a$的取值：${a^1,a^2,…,a^V}$，$D^v$为$a^v$对应的样本集合，$Gain(D,a)&#x3D;Ent(D)-\sum_{v&#x3D;1}^V\frac{|D^v|}{D}Ent(D^v)$，信息增益最大的选为划分属性<img src="/%5Cimg%5Cpost%5Cmachine_learning%5Cimage-20230609112853730.png" srcset="/img/loading.gif" lazyload></p>
 </li>
 </ul>
 </li>
@@ -596,10 +596,10 @@
 </tr>
 </tbody></table>
 <hr>
-<p>1、计算数据集熵<br>$$<br>E(D)&#x3D;-\frac{5}{10}\log_2\frac{5}{10}-\frac{5}{10}\log_2\frac{5}{10}&#x3D;1<br>$$<br>2、分别计算三个特征的信息增益<br>$$<br>\begin{aligned}<br>G(D,年龄)&amp;&#x3D;E(D)-[\frac{4}{10}H(D_1)+\frac{3}{10}H(D_2)+\frac{3}{10}H(D_3)]\<br>&amp;&#x3D;1-[\frac{4}{10}(&#x3D;\frac{2}{4}\log_2\frac{2}{4}-\frac{2}{4}\log_2\frac{2}{4})+\frac{3}{10}(-\frac{1}{3}\log_2\frac{1}{3}-\frac{2}{3}\log_2\frac{2}{3})*2]\<br>&amp;&#x3D;0.049\<br>G(D,工作)&amp;&#x3D;E(D)-[\frac{4}{10}H(D_1)+\frac{6}{10}H(D_2)]\<br>&amp;&#x3D;1-[\frac{4}{10}\times 0+\frac{6}{10}(-\frac{1}{6}\log_2\frac{1}{6}-\frac{5}{6}\log_2\frac{5}{6})]\<br>&amp;&#x3D;0.610\<br>G(D,信贷情况)&amp;&#x3D;E(D)-[\frac{4}{10}H(D_1)+\frac{5}{10}H(D_2)+\frac{1}{10}H(D_3)]\<br>&amp;&#x3D;1-[\frac{4}{10}(-\frac{1}{4}\log_2\frac{1}{4}-\frac{3}{4}\log_2\frac{3}{4})+\frac{5}{10}(-\frac{3}{5}\log_2\frac{3}{5}-\frac{2}{5}\log_2\frac{2}{5})+\frac{1}{10}\times 0]\<br>0.190<br>\end{aligned}<br>$$<br>3、选择信息增益最大的特征作为划分特征，即工作，并按照该特征的取值将数据集划分为两个子集：</p>
+<p>1、计算数据集熵<br>$$<br>E(D)&#x3D;-\frac{5}{10}\log_2\frac{5}{10}-\frac{5}{10}\log_2\frac{5}{10}&#x3D;1<br>$$<br>2、分别计算三个特征的信息增益<br>$$<br>\begin{aligned}<br>G(D,年龄)&amp;&#x3D;E(D)-[\frac{4}{10}H(D_1)+\frac{3}{10}H(D_2)+\frac{3}{10}H(D_3)]\newline<br>&amp;&#x3D;1-[\frac{4}{10}(&#x3D;\frac{2}{4}\log_2\frac{2}{4}-\frac{2}{4}\log_2\frac{2}{4})+\frac{3}{10}(-\frac{1}{3}\log_2\frac{1}{3}-\frac{2}{3}\log_2\frac{2}{3})*2]\newline<br>&amp;&#x3D;0.049\newline<br>G(D,工作)&amp;&#x3D;E(D)-[\frac{4}{10}H(D_1)+\frac{6}{10}H(D_2)]\newline<br>&amp;&#x3D;1-[\frac{4}{10}\times 0+\frac{6}{10}(-\frac{1}{6}\log_2\frac{1}{6}-\frac{5}{6}\log_2\frac{5}{6})]\newline<br>&amp;&#x3D;0.610\newline<br>G(D,信贷情况)&amp;&#x3D;E(D)-[\frac{4}{10}H(D_1)+\frac{5}{10}H(D_2)+\frac{1}{10}H(D_3)]\newline<br>&amp;&#x3D;1-[\frac{4}{10}(-\frac{1}{4}\log_2\frac{1}{4}-\frac{3}{4}\log_2\frac{3}{4})+\frac{5}{10}(-\frac{3}{5}\log_2\frac{3}{5}-\frac{2}{5}\log_2\frac{2}{5})+\frac{1}{10}\times 0]\newline<br>0.190<br>\end{aligned}<br>$$<br>3、选择信息增益最大的特征作为划分特征，即工作，并按照该特征的取值将数据集划分为两个子集：</p>
 <p>子集1：工作情况：是，包含ID3、4、7、9，类别全为是；</p>
 <p>子集2：工作情况：否，包含ID1、2、5、6、8、10，类别一个是、五个否</p>
-<p>4、对于子集1，由于属于同一类别，所以不需要再进行进一步划分；对于子集2，需要进行划分，重复上述步骤得到子集2的信息熵：<br>$$<br>E(D^{否})&#x3D;-\frac{5}{6}\log_2\frac{5}{6}-\frac{1}{6}\log_2\frac{1}{6}&#x3D;0.650<br>$$<br>计算两个特征的信息增益<br>$$<br>\begin{aligned}<br>G(D^{否},年龄)&amp;&#x3D;E(D^{否})-[\frac{2}{6}H(D_1^否) +\frac{2}{6}H(D_2^否)+\frac{2}{6}H(D_3^{否})]\<br>&amp;&#x3D;0.650-[\frac{2}{6}\times0+\frac{2}{6}\times 0 +\frac{2}{6}(-\frac{1}{2}\log_2\frac{1}{2}−\frac{1}{2}\log_2\frac{1}{2})]\<br>&amp;&#x3D; 0.316\<br>G(D^否,信贷情况)&amp;&#x3D; E(D^否) − [\frac{3}{6}H(D_1^否) +\frac{2}{6}H(D_2^否) +\frac{1}{6}H(D_3^否)]\<br>&amp;&#x3D; 0.650 − [\frac{3}{6}× 0 +\frac{2}{6}× 0 +\frac{1}{6}× 0]\<br>&amp;&#x3D; 0.650<br>\end{aligned}<br>$$<br>5、再选择信息增益最大的特征作为划分特征，即信贷情况，并按此划分为三个子集：</p>
+<p>4、对于子集1，由于属于同一类别，所以不需要再进行进一步划分；对于子集2，需要进行划分，重复上述步骤得到子集2的信息熵：<br>$$<br>E(D^{否})&#x3D;-\frac{5}{6}\log_2\frac{5}{6}-\frac{1}{6}\log_2\frac{1}{6}&#x3D;0.650<br>$$<br>计算两个特征的信息增益<br>$$<br>\begin{aligned}<br>G(D^{否},年龄)&amp;&#x3D;E(D^{否})-[\frac{2}{6}H(D_1^否) +\frac{2}{6}H(D_2^否)+\frac{2}{6}H(D_3^{否})]\newline<br>&amp;&#x3D;0.650-[\frac{2}{6}\times0+\frac{2}{6}\times 0 +\frac{2}{6}(-\frac{1}{2}\log_2\frac{1}{2}−\frac{1}{2}\log_2\frac{1}{2})]\newline<br>&amp;&#x3D; 0.316\newline<br>G(D^否,信贷情况)&amp;&#x3D; E(D^否) − [\frac{3}{6}H(D_1^否) +\frac{2}{6}H(D_2^否) +\frac{1}{6}H(D_3^否)]\newline<br>&amp;&#x3D; 0.650 − [\frac{3}{6}× 0 +\frac{2}{6}× 0 +\frac{1}{6}× 0]\newline<br>&amp;&#x3D; 0.650<br>\end{aligned}<br>$$<br>5、再选择信息增益最大的特征作为划分特征，即信贷情况，并按此划分为三个子集：</p>
 <p>子集2.1：信贷情况：一般，包含ID1、5、10，类别全为否；</p>
 <p>子集2.2：信贷情况：好，包含ID2、6，类别权威否；</p>
 <p>子集2.3：信贷情况：非常好，包含ID8，类别全为是</p>
@@ -754,7 +754,7 @@
 <h3 id="4、高斯混合模型"><a href="#4、高斯混合模型" class="headerlink" title="4、高斯混合模型"></a>4、高斯混合模型</h3><ul>
 <li><p>由$K$个单高斯模型组合而成的混合模型，每一簇样本服从一个高斯分布</p>
 </li>
-<li><p>概率密度函数：<br>$$<br>p(x)&#x3D;\sum_{k&#x3D;1}^{K}\pi_kN(x|\mu_k,\sigma_k) \quad with \quad 0\leq\pi_k\leq1\quad \sum_{k&#x3D;1}^K\pi_k&#x3D;1<br>$$<br>计算第$n$个点归属第$k$个类别的概率：<br>$$<br>\gamma(z_{nk})&#x3D;\frac{\pi_kN(x_n|\mu_k,\sigma_k)}{\sum_{j&#x3D;1}^K\pi_jN(x_n|\mu_j,\sigma_j)}<br>$$</p>
+<li><p>概率密度函数：<br>$$<br>\begin{aligned}<br>p(x)&#x3D;\sum_{k&#x3D;1}^{K}\pi_kN(x|\mu_k,\sigma_k) \quad &amp;with \quad 0\leq\pi_k\leq1\newline \sum_{k&#x3D;1}^K\pi_k&amp;&#x3D;1<br>\end{aligned}<br>$$<br>计算第$n$个点归属第$k$个类别的概率：<br>$$<br>\gamma(z_{nk})&#x3D;\frac{\pi_kN(x_n|\mu_k,\sigma_k)}{\sum_{j&#x3D;1}^K\pi_jN(x_n|\mu_j,\sigma_j)}<br>$$</p>
 </li>
 <li><p>优化算法：EM算法</p>
 <ul>
@@ -762,12 +762,14 @@
 </li>
 <li><p>E步：固定参数值，计算概率：<br>$$<br>\gamma(z_{nk})&#x3D;\frac{\pi_kN(x_n|\mu_k,\sigma_k)}{\sum_{j&#x3D;1}^K\pi_jN(x_n|\mu_j,\sigma_j)}<br>$$</p>
 </li>
-<li><p>M步：固定概率，更新参数值：<br>$$<br>\mu_k^{new}&#x3D;\frac{1}{N_k}\sum_{n&#x3D;1}^{N}\gamma(z_{nk})x_n\<br>\sigma_k^{new}&#x3D;\frac{1}{N_k}\sum_{n&#x3D;1}^{N}\gamma(z_{nk})(x_n-\mu_k^{new})(x_n-\mu_k^{new})^T\<br>\pi_k^{new}&#x3D;\frac{N_k}{N}\<br>N_k&#x3D;\sum_{n&#x3D;1}^N\gamma(z_{nk})<br>$$</p>
-</li>
-<li><p>反复执行EM步直至收敛</p>
+<li><p>M步：固定概率，更新参数值：<br>$$<br>\begin{aligned}<br>\mu_k^{new}&amp;&#x3D;\frac{1}{N_k}\sum_{n&#x3D;1}^{N}\gamma(z_{nk})x_n\newline<br>\sigma_k^{new}&#x3D;\frac{1}{N_k}\sum_{n&#x3D;1}^{N}&amp;\gamma(z_{nk})(x_n-\mu_k^{new})(x_n-\mu_k^{new})^T\newline<br>\pi_k^{new}&amp;&#x3D;\frac{N_k}{N}\newline<br>N_k&amp;&#x3D;\sum_{n&#x3D;1}^N\gamma(z_{nk})</p>
 </li>
 </ul>
 </li>
+</ul>
+<p>\end{aligned}<br>    $$</p>
+<ul>
+<li>反复执行EM步直至收敛</li>
 </ul>
 <h3 id="5、数据降维、PCA"><a href="#5、数据降维、PCA" class="headerlink" title="5、数据降维、PCA"></a>5、数据降维、PCA</h3><ul>
 <li><p>目的：将高维数据空间降维到低维分布</p>
@@ -796,7 +798,7 @@
 <p>例题：给定以下样本<br>$$<br>x_1&#x3D;\left[\begin{aligned}1\newline3\newline2\end{aligned}\right],x_2&#x3D;\left[\begin{aligned}5\newline1\newline2\end{aligned}\right],x_3&#x3D;\left[\begin{aligned}4\newline2\newline1\end{aligned}\right],x_4&#x3D;\left[\begin{aligned}3\newline0\newline1\end{aligned}\right],x_5&#x3D;\left[\begin{aligned}2\newline1\newline3\end{aligned}\right],x_6&#x3D;\left[\begin{aligned}3\newline4\newline5\end{aligned}\right],x_7&#x3D;\left[\begin{aligned}1\newline1\newline0\end{aligned}\right]<br>$$<br>采用k-means算法进行聚类($k&#x3D;2$，距离为欧氏距离，且初始化$x_1$为第一类聚类初始中心，$x_2$为第二类聚类初始中心)</p>
 <hr>
 <p>第一步：初始聚类中心：$m_1&#x3D;[1,3,2]^T,m_2&#x3D;[5,1,2]^T$</p>
-<p>第二步：对所有样本分配聚类中心：<br>$$<br>|x_1-m_1|&#x3D;0\Rightarrow x_1\in m_1\<br>|x_2-m_2|&#x3D;0\Rightarrow x_2\in m_2\<br>|x_3-m_1|&#x3D;\sqrt{11}&gt;|x_3-m_2|&#x3D;\sqrt{6}\Rightarrow x_3\in m_2\<br>|x_4-m_1|&#x3D;\sqrt{14}&gt;|x_4-m_2|&#x3D;\sqrt{6}\Rightarrow x_4\in m_2\<br>|x_5-m_1|&#x3D;\sqrt{6}&lt;|x_5-m_2|&#x3D;4\Rightarrow x_5\in m_1\<br>|x_6-m_1|&#x3D;\sqrt{14}&lt;|x_6-m_2|&#x3D;\sqrt{22}\Rightarrow x_6\in m_1\<br>|x_7-m_1|&#x3D;\sqrt{8}&lt;|x_7-m_2|&#x3D;\sqrt{20}\Rightarrow x_7\in m_1\<br>m_1&#x3D;\frac{x_1+x_5+x_6+x_7}{4}&#x3D;[1,3,2]^T,m_2&#x3D;\frac{x_2+x_3+x_4}{3}&#x3D;[4.0,1.0,1.333]^T<br>$$<br>重复上述步骤，聚类中心无变化，停止迭代。</p>
+<p>第二步：对所有样本分配聚类中心：<br>$$<br>\begin{aligned}<br>|x_1-m_1|&amp;&#x3D;0\Rightarrow x_1\in m_1\newline<br>|x_2-m_2|&amp;&#x3D;0\Rightarrow x_2\in m_2\newline<br>|x_3-m_1|&amp;&#x3D;\sqrt{11}&gt;|x_3-m_2|&#x3D;\sqrt{6}\Rightarrow x_3\in m_2\newline<br>|x_4-m_1|&amp;&#x3D;\sqrt{14}&gt;|x_4-m_2|&#x3D;\sqrt{6}\Rightarrow x_4\in m_2\newline<br>|x_5-m_1|&amp;&#x3D;\sqrt{6}&lt;|x_5-m_2|&#x3D;4\Rightarrow x_5\in m_1\newline<br>|x_6-m_1|&amp;&#x3D;\sqrt{14}&lt;|x_6-m_2|&#x3D;\sqrt{22}\Rightarrow x_6\in m_1\newline<br>|x_7-m_1|&amp;&#x3D;\sqrt{8}&lt;|x_7-m_2|&#x3D;\sqrt{20}\Rightarrow x_7\in m_1\newline<br>m_1&#x3D;&amp;\frac{x_1+x_5+x_6+x_7}{4}&#x3D;[1,3,2]^T\newline<br>m_2&#x3D;&amp;\frac{x_2+x_3+x_4}{3}&#x3D;[4.0,1.0,1.333]^T<br>\end{aligned}<br>$$<br>重复上述步骤，聚类中心无变化，停止迭代。</p>
 <p>第一类：${x_1,x_5,x_6,x_7}$第二类：${x_2,x_3,x_4}$</p>
 <hr>
 <p>例题：已知原始数据如下（5个二维点）<br>$$<br>\left(\begin{aligned}1\quad1\quad2\quad4\quad2\newline0\quad2\quad2\quad3\quad3\end{aligned}\right)<br>$$<br>计算用PCA降维后的数据（二维降到一维）</p>
