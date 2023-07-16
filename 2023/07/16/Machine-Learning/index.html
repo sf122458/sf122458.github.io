@@ -34,7 +34,7 @@
 <meta property="og:image" content="http://example.com/img/post/machine_learning/image-20230609133248526.png">
 <meta property="og:image" content="http://example.com/img/post/machine_learning/image-20230611205829017.png">
 <meta property="article:published_time" content="2023-07-16T13:08:00.000Z">
-<meta property="article:modified_time" content="2023-07-16T15:51:32.928Z">
+<meta property="article:modified_time" content="2023-07-16T16:00:06.495Z">
 <meta property="article:author" content="Eternity">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="http://example.com/img/post/machine_learning/image-20230609094509004.png">
@@ -463,14 +463,14 @@
 <li><p>增益率（gain ratio）：信息增益对可取值数目较多的属性有所偏好</p>
 </li>
 </ul>
-<p>$$<br>Gain_ ratio(D,a)&#x3D;\frac{Gain(D,a)}{IV(a)},IV(a)&#x3D;-\sum_{v&#x3D;1}^V\frac{|D^v|}{|D|}\log_2\frac{|D^v|}{|D|}<br>$$</p>
+<p>$$<br>\text{Gain_ratio(D,a)}&#x3D;\frac{Gain(D,a)}{IV(a)},IV(a)&#x3D;-\sum_{v&#x3D;1}^V\frac{|D^v|}{|D|}\log_2\frac{|D^v|}{|D|}<br>$$</p>
 <p>​	特征取值越多时，$IV(a)$的数值一般越大</p>
 <ul>
 <li><p>基尼系数（gini index）</p>
 <ul>
 <li><p>基尼值：<br>$$<br>Gini(D)&#x3D;\sum_{k&#x3D;1}^{|\gamma|}\sum p_k p_k’&#x3D;1-\sum_{k&#x3D;1}^{|\gamma|}p_k^2<br>$$</p>
 </li>
-<li><p>特征$a$的基尼指数<br>$$<br>Gini_ index(D,a)&#x3D;\sum_{v&#x3D;1}^{V}\frac{|D^v|}{|D|}Gini(D^v)<br>$$</p>
+<li><p>特征$a$的基尼指数<br>$$<br>\text{Gini_index(D,a)}&#x3D;\sum_{v&#x3D;1}^{V}\frac{|D^v|}{|D|}Gini(D^v)<br>$$</p>
 </li>
 <li><p>选择使划分后基尼指数最小的特征作为最优划分特征</p>
 </li>
