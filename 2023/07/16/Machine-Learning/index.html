@@ -18,7 +18,7 @@
   
     <meta name="description" content="机器学习课程的相关笔记">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hexo">
+<meta property="og:title" content="机器学习">
 <meta property="og:url" content="http://example.com/2023/07/16/Machine-Learning/index.html">
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="机器学习课程的相关笔记">
@@ -34,14 +34,14 @@
 <meta property="og:image" content="http://example.com/img/post/machine_learning/image-20230609133248526.png">
 <meta property="og:image" content="http://example.com/img/post/machine_learning/image-20230611205829017.png">
 <meta property="article:published_time" content="2023-07-16T13:08:00.000Z">
-<meta property="article:modified_time" content="2023-07-16T15:42:40.881Z">
+<meta property="article:modified_time" content="2023-07-16T15:51:32.928Z">
 <meta property="article:author" content="Eternity">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="http://example.com/img/post/machine_learning/image-20230609094509004.png">
   
   
   
-  <title>Hexo</title>
+  <title>机器学习 - Hexo</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -207,7 +207,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text=""></span>
+            <span id="subtitle" data-typed-text="机器学习"></span>
           
         </div>
 
@@ -278,7 +278,7 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header"></h1>
+            <h1 id="seo-header">机器学习</h1>
             
             
               <div class="markdown-body">
@@ -699,14 +699,14 @@
 <td>0.2</td>
 </tr>
 </tbody></table>
-<p>使用决策树桩作为弱分类器，只需根据一个特征的阈值来划分样本。试用Adaboost算法推导前两个弱分类器，规定决策树桩形式如下：<br>$$<br>G_m(x)&#x3D;\left{<br>\begin{aligned}<br>+1,x\leq k\<br>-1,x&gt;k<br>\end{aligned}<br>\right.<br>$$</p>
+<p>使用决策树桩作为弱分类器，只需根据一个特征的阈值来划分样本。试用Adaboost算法推导前两个弱分类器，规定决策树桩形式如下：<br>$$<br>G_m(x)&#x3D;\left{<br>\begin{aligned}<br>+1,x\leq k\newline<br>-1,x&gt;k<br>\end{aligned}<br>\right.<br>$$</p>
 <hr>
 <p>1、第一个弱分类器：$k&#x3D;1$</p>
 <p>错误率$e_1&#x3D;0.2$，系数$\alpha_1&#x3D;0.5\times\log_2(\frac{1-0.2}{0.2})&#x3D;0.6931$</p>
-<p>更新权重$w_1&#x3D;0.2*e^{-0.6931\times(+1)\times(+1)}&#x3D;0.1$</p>
-<p>更新权重$w_2&#x3D;0.2*e^{-0.6931\times(-1)\times(-1)}&#x3D;0.1$</p>
-<p>更新权重$w_3&#x3D;0.2*e^{-0.6931\times(-1)\times(-1)}&#x3D;0.1$</p>
-<p>更新权重$w_4&#x3D;0.2*e^{-0.6931\times(-1)\times(-1)}&#x3D;0.1$</p>
+<p>更新权重$w_1&#x3D;0.2\times e^{-0.6931\times(+1)\times(+1)}&#x3D;0.1$</p>
+<p>更新权重$w_2&#x3D;0.2\times e^{-0.6931\times(-1)\times(-1)}&#x3D;0.1$</p>
+<p>更新权重$w_3&#x3D;0.2\times e^{-0.6931\times(-1)\times(-1)}&#x3D;0.1$</p>
+<p>更新权重$w_4&#x3D;0.2\times e^{-0.6931\times(-1)\times(-1)}&#x3D;0.1$</p>
 <p>更新权重$w_5&#x3D;0.2*e^{-0.6931\times(+1)\times(+1)}&#x3D;0.4$</p>
 <p>归一化权重$w_{11}&#x3D;0.125$</p>
 <p>归一化权重$w_{12}&#x3D;0.125$</p>
@@ -717,11 +717,11 @@
 <p>2、第二个分类器：$k&#x3D;5$</p>
 <p>错误率$e_2&#x3D;0.125*3&#x3D;0.375$</p>
 <p>系数$\alpha_2&#x3D;0.5\times log_2(1-\frac{1-0.375}{0.375})&#x3D;0.2554$</p>
-<p>更新权重$w_{21}&#x3D;0.125*e^{-0.2554\times(+1)\times(+1)}&#x3D;0.0968$</p>
-<p>更新权重$w_{22}&#x3D;0.125*e^{-0.2554\times(-1)\times(+1)}&#x3D;0.1614$</p>
-<p>更新权重$w_{23}&#x3D;0.125*e^{-0.2554\times(-1)\times(+1)}&#x3D;0.1614$</p>
-<p>更新权重$w_{24}&#x3D;0.2*e^{-0.2554\times(-1)\times(+1)}&#x3D;0.1614$</p>
-<p>更新权重$w_{25}&#x3D;0.5*e^{-0.2554\times(+1)\times(+1)}&#x3D;0.3873$</p>
+<p>更新权重$w_{21}&#x3D;0.125\times e^{-0.2554\times(+1)\times(+1)}&#x3D;0.0968$</p>
+<p>更新权重$w_{22}&#x3D;0.125\times e^{-0.2554\times(-1)\times(+1)}&#x3D;0.1614$</p>
+<p>更新权重$w_{23}&#x3D;0.125\times e^{-0.2554\times(-1)\times(+1)}&#x3D;0.1614$</p>
+<p>更新权重$w_{24}&#x3D;0.2\times e^{-0.2554\times(-1)\times(+1)}&#x3D;0.1614$</p>
+<p>更新权重$w_{25}&#x3D;0.5\times e^{-0.2554\times(+1)\times(+1)}&#x3D;0.3873$</p>
 <p>归一化权重$w_{11}&#x3D;\frac{0.0968}{0.9683}&#x3D;0.1$</p>
 <p>归一化权重$w_{12}&#x3D;\frac{0.1614}{0.9683}&#x3D;0.1667$</p>
 <p>归一化权重$w_{13}&#x3D;\frac{0.1614}{0.9683}&#x3D;0.1667$</p>
@@ -901,7 +901,7 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div></div>
+      <div>机器学习</div>
       <div>http://example.com/2023/07/16/Machine-Learning/</div>
     </div>
     <div class="license-meta">
