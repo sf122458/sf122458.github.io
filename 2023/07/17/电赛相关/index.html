@@ -1,0 +1,1265 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Eternity">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="信号发生与调理&#x2F;采集与处理题型相关 涉及数字系统设计  graph LR A(Analog Signal) B(信号调理) C(ADC) D(数字系统) E(DAC) F(功率放大) G(输出) A--&gt;B--&gt;C--&gt;D--&gt;E--&gt;F--&gt;G    目标信号具有高频、工频附件频率（50Hz）、小幅值、小功率特点  信号采集（前端设计）：阻抗匹配、信">
+<meta property="og:type" content="article">
+<meta property="og:title" content="电赛相关">
+<meta property="og:url" content="http://example.com/2023/07/17/%E7%94%B5%E8%B5%9B%E7%9B%B8%E5%85%B3/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="信号发生与调理&#x2F;采集与处理题型相关 涉及数字系统设计  graph LR A(Analog Signal) B(信号调理) C(ADC) D(数字系统) E(DAC) F(功率放大) G(输出) A--&gt;B--&gt;C--&gt;D--&gt;E--&gt;F--&gt;G    目标信号具有高频、工频附件频率（50Hz）、小幅值、小功率特点  信号采集（前端设计）：阻抗匹配、信">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-07-17T01:29:04.000Z">
+<meta property="article:modified_time" content="2023-07-18T05:02:23.938Z">
+<meta property="article:author" content="Eternity">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>电赛相关 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.5","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Eternity@SJTU</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>Links</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/bg/bg_index.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="电赛相关"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-07-17 09:29" pubdate>
+          July 17, 2023 am
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          5.1k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          43 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">电赛相关</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="信号发生与调理-采集与处理"><a href="#信号发生与调理-采集与处理" class="headerlink" title="信号发生与调理&#x2F;采集与处理"></a>信号发生与调理&#x2F;采集与处理</h2><h3 id="题型相关"><a href="#题型相关" class="headerlink" title="题型相关"></a>题型相关</h3><ul>
+<li>涉及数字系统设计</li>
+</ul>
+<pre><code class=" mermaid">graph LR
+A(Analog Signal)
+B(信号调理)
+C(ADC)
+D(数字系统)
+E(DAC)
+F(功率放大)
+G(输出)
+A--&gt;B--&gt;C--&gt;D--&gt;E--&gt;F--&gt;G
+</code></pre>
+
+<ul>
+<li><p>目标信号具有高频、工频附件频率（50Hz）、小幅值、小功率特点</p>
+</li>
+<li><p>信号采集（前端设计）：阻抗匹配、信号类型、电平类型等参数，其次关注频率特性等，以此为参考选型</p>
+</li>
+<li><p>信号发生与处理（后端设计）：不同类型信号的发生、放大、调制、移相等问题</p>
+</li>
+</ul>
+<h3 id="基础元器件"><a href="#基础元器件" class="headerlink" title="基础元器件"></a>基础元器件</h3><h4 id="电阻"><a href="#电阻" class="headerlink" title="电阻"></a>电阻</h4><ul>
+<li><p>可能遇到的问题</p>
+<ul>
+<li>发热升温（限制了功率）</li>
+<li>制造误差（影响精度）</li>
+<li>材料击穿（限制最大耐压值）</li>
+<li>温度系数（影响电路温度稳定度）</li>
+<li>分布电感、分布电容（限制最高工作频率）</li>
+<li>材料结构断裂（耐冲击能力）</li>
+<li>电子路径不均匀（产生额外电路噪声）</li>
+</ul>
+</li>
+<li><p>电阻器分类</p>
+<h2 id=""><a href="#" class="headerlink" title="- "></a>- </h2><ul>
+<li><p>水泥电阻</p>
+</li>
+<li><p>直插电阻</p>
+</li>
+<li><p>贴片电阻（电流采样电阻）</p>
+</li>
+<li></li>
+<li><p>电位器（电路放大调节）</p>
+</li>
+<li><p>双联电位器（差分放大电流）</p>
+</li>
+<li><p>多圈电位器</p>
+</li>
+<li><p>排阻</p>
+</li>
+</ul>
+</li>
+<li><p>电阻参数</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>符号</th>
+<th>单位</th>
+<th>含义</th>
+<th>实际应用限制</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>标称阻值</td>
+<td>$R$</td>
+<td>Ω</td>
+<td>设计的电阻值</td>
+<td>可选的阻值有限</td>
+</tr>
+<tr>
+<td>误差</td>
+<td>$E$</td>
+<td>%</td>
+<td>电阻的制造精度</td>
+<td>影响电路的精度，如放大增益</td>
+</tr>
+<tr>
+<td>额定功率</td>
+<td>$P_c$</td>
+<td>W</td>
+<td>最大允许的发热功率</td>
+<td>发热温升和和允许工作温度范围</td>
+</tr>
+<tr>
+<td>温度系数</td>
+<td>$T_c$</td>
+<td>ppm&#x2F;℃</td>
+<td>阻值变化受温度影响</td>
+<td>电路的温度稳定度</td>
+</tr>
+<tr>
+<td>老化系数</td>
+<td></td>
+<td>ppm&#x2F;yr</td>
+<td>每年阻值的变化率</td>
+<td>电路性能的长期稳定度</td>
+</tr>
+<tr>
+<td>热阻</td>
+<td>$R_{th}$</td>
+<td>℃&#x2F;W</td>
+<td>自然通风条件下温升与发热功率的关系</td>
+<td>发热温升和允许工作温度范围</td>
+</tr>
+<tr>
+<td>分布电感</td>
+<td>$L_s$</td>
+<td>nH</td>
+<td>导体路径引起的电感</td>
+<td>决定最高工作频率</td>
+</tr>
+<tr>
+<td>分布电容</td>
+<td>$C_s$</td>
+<td>pF</td>
+<td>导体间的分布电容</td>
+<td>决定最高工作频率</td>
+</tr>
+<tr>
+<td>工作温度</td>
+<td>$T_a$</td>
+<td>℃</td>
+<td>可工作的温度范围</td>
+<td>整机工作温度&#x2F;寿命</td>
+</tr>
+<tr>
+<td>工作寿命</td>
+<td>$T_L$</td>
+<td>hr@$T_{max}$</td>
+<td>最高温可靠工作时间</td>
+<td>决定整机的预期寿命</td>
+</tr>
+<tr>
+<td>过载冲击</td>
+<td>$\frac{\Delta R}{R}$</td>
+<td>%</td>
+<td>过载后电阻损伤变化</td>
+<td>扛短时过负荷能力</td>
+</tr>
+</tbody></table>
+<p><strong>主要关注点：误差、额定功率(如根据采样电阻所流过的电流的范围，确定额定功率的大小)、温度系数（温度系数大的电阻发热可能导致采集得到的数据误差大）、分布电容电感</strong></p>
+</li>
+</ul>
+<h4 id="电容"><a href="#电容" class="headerlink" title="电容"></a>电容</h4><ul>
+<li><p>电容公式<br>$$<br>C&#x3D;\frac{\epsilon S}{d}<br>$$</p>
+</li>
+<li><p>电容等效模型</p>
+</li>
+<li><p>可能遇到的问题</p>
+<ul>
+<li>发热升温（最大波纹电流）</li>
+<li>制造误差（影响电路初始精度）</li>
+<li>电容击穿（限制了最大耐压值）</li>
+<li>随温度变化（影响电路温度稳定度）</li>
+<li>ESL</li>
+<li>ESR</li>
+<li>材料结构断裂（耐冲击能力）</li>
+<li>漏电流（影响信号耦合）</li>
+<li>爆炸</li>
+</ul>
+</li>
+<li><p>电容分类</p>
+<ul>
+<li>陶瓷电容（村田）</li>
+<li>贴片电容：陶瓷</li>
+<li>电解电容（铝电解电容：Rubycon）</li>
+<li>钽电容（注意正负，AVX）</li>
+<li></li>
+<li>云母电容</li>
+<li>无感电容</li>
+<li>高压瓷片电容</li>
+<li>聚苯乙烯（耐温不太好）</li>
+</ul>
+</li>
+<li><p>电容各种参数</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>符号</th>
+<th>单位</th>
+<th>含义</th>
+<th>实际应用限制</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>标称容量</td>
+<td>$C$</td>
+<td>pF&#x2F;μF</td>
+<td>标称的电容值</td>
+<td>可选的容量有限（如E6&#x2F;12系列）</td>
+</tr>
+<tr>
+<td>误差</td>
+<td>$E$</td>
+<td>%</td>
+<td>电容的制造精度</td>
+<td>影响电路的精度，如滤波带宽</td>
+</tr>
+<tr>
+<td>耐压</td>
+<td>$V_{dc}$</td>
+<td>V</td>
+<td>电容承受的最高电压</td>
+<td>过压会引起击穿损坏</td>
+</tr>
+<tr>
+<td>漏电阻</td>
+<td>$R_p$</td>
+<td>Ω</td>
+<td>电容的直流绝缘性能</td>
+<td>电压维持时间、影响直流偏置</td>
+</tr>
+<tr>
+<td>内阻</td>
+<td>$ESR$</td>
+<td>Ω</td>
+<td>电容的等效串联电阻</td>
+<td>引起损耗、发热</td>
+</tr>
+<tr>
+<td>分布电感</td>
+<td>$ESL$</td>
+<td>nH</td>
+<td>电容的等效串联电感</td>
+<td>引起谐振、限制最高工作频率</td>
+</tr>
+<tr>
+<td>损耗角&#x2F;Q值</td>
+<td>$\tan\delta$</td>
+<td></td>
+<td>表征电容的能量损耗</td>
+<td>引起发热、相位差</td>
+</tr>
+<tr>
+<td>温度系数</td>
+<td>$T_c$</td>
+<td>ppm&#x2F;℃</td>
+<td>电容值的温度稳定度</td>
+<td>温度变化引起的误差</td>
+</tr>
+<tr>
+<td>额定纹波电流</td>
+<td>$I_{max}$</td>
+<td>A</td>
+<td>允许长期通过的最大交流电流值</td>
+<td>超过会因发热而爆炸、起火</td>
+</tr>
+<tr>
+<td>工作温度</td>
+<td>$T_a$</td>
+<td>℃</td>
+<td>可工作的温度范围</td>
+<td>整机工作温度&#x2F;寿命</td>
+</tr>
+<tr>
+<td>工作寿命</td>
+<td>$T_L$</td>
+<td>hr@$T_{max}$</td>
+<td>最高温可靠工作时间</td>
+<td>决定整机的预期寿命</td>
+</tr>
+</tbody></table>
+<p><strong>主要关注点：误差、耐压、温度系数等（信号测量题关注ESR、ESL、纹波电流、损耗角等）</strong></p>
+</li>
+</ul>
+<h4 id="二极管"><a href="#二极管" class="headerlink" title="二极管"></a>二极管</h4><ul>
+<li><p>二极管分类</p>
+<ul>
+<li>普通二极管<ul>
+<li>单向导通特性</li>
+<li>整流二极管与整流桥</li>
+</ul>
+</li>
+<li>肖特基二极管<ul>
+<li>正向导通压降：一般0.3V左右，与反向耐压值正相关</li>
+<li>反向耐压值</li>
+</ul>
+</li>
+<li>隧道二极管</li>
+<li>变容二极管</li>
+<li>光敏二极管</li>
+<li>稳压二极管<ul>
+<li>ADC保护功能，末端并联稳压二极管，防止接口电压过高引起损坏</li>
+</ul>
+</li>
+<li>发光二极管</li>
+</ul>
+</li>
+<li><p>常用二极管</p>
+<ul>
+<li>整流二极管：1N4001</li>
+<li>快恢复二极管：FR107</li>
+<li>肖特基二极管：1N5128、MBR1640</li>
+<li>稳压二极管：1N47系列</li>
+<li>检波二极管：1N60</li>
+<li>TVS瞬态抑制二极管：P6KE10A</li>
+<li>变容二极管：BB9190</li>
+<li>整流桥：GBJ2510</li>
+</ul>
+</li>
+</ul>
+<h4 id="三极管与MOS管"><a href="#三极管与MOS管" class="headerlink" title="三极管与MOS管"></a>三极管与MOS管</h4><ul>
+<li>三极管<ul>
+<li>小功率管（S8550，S8050），大功率管（TIP41C，TIP42C）</li>
+<li>关注点：耐压、最大电流等</li>
+</ul>
+</li>
+<li>MOS管<ul>
+<li>小功率MOS管（2N7000等），大功率MOS管（IRF540等）</li>
+<li>关注点：耐压、**$R_{dson}$<strong>、</strong>GS电容**、最大电流等</li>
+</ul>
+</li>
+</ul>
+<h3 id="常用元器件"><a href="#常用元器件" class="headerlink" title="常用元器件"></a>常用元器件</h3><h4 id="运放"><a href="#运放" class="headerlink" title="运放"></a>运放</h4><ul>
+<li><p>运放分类</p>
+<ul>
+<li>通用运放：LM358，LM324，TL082等</li>
+<li>精密运放：OP07，OP27等</li>
+<li>高速运放：OPA820，OPA690等，压摆率非常大，截止频率高</li>
+<li>功率运放：OPA548,THS3091（电流型），TDA2030等，用于功率放大</li>
+<li>低功耗运放：OPA2333，OPA349等，需要的电源电压比较低</li>
+<li>音频运放：NE5532，NE5534，OPA1642等</li>
+<li>仪用运放：INA128，AD620等，两路信号差分放大</li>
+<li>差分运放：INA282，INA193，INA105等，信号采样，具有高共模抑制比</li>
+<li>程控放大器：VCA821，PGA281，VCA810等</li>
+<li>特殊功能放大器：隔离，互阻，对数等</li>
+</ul>
+</li>
+<li><p>重要参数</p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>符号</th>
+<th>单位</th>
+<th>含义</th>
+<th>实际应用中的限制</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>偏置电流</td>
+<td>$I_{b}$</td>
+<td>pA&#x2F;nA</td>
+<td>输入端输入&#x2F;输出的电流</td>
+<td>限制最大支路阻抗、影响弱电流测量</td>
+</tr>
+<tr>
+<td>失调电流</td>
+<td>$I_{os}$</td>
+<td>pA&#x2F;nA</td>
+<td>+&#x2F;-端偏置电流的差异</td>
+<td>限制偏置补偿电阻的效果</td>
+</tr>
+<tr>
+<td>共模抑制比</td>
+<td>$CMRR$</td>
+<td>倍&#x2F;dB</td>
+<td>相减环节的性能</td>
+<td>对共模干扰的抑制能力</td>
+</tr>
+<tr>
+<td>单位增益带宽</td>
+<td>$GBW$</td>
+<td>MHz</td>
+<td>增益-带宽的乘积</td>
+<td>限制实际闭环带宽</td>
+</tr>
+<tr>
+<td>压摆率</td>
+<td>$SR$</td>
+<td>V&#x2F;μs</td>
+<td>输出最快上升&#x2F;下降速率</td>
+<td>限制输出信号最陡的沿</td>
+</tr>
+<tr>
+<td>电源电压</td>
+<td>$V_{cc}$$&#x2F;V_{ee}$</td>
+<td>V</td>
+<td>允许的最小&#x2F;最大电压</td>
+<td>决定输出范围</td>
+</tr>
+<tr>
+<td>共模输入范围</td>
+<td>$U_{ICR}$</td>
+<td>V</td>
+<td>允许输入端的电压范围</td>
+<td>输入端电压范围</td>
+</tr>
+</tbody></table>
+<h4 id="电压比较器"><a href="#电压比较器" class="headerlink" title="电压比较器"></a>电压比较器</h4><ul>
+<li>电压比较器分类<ul>
+<li>通用比较器：LM393，LM331等</li>
+<li>高速比较器：TL3016，TLV3201等</li>
+<li>低功耗比较器：TLV3704，TLV1391等</li>
+<li>高电压比较器：TLV6710，TL331等</li>
+</ul>
+</li>
+</ul>
+<h4 id="线性稳压器"><a href="#线性稳压器" class="headerlink" title="线性稳压器"></a>线性稳压器</h4><ul>
+<li><p>线性稳压器分类</p>
+<ul>
+<li>三端稳压器件：78XX，79XX，LM1117，LM317，LM337等</li>
+<li>低压差线性稳压器件：TL1963，TPS74801，TPS7A91等</li>
+<li>电压基准源：REF33XX，REF34XX，ADR45XX等</li>
+</ul>
+<p><strong>关注点：最低压差，最大电流，最高耐压，最大功率等（最低压差与电流成一定关系，也就是说最低压差不是定值）</strong></p>
+</li>
+</ul>
+<h4 id="数据转换器"><a href="#数据转换器" class="headerlink" title="数据转换器"></a>数据转换器</h4><ul>
+<li>数模转换器DAC：DAC8552等</li>
+<li>模数转换器ADC：ADS8345（16位）等、外置高速ADC</li>
+<li>数字电位器：TPL0501（SPI），TPL0102（IIC），X9C104，MCP41100等</li>
+</ul>
+<h4 id="各类数字芯片"><a href="#各类数字芯片" class="headerlink" title="各类数字芯片"></a>各类数字芯片</h4><ul>
+<li><p>门电路：与或非门</p>
+</li>
+<li><p>模拟开关类芯片：CD4051，CD4052等（单路复用，增益控制）</p>
+</li>
+<li><p>计数器：类型太多，一般单片机或FPGA即可替代，可做分频用</p>
+</li>
+<li><p>移位寄存器：74HC595（可做IO口拓展）</p>
+</li>
+<li><p>触发器：RS触发器、D触发器、JK触发器（结合门实现各种数字逻辑）</p>
+<p><strong>注意点：注意TTL与CMOS，电平门限不同；模拟开关使用时注意内阻影响，不同的模拟开关芯片内阻不一样，其内阻会随温度的变化而变化，关注温度系数</strong></p>
+</li>
+</ul>
+<h4 id="功能类芯片"><a href="#功能类芯片" class="headerlink" title="功能类芯片"></a>功能类芯片</h4><ul>
+<li>时钟信号发生器：有源晶振、NE555、MAX038、DDS等</li>
+<li>测量型芯片：AD637（有效值测量）</li>
+<li>隔离器件：光耦（PC817等）</li>
+<li>缓冲器（BUFFER）</li>
+</ul>
+<h3 id="电流模块介绍"><a href="#电流模块介绍" class="headerlink" title="电流模块介绍"></a>电流模块介绍</h3><ul>
+<li><p>通用类：最小系统板、仿真器、串口通讯模块、</p>
+</li>
+<li><p>信号测量类：DDS、高速ADC模块</p>
+</li>
+<li><p>通讯类：无线通讯要求（ESP）</p>
+</li>
+</ul>
+<h3 id="信号基础"><a href="#信号基础" class="headerlink" title="信号基础"></a>信号基础</h3><h4 id="信号类型"><a href="#信号类型" class="headerlink" title="信号类型"></a>信号类型</h4><ul>
+<li>模拟信号</li>
+<li>数字信号</li>
+<li>模拟信号采样、量化、数字化转码转换成数字信号</li>
+</ul>
+<h4 id="放大电路"><a href="#放大电路" class="headerlink" title="放大电路"></a>放大电路</h4><ul>
+<li><p>同相比例放大器（电阻量级一般为kΩ）</p>
+<p>$$<br>\begin{aligned}<br>U_o&amp;&#x3D;\frac{R_1+R_2}{R_1}U_{i}\newline<br>R_i&amp;&#x3D;\infty<br>\end{aligned}<br>$$</p>
+</li>
+<li><p>$R_2\rightarrow \infty$时，为同相电压跟随器</p>
+</li>
+<li><p>反向比例放大器<br>$$<br>\begin{aligned}<br>U_o&amp;&#x3D;-\frac{R_2}{R_1}U_i\newline<br>R_i&amp;&#x3D;R_1<br>\end{aligned}<br>$$</p>
+</li>
+<li><p>阻抗匹配问题：每一级放大之间加入跟随器</p>
+</li>
+<li><p>放大器供电问题</p>
+<ul>
+<li>V+大于输出信号最大值，V-小于输出信号最小值</li>
+<li>单双电源：根据最终放大信号电压范围确定供电方式；单电源供电放大有正有负的信号，使用放大电路再滤除直流分量，或者使用双输出隔离电源模块、单输出隔离电源</li>
+</ul>
+</li>
+<li><p>放大器选型参数</p>
+<ul>
+<li>压摆率SR：<strong>当输入信号变化斜率小于压摆率时，输出信号才能不失真</strong></li>
+<li>增益带宽积GBW：为增益与带宽的乘积，即当增益为$X$时，只有信号频率小于带宽$\frac{GBW}{X}$时，输出信号才能不失真</li>
+</ul>
+</li>
+<li><p>相加器、相减器</p>
+</li>
+<li><p>积分器、差分积分器<br>$$<br>U_o&#x3D;-\frac{1}{RC}\int u_idt<br>$$</p>
+<p>$$<br>U_o&#x3D;\frac{1}{RC}\int (u_{i1}-u_{i2})dt<br>$$</p>
+</li>
+<li><p>仪用放大器</p>
+<ul>
+<li>具有输入缓冲器，不需要阻抗匹配</li>
+</ul>
+<p>$$<br>\frac{U_o}{U_{i1}-U_{i2}}&#x3D;\frac{R_3}{R_2}(\frac{2R_1}{R_G}+1)<br>$$</p>
+</li>
+<li><p>滤波器</p>
+</li>
+<li><p>电压比较器</p>
+</li>
+<li><p>整流电路</p>
+<ul>
+<li>半波整流</li>
+<li>全波整流</li>
+</ul>
+</li>
+</ul>
+<h3 id="仪器仪表类赛题"><a href="#仪器仪表类赛题" class="headerlink" title="仪器仪表类赛题"></a>仪器仪表类赛题</h3><h4 id="系统结构"><a href="#系统结构" class="headerlink" title="系统结构"></a>系统结构</h4><pre><code class=" mermaid">graph LR
+A(&quot;信号输入产生&quot;)
+B(&quot;信号变换调理&quot;)
+C(&quot;信号采集存储&quot;)
+D(&quot;信号分析处理&quot;)
+E(&quot;信号产生变换&quot;)
+F(&quot;信号缓冲调理&quot;)
+G(&quot;通信接口&quot;)
+H(&quot;人机交互接口&quot;)
+I(&quot;电源&quot;)
+A--&gt;B--&gt;C--&gt;D--&gt;E--&gt;F
+D--&gt;G
+D--&gt;H
+</code></pre>
+
+<h4 id="知识点总结"><a href="#知识点总结" class="headerlink" title="知识点总结"></a>知识点总结</h4><ul>
+<li>电压量的测量等<ul>
+<li>电阻、电容和电感参数测试电路和方法</li>
+<li>正弦信号失真度测量方法和电路</li>
+<li>通用性集成运放测试电路和方法</li>
+</ul>
+</li>
+<li>信号源类<ul>
+<li>DDS接口电路和设计</li>
+<li>可变增益放大电路制作和设计</li>
+<li>各类滤波器的设计和制作</li>
+</ul>
+</li>
+<li>必备<ul>
+<li>单片机、FPGA、ARM的最小系统电路的设计和制作</li>
+<li>LCD显示屏、键盘、开关、继电器（IO口输出电流不足，通过外置三极管控制）等外围电路设计和制作</li>
+<li>低纹波直流稳压电源电路设计和制作等</li>
+</ul>
+</li>
+</ul>
+<h4 id="运放放大与参数"><a href="#运放放大与参数" class="headerlink" title="运放放大与参数"></a>运放放大与参数</h4><ul>
+<li>放大器基本概念<ul>
+<li>同相放大器<ul>
+<li>放大倍数：$A&#x3D;1+\frac{R_f}{R_G}$</li>
+<li>输入电阻：$R_i&#x3D;\infty$</li>
+<li>输出电阻：$R_o&#x3D;0$</li>
+</ul>
+</li>
+<li>反向放大器<ul>
+<li>放大倍数：$A&#x3D;-\frac{R_f}{R_G}$</li>
+<li>输入电阻：$R_i&#x3D;R_G$</li>
+<li>输出电阻：$R_o&#x3D;0$</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>静态参数<ul>
+<li>失调<ul>
+<li>输入信号为0时，输出信号不为0，放大后易产生失真</li>
+<li>运放的失调校正：利用调零引脚；外部调零电路</li>
+</ul>
+</li>
+<li>输入&#x2F;输出阻抗<ul>
+<li>射随（如OP27）加反相放大器</li>
+</ul>
+</li>
+<li>输入&#x2F;输出范围<ul>
+<li>轨对轨运放：输入、输出、输入&#x2F;输出</li>
+</ul>
+</li>
+<li>电源供电</li>
+<li>共模抑制比</li>
+</ul>
+</li>
+<li>动态参数<ul>
+<li>小信号时域响应参数<ul>
+<li>精密运放：一般用于放大低频信号，具有较低的失调电压。通常对比静态参数。常用的有INA128等</li>
+<li>增益带宽积</li>
+<li>单位增益带宽$f_u$：当增益为1时的带宽范围</li>
+<li>上升时间$t_R$：$v_0$从$10%V_m$上升到$90%V_m$所需时间</li>
+<li>关系：$t_R&#x3D;\frac{0.35}{f_u}$</li>
+</ul>
+</li>
+<li>大信号时域响应参数<ul>
+<li>高速运放：一般用于放大频率比较大的信号，具有较高的增益带宽积、高转换速率和宽频率响应。通常对比动态参数</li>
+<li>压摆率SR</li>
+<li>全功率带宽FPBW</li>
+<li>关系：$FPBW&#x3D;\frac{SR}{2\pi V_{m}}$</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="接地技术"><a href="#接地技术" class="headerlink" title="接地技术"></a>接地技术</h4><ul>
+<li><p>单点接地</p>
+<ul>
+<li>串联单点接地<ul>
+<li>优点：简单</li>
+<li>缺点：公共阻抗耦合</li>
+</ul>
+</li>
+<li>并联单点接地<ul>
+<li>优点：无公共阻抗耦合</li>
+<li>缺点：接地线过多</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>多点接地</p>
+<ul>
+<li>优点：导线有电感效应，需要就近接地，简单</li>
+<li>缺点：公共阻抗耦合</li>
+</ul>
+</li>
+<li><p>选择依据：1MHz以下，使用单点接地；10MHz以上，使用多点接地；在1MHz和10MHz之间时，如果最长的接地线不超过波长的$\frac{1}{20}$，可以用单点接地，否则用多点接地</p>
+</li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>电赛相关</div>
+      <div>http://example.com/2023/07/17/电赛相关/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Eternity</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>July 17, 2023</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/07/16/Machine-Learning/" title="机器学习">
+                        <span class="hidden-mobile">机器学习</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>
