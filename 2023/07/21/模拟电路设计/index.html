@@ -1,0 +1,1022 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Eternity">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="主要运放参数与运放类型 运放参数 输入失调电流、输入失调电压 实际电路中，运放两端输入始终存在两个输入偏置电流，当两个输入偏置电流不平衡时，会产生输入失调电流\(I_{os}&#x3D;|I_{B+}-I_{B-}|\)  同样的，在实际电路中，运放两端输入电压并不完全相同，必须施加小差分电压，强制输出达到0，该电压称为输入失调电压\(V_{os}\)  开环带宽BW和单位增益带宽GBW 开">
+<meta property="og:type" content="article">
+<meta property="og:title" content="模拟电路设计">
+<meta property="og:url" content="http://example.com/2023/07/21/%E6%A8%A1%E6%8B%9F%E7%94%B5%E8%B7%AF%E8%AE%BE%E8%AE%A1/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="主要运放参数与运放类型 运放参数 输入失调电流、输入失调电压 实际电路中，运放两端输入始终存在两个输入偏置电流，当两个输入偏置电流不平衡时，会产生输入失调电流\(I_{os}&#x3D;|I_{B+}-I_{B-}|\)  同样的，在实际电路中，运放两端输入电压并不完全相同，必须施加小差分电压，强制输出达到0，该电压称为输入失调电压\(V_{os}\)  开环带宽BW和单位增益带宽GBW 开">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="e:\blog\blog\source\img\post\analog_circuit\ios.jpg">
+<meta property="og:image" content="e:\blog\blog\source\img\post\analog_circuit\vos.jpg">
+<meta property="og:image" content="e:\blog\blog\source\img\post\analog_circuit\CFB.jpg">
+<meta property="og:image" content="e:\blog\blog\source\img\post\analog_circuit\PGA.jpg">
+<meta property="og:image" content="e:\blog\blog\source\img\post\analog_circuit\%E6%B3%A22.png">
+<meta property="og:image" content="e:\blog\blog\source\img\post\analog_circuit\%E6%B3%A21.jpg">
+<meta property="article:published_time" content="2023-07-21T13:22:14.000Z">
+<meta property="article:modified_time" content="2023-07-22T14:26:02.658Z">
+<meta property="article:author" content="Eternity">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="e:\blog\blog\source\img\post\analog_circuit\ios.jpg">
+  
+  
+  
+  <title>模拟电路设计 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.5","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Eternity@SJTU</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>Links</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/bg/bg_index.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="模拟电路设计"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-07-21 21:22" pubdate>
+          July 21, 2023 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          13k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          108 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">模拟电路设计</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="主要运放参数与运放类型">主要运放参数与运放类型</h2>
+<h3 id="运放参数">运放参数</h3>
+<h4 id="输入失调电流输入失调电压">输入失调电流、输入失调电压</h4>
+<p>实际电路中，运放两端输入始终存在两个输入偏置电流，当两个输入偏置电流不平衡时，会产生输入失调电流<span
+class="math inline">\(I_{os}=|I_{B+}-I_{B-}|\)</span></p>
+<p><img src="E:\blog\blog\source\img\post\analog_circuit\ios.jpg" srcset="/img/loading.gif" lazyload /></p>
+<p>同样的，在实际电路中，运放两端输入电压并不完全相同，必须施加小差分电压，强制输出达到0，该电压称为输入失调电压<span
+class="math inline">\(V_{os}\)</span></p>
+<p><img src="E:\blog\blog\source\img\post\analog_circuit\vos.jpg" srcset="/img/loading.gif" lazyload /></p>
+<h4 id="开环带宽bw和单位增益带宽gbw">开环带宽BW和单位增益带宽GBW</h4>
+<p>开环直流增益指运放在反馈环路未闭合时的增益。对于精密运算放大器，该增益可能非常高，为160
+dB或以上。从直流到主导极点转折频率，该增益表现平坦。此后，增益以6
+dB/2倍频程（20
+dB/10倍频程；2倍频程指频率增加一倍，10倍频程指频率增加十倍）速率下降。如果运放有一个单极点，则开环增益以该速率下降，如图1.2.4(a)所示。实际运放一般有一个以上的极点，如1.2.4(b)所示。第二个极点会使开环增益下降至12
+dB/2倍频程（40 dB/10倍频程）。如果开环增益达到第二个极点频率之前降至0
+dB（单位增益）以下，则运放在任何增益下均会无条件地保持稳定。数据手册上一般将这种情况称为单位增益稳定。如果达到第二个极点的频率且闭环增益大于1（0
+dB），则放大器可能不稳定。有些运放设计为只有在较高闭环增益下才保持稳定，这就是所谓的非完全补偿运算放大器。同时注意，运放可能在较高频率下拥有更多额外的寄生极点，一般情况下前两个极点是最重要的。</p>
+<p>开环增益并不是一项精确控制的参数。其范围相对较大，在规格参数中，多数情况下均表示为典型值而非最大/最小值。有些情况下，一般指高精度运算放大器，该参数会有一个最小值。另外，开环增益可能因输出电压电平和负载而变化，这就是所谓的开环增益非线性度。该参数与温度也有一定的相关性。一般来说，这些影响很小，多数情况下都可以忽略不计。</p>
+<p>对于单极点响应，开环增益以6
+dB/8倍频程下降。这就是说，如果我们将频率增加一倍，增益会下降两倍。相反，如果使频率减半，则开环增益会增加一倍，如图1.2.5所示。用频率乘以开环增益，其积始终为一个常数，称为增益带宽积（GBWP），其值就是单位增益带宽。注意，增益带宽积仅对电压反馈（VFB）型运放有意义，电流反馈（CFB）型运放没有固定的增益带宽积，且在反馈电阻固定而增益变化时带宽变化不大（这也是CFB运放的一个主要优点）；另外，很多运放数据手册中给出的单位增益带宽是-3dB时的带宽。</p>
+<p>例如，如果有这样一个应用，要求闭环增益为10，带宽为100
+kHz，则需要一个最低增益带宽积为1
+MHz的运放。但这有点把问题过度简单化了，因为增益带宽积变化极大，而且在闭环增益与开环增益相交的位置，响应实际上要低3
+dB。另外，还应该允许一定的额外余量。在这个应用中，增益带宽积为1
+MHz的运算放大器是最低要求。保险起见，为了实现要求的性能，因数至少应该是5。因此选择了增益带宽积为5MHz的运算放大器。</p>
+<h4 id="转换速率sr">转换速率SR</h4>
+<p>转换速率SR指的是运放在额定负载及输入阶跃最大信号时输出电压的最大变化率，也称为压摆率。正弦波SR出现在过零点处，满足：
+<span class="math display">\[
+SR=2\pi f\times V_p
+\]</span> 其中，<span
+class="math inline">\(f\)</span>为信号的频率，<span
+class="math inline">\(V_p\)</span>为信号的峰值电压，SR的单位为<span
+class="math inline">\(V/μs\)</span>。由此可以推出 <span
+class="math display">\[
+f_{max}=\frac{SR}{2\pi V_p}
+\]</span></p>
+<p>在大多数运放中，影响SR的主要因素是内部的补偿电容，加上这个电容的目的是为了使运放有稳定的单位增益。但不是每一个运放都是有补偿的，在没有内部补偿电容的运放中，SR是由运放内部的分布电容确定的。未补偿的运放通常比减补偿运放具有更快的SR，而减补偿运放比全补偿运放具有更快的SR。</p>
+<h3 id="运放类型">运放类型</h3>
+<h4 id="通用型运放">通用型运放</h4>
+<ul>
+<li>特点：价格低廉、性能指标适合一般使用。</li>
+<li>μA741（单运放）、LM358（双运放）、LM324（四运放）以及以场效应管为输入级的LF356</li>
+</ul>
+<h4 id="特殊型运放">特殊型运放</h4>
+<ul>
+<li><p>高速宽带型</p>
+<p>多用于宽频带放大场合，如高速A/D、D/A，高速数据采集测试系统。SR大于几十V/μs，单位增益带宽GBW大于10MHz。</p></li>
+<li><p>高精度（低漂移）型</p>
+<p>用于精密放大仪器、精密测试系统等</p></li>
+<li><p>高输入阻抗型</p>
+<p>用于测量设备及采样保持电路中</p></li>
+<li><p>低功耗型</p></li>
+<li><p>功率型：输出功率可达1W以上</p></li>
+</ul>
+<h2 id="基本放大电路">基本放大电路</h2>
+<h3 id="反相放大电路">反相放大电路</h3>
+<p><img
+src="E:\blog\blog\source\img\post\analog_circuit\反相放大电路.jpg" srcset="/img/loading.gif" lazyload /></p>
+<ul>
+<li><p>特点：输出信号与输入信号极性相反，输入电阻不高，可以作为电流输入型运算电路，无共模输入电压，噪声较小，信噪比高</p></li>
+<li><p>当<span
+class="math inline">\(R_1=R_f\)</span>时，可作为反相器</p></li>
+<li><p><span
+class="math inline">\(R_1\)</span>取值要远大于输入信号的内阻，一般为几千欧姆至几十千欧姆；反馈电阻<span
+class="math inline">\(R_f\)</span>不能取得太大，否则会产生较大的噪声及漂移，其值一般取几千欧姆到几百千欧姆之间</p></li>
+<li><p>主要缺点：输入电阻较低</p></li>
+</ul>
+<h3 id="同相放大电路电压跟随器">同相放大电路、电压跟随器</h3>
+<p><img
+src="E:\blog\blog\source\img\post\analog_circuit\同相放大电路.jpg" srcset="/img/loading.gif" lazyload /></p>
+<ul>
+<li><p>特点：输入电阻高、输出电阻低，因而可以用于前置放大器</p></li>
+<li><p>缺点：输入电阻高容易感应杂散电磁场；共模噪声无法处理</p></li>
+<li><p>当<span
+class="math inline">\(R_1\)</span>开路时，构成电压跟随器，电路几乎不从输入信号获得电流，可作为理想的阻抗变换器</p></li>
+<li><p>使用电流反馈（CFB）型运放设计电压跟随器时注意，运放的输出端与反相端是不能短接的，这样会破坏CFB运放的稳定性，导致电路出现振荡现象。正确的做法是在反相输入端和输出端接入电阻<span
+class="math inline">\(R_f\)</span>（取值可以参考数据手册上的推荐值）</p></li>
+</ul>
+<p><img src="E:\blog\blog\source\img\post\analog_circuit\CFB.jpg" srcset="/img/loading.gif" lazyload /></p>
+<h3 id="加减法电路">加减法电路</h3>
+<p><img
+src="E:\blog\blog\source\img\post\analog_circuit\加减法.jpg" srcset="/img/loading.gif" lazyload /></p>
+<p>根据叠加定理，当有多路信号输入时，反相和同相放大电路可构成加法电路。加法电路在波形平移、极性变换、零点调节等电路中得到大量使用。反相加法电路中，由于运放反相端为虚拟地，可保证输入信号间不会发生串扰。同相加法电路中，由于运放同相端电位不为0，将会在输入信号间引入串扰，从而影响输出精度；为了尽可能减少输入间的串扰，<span
+class="math inline">\(R_1\)</span>和<span
+class="math inline">\(R_2\)</span>的取值要尽可能的大。也正因为如此，反相加法电路应用更为广泛。</p>
+<p><img
+src="E:\blog\blog\source\img\post\analog_circuit\减法.jpg" srcset="/img/loading.gif" lazyload /></p>
+<p>反相加法电路中，若使其中一个信号<em>u</em>1经过一级反相后再作为输入信号，则加法电路可以变为减法电路。</p>
+<h3 id="基本差分放大电路">基本差分放大电路</h3>
+<p><img
+src="E:\blog\blog\source\img\post\analog_circuit\基本差分.jpg" srcset="/img/loading.gif" lazyload /></p>
+<p>当<span class="math inline">\(R_1=R_2\)</span>，<span
+class="math inline">\(R_f=R_p\)</span>时，构成基本差分放大电路。差模电压增益为
+<span class="math display">\[
+A_{ud}=\frac{u_o}{u_2-u_1}=\frac{R_f}{R_1}=\frac{R_p}{R_2}
+\]</span>
+在实际使用中，差分放大电路的电阻参数很难完全匹配，导致共模抑制能力下降，这时可采用专用差分放大器，如AMP03、INA117、INA128和INA132等。仪表放大器把关键元件集成在放大器内部，其独特的结构使它具有高共模抑制比、高输入阻抗、低噪声、低线性误差、低失调漂移增益设置灵活和使用方便等特点。</p>
+<p>基本差分电路虽然可以达到放大差模信号，抑制共模信号的目的，但存在<strong>输入电阻较低、增益调节不方便</strong>的缺点。例如，当差模放大电路的两个输入端分别接入两个信号源时，信号源的内阻可视为输入电阻中的一部分。因此，如果两个信号源的内阻不相等，对共模抑制比的影响会非常明显。并且差模放大倍数也会受到影响。为了减小信号源的影响，可以使用仪表放大器。</p>
+<p><img
+src="E:\blog\blog\source\img\post\analog_circuit\仪表放大器.jpg" srcset="/img/loading.gif" lazyload /></p>
+<p>仪表放大器用来测量噪声环境中的弱信号。由于噪声通常是共模的，而信号应该是差分的，所以仪表放大器利用其共模抑制（CMR）特性将有用信号与噪声区分开。常见的仪表放大器基于三运放结构，两个运算放大器用作前置放大器，其后跟随一个差分放大器。前置放大器提供高输入阻抗、低噪声和增益级；差分放大器抑制共模噪声，并能提供必要的额外增益。鉴于这种配置的对称性，输入放大器中的共模误差常常被差分放大器输出级消除。</p>
+<h2 id="运放外部调零电路">运放外部调零电路</h2>
+<p>对于芯片不带调零端的运放，可以在运放反相端或者同相端施加电压，从而调节零点。</p>
+<h3 id="反相放大电路的外部调零">反相放大电路的外部调零</h3>
+<p><img
+src="E:\blog\blog\source\img\post\analog_circuit\反相调零.jpg" srcset="/img/loading.gif" lazyload /></p>
+<p>在第3课反相加法电路的基础上添加可调电压输入部分，可构成反相调零电路，如图1.4.1所示。由叠加定理可知，当<em>u</em>i接地时得到的输出电压就是调零调节范围，即
+<span class="math display">\[
+u_{adj}=\pm\frac{R_f}{R_2}V
+\]</span>
+由于串入<em>R</em>2，电路的输入电阻将变小，同时为了减少调整电源和输入信号间的串扰，因此<em>R</em>2的值要远大于<em>R</em>1的值，一般取<span
+class="math inline">\(R_2=(100\sim1000)R_1\)</span>。</p>
+<p><img
+src="E:\blog\blog\source\img\post\analog_circuit\小范围调零.jpg" srcset="/img/loading.gif" lazyload /></p>
+<p>上图是给同相端加上调零的电路。当运放的同相端闲置时，这个方法可以说是最好的，也是一个常用的同相调零电路。在图中，为了尽量避免<em>R</em>3对其它电路的影响（比如运放闭环增益、平衡等），<em>R</em>3的取值要尽可能的低，要满足<em>R</em>3&lt;（<em>R</em>1//
+<em>R</em>f）且<em>R</em>3远小于<em>R</em>2的条件，本电路调节范围为
+<span class="math display">\[
+u_{adj}=\pm\frac{R_3}{R_2+R_3}\times (1+\frac{R_f}{R_1})V
+\]</span> *由于**R<em>3&lt;&lt;
+</em>R<em>2</em>，所以本电路的动态调节范围较小。如果需要较大范围的调零，可用*图1.4.2（b）所示电路实现，其调节范围为
+<span class="math display">\[
+u_{adj}=\pm\frac{R_w}{2R+R_w}\times(1+\frac{R_f}{R_1})V
+\]</span></p>
+<h3 id="同相放大电路的外部调零">同相放大电路的外部调零</h3>
+<p>在同相模式中使用运放时，可利用图1.4.3所示的电路注入小失调电压。该电路在失调较小时效果较好，其中<em>R</em>2的值要远大于<em>R</em>1的值，否则将增加调整电源和输入信号间的串扰，从而影响放大增益。本电路调节范围为
+<span class="math display">\[
+u_{adj}=\pm\frac{R_f}{R_2}V
+\]</span> <img
+src="E:\blog\blog\source\img\post\analog_circuit\同相调零.jpg" srcset="/img/loading.gif" lazyload /></p>
+<h2 id="运放构成的衰减器">运放构成的衰减器</h2>
+<p>由于运放的输出电阻很小，可以起到很好的阻抗变换作用。因此在电路设计中，往往很希望能用如图1.5.1所示的反相放大电路设计一个电压衰减器。但是由于很多运放是不适宜工作在增益小于1的情况下，导致电路出现很大的超调和振荡现象，因此反相放大电路并不适合用作增益小于1的衰减器中。使用运放设计衰减器通常可用以下两种方法实现。</p>
+<h3 id="同相衰减器">同相衰减器</h3>
+<p><img
+src="E:\blog\blog\source\img\post\analog_circuit\同相衰减器.jpg" srcset="/img/loading.gif" lazyload /></p>
+<p>为了使运放的工作增益大于1，可以在输入运放同相端之前使用电阻分压器对输入信号进行衰减，然后再同相跟随输出。</p>
+<h3 id="反相衰减器">反相衰减器</h3>
+<p><img
+src="E:\blog\blog\source\img\post\analog_circuit\反相衰减器.jpg" srcset="/img/loading.gif" lazyload /></p>
+<p>使用同相跟随来做衰减器，适合一般要求精度不高的应用场合。更为常用的衰减器是反相衰减器，输入信号先经过由<em>R</em>1A、<em>R</em>1B和<em>R</em>3构成的T型衰减网络后再经过运放进行放大。</p>
+<p>表1.5.1是一套规格化的<em>R</em>3阻值，可以用作产生不同等级的衰减。首先为<em>R</em>f和<em>R</em>1在1kΩ到100kΩ之间选择一个值（<em>R</em>1=<em>R</em>f，<em>R</em>1=<em>R</em>1A+<em>R</em>1B），该值作为基础值。接着将<em>R</em>1除以2得到<em>R</em>1A和<em>R</em>1B。最后在表中给<em>R</em>3选择一个合适的比例因子，然后将它乘以基础值的一半得到<em>R</em>3的值。例如，取<em>R</em>f
+=20kΩ，<em>R</em>1A=<em>R</em>1B=10kΩ，那么使用<em>R</em>3=1.67kΩ的电阻就可以得到0.25倍的衰减。</p>
+<p>对于表1.5.1中没有和<em>R</em>3对应的比例因子，可以用以下的公式计算：
+<span class="math display">\[
+R_3\text{比例因子}=\frac{u_o/u_i}{2-2(u_o/u_i)}
+\]</span> <img
+src="E:\blog\blog\source\img\post\analog_circuit\表格.png" srcset="/img/loading.gif" lazyload /></p>
+<h2 id="基于运放的放大电路设计">基于运放的放大电路设计</h2>
+<h3 id="运放芯片选型">运放芯片选型</h3>
+<p>了解运放的类型，理解运放主要性能指标的物理意义，是正确选择运放的前提。从性能价格比方面考虑，应尽量采用通用型运放，只有在通用型运放不满足应用要求时才采用特殊型运放。可以根据以下几方面的要求选择运放类型及型号。</p>
+<p>（1）输入信号性质</p>
+<p>​
+根据输入信号的幅值、频率和等效输出电阻大小，根据信号源是电压源还是电流源、内阻大小、输入信号的幅值及频率的变化范围等，选择差模输入电阻、-3dB带宽（或单位增益带宽）、转换速率SR等指标符合电路要求的运放。</p>
+<p>（2）输出信号要求</p>
+<p>​
+如果输出信号的精度要求较高，应选择低噪声、低失调、高开环差模增益和低温漂的运放（如仪表放大器等）。根据负载电阻的大小，确定所需运放的输出电压和输出电流的幅值，对于非轨对轨运放，其最大输出电压一般为电源电压减去1.4V。对于容性负载或感性负载，还要考虑它们对频率参数的影响。</p>
+<p>（3）单双电源运放的选择</p>
+<p>​
+首先应根据输入信号的极性，选择单电源或双电源供电的运放。只有输入信号为单极性的正信号时才能使用单电源供电的运放。大多数运放均要求双电源供电才能正常工作，只有少数如LM324、LM358之类的运放允许单电源供电。</p>
+<h3 id="反馈回路电阻阻值选择">反馈回路电阻阻值选择</h3>
+<p>从减小热噪声的角度，反馈回路电阻的阻值要尽量小一些。但阻值过小会使反相放大电路的输入电阻降低，增大功耗，通常以千欧数量级采用较多。当所用的反馈电阻阻值非常大的时候，这将带来几种隐患：一是系统噪声增大，二是失调电压变高，还有就是稳定性问题。较大的反馈电阻，加上放大器的输入和杂散电容，将会在放大器的反馈响应中引入一个极点，从而带来附加相移，进而减小放大器的相位裕度，并导致不稳定。</p>
+<p>由于电流反馈型的结构与电压反馈型大不相同。当反馈电阻过大，将缩窄频响范围，同时还增加了噪声；反馈电阻过低则会出现振荡。对于此类运放，数据手册中一般会推荐给出不同增益条件下的反馈电阻值。</p>
+<h3 id="交流放大">交流放大</h3>
+<p>当一个包含DC分量的AC信号进行交流放大的时候，如果直接按图1.6.1（a）所示的电路设计，将会造成问题。电路试图以-10的增益对AC和DC分量同时进行放大，结果是得到1VAC和-50VDC。由于电路的电源把DC输出限制在了±12VDC，所以输出将饱和在-12VDC（也就是受运放负电源供电电压的限制）。当AC信号包含DC分量时，应该加入隔直电容，如图1.6.1（b）所示。通过耦合电容隔离开了两边的电位关系。这时，DC分量被阻断了，因此输出正确的放大电压——1VAC。</p>
+<p><img
+src="E:\blog\blog\source\img\post\analog_circuit\设计.jpg" srcset="/img/loading.gif" lazyload /></p>
+<p>电容耦合是隔离直流分量的，加入耦合电容后需保证电路的静态工作点，否则电路将不工作，如1.6.2（a）所示。同相放大电路加入隔直电容后，其静态工作点遭到破坏，其正确的电路接法如1.6.1（b）所示。换一种方式思考，如果没有添加<em>R</em>2，那么电容将无通路放电，从而使同相端变成直流输入，依然不能放大交流信号。</p>
+<p><img
+src="E:\blog\blog\source\img\post\analog_circuit\设计2.jpg" srcset="/img/loading.gif" lazyload /></p>
+<p>交流放大设计中还应该注意一个问题，如果通过的交流信号中包含低频和高频成分，那图1.6.1和1.6.2电路中的电容应该用一个无极性的小电容和一个极性的大电容并联替代，小电容通过高频信号，大电容通过低频信号。</p>
+<h3 id="宽带放大">宽带放大</h3>
+<p>当信号频率较高或被放大的是脉冲信号时，需要采用高增益带宽、高摇摆率的运放。为获得只够的带宽，闭环增益不能设计的太高，一般小于10。但请记住，并不是运放的带宽越高越好，带宽足够适合应用要比带宽过高更好。评估任何参数的最佳方法是翻阅数据手册，查看特性曲线，只有这样才能真正了解放大的特性。例如，带宽曲线中是否有过高的峰化？即使放大器-3dB带宽看起来较大，但放大器的增益平坦度可能会因为峰化而降低。因此，带宽能满足需求即可。宽带放大最突出的问题就是振荡问题，设计电路时要更加注意电路的稳定性和PCB的布局布线。</p>
+<p>​
+电流反馈型运放没有基础增益带宽积的限制，并具有很好的大信号带宽，有很高的压摆率和可调带宽，由于固有的线性度，高频大信号时也可以获得低的失真，非常适合用于宽带放大电路中。但注意它的反馈电阻设定了闭环动态范围，并且会同时影响带宽和稳定度，因此应用时要注意查看数据手册选择合适的反馈电阻值。</p>
+<h3 id="小信号放大">小信号放大</h3>
+<p>降低噪声，提高信噪比是小信号放大电路的设计要点，应用设计时要特别注意以下几点：</p>
+<p>（1）一般集成运放都存在失调、温漂等在内的零点漂移现象，而小信号的放大倍数一般都很大，提高放大倍数的同时加大了零点漂移。因此前级输入放大级应该采用低噪声的运放（比如斩波稳零型运放TLC2652）或者很高共模抑制比的仪表放大器（比如自动稳零技术的精密仪表放大器AD8230），也可以采用噪声极微的分立元件FET对管构成前置差分放大电路。</p>
+<p>（2）注意使用过程中的降噪处理，比如反馈电阻上加反馈电容（很有必要），可降低电路的高频噪声增益。第二种方法是用复合放大器进行降噪处理。</p>
+<p>（3）闭环负反馈电路采用阻值较低的绕线电阻。</p>
+<p>（4）中间级利用选频、滤波等措施降低白噪声，也要特别注意滤除50Hz工频干扰。</p>
+<p>（5）导线或PCB走线的电阻不是0，根据欧姆定律，当电流流过电阻时，电阻两端会产生压降。所以，电路布板的时候要特别注意走线。</p>
+<h3 id="运放芯片的电源去耦">运放芯片的电源去耦</h3>
+<p><img
+src="E:\blog\blog\source\img\post\analog_circuit\电源去耦.jpg" srcset="/img/loading.gif" lazyload /></p>
+<p>采用如图1.6.3所示的去耦电路，可以很好地降低运放供电电源线路上的噪声，特别在系统总增益很高的前级电路，电源去耦更是不可或缺。电容需要两种：一种是较大的极性电容，如电解电容，它们可以稍微离器件远些，如果电路板尺寸有要求，可以使用10μF的钽电容；另一种是小型的陶瓷旁路电容，它要紧紧挨着相关器件，一般要小于
+3mm旁路电容为极高速瞬变提供能量，并且完成器件旁的电源去耦任务。为了克服电源带来的噪声或毛刺信号，一个常用的方法是附加一个小电阻或磁珠和电容组成低通滤波器电路。但电阻值要小，一般要小于100Ω，否则电阻的消耗将引起运放供电电压下降，导致运放不能正常工作。</p>
+<h2 id="程控放大器的实现方法">程控放大器的实现方法</h2>
+<p>在过程控制及测试仪表中，被测量或被控制对象的有关参数往往是一些连续变化的模拟量，而且变化范围很宽，为了保证必要的测量精度，常会采用改变量程的办法。改变量程时，测量放大器的增益也应相应地加以改变；另外，在数据采集系统中，对于输入的模拟信号一般都需要加前置放大器，以使放大器输出的模拟电压适合于模数转换器的电压范围，但被测信号变化的幅度在不同的场合表现不同动态范围，信号电平可以从微伏级到伏级，模数转换器不可能在各种情况下都与之相匹配，如果采用单一的增益放大，往往使A/D转换器的精度不能最大限度地利用，或致使被测信号削顶饱和，造成很大的测量误差，甚至使A/D转换器损坏。通过程控放大器，可以很方便地把上述被测信号变换成与测量或控制电路所需要的电压信号。</p>
+<p>程控放大器，全称为程控增益放大器，即放大器的放大倍数（增益）不是固定的，而是可以通过人为设置的。程控放大器既可以放大信号，也可以衰减信号。一般把程控放大器分为多路模拟开关和运放实现的程控放大器、数字电位器和仪表放大器实现的程控放大器、可编程增益放大器（PGA）和可变增益放大器（VGA）四种。</p>
+<p>程控放大器最简单的方法是多路模拟开关和运放实现的程控放大器，它原理简单，通过模拟开关和运放结合，是初学者最易掌握的一种方法；数字电位器和仪表放大器实现的程控放大器是对多路模拟开关和运放的方案改进，克服了多路模拟开关的导通电阻的影响，用仪表放大器代替运放，有利于提高输出精度；可编程增益放大器（PGA）一般是芯片内部固定了放大倍数，精度较高，控制增益可选择状态编码或者总线方式等方法，这种控制增益的方法大大提高了应用系统的适应性和灵活性；应用最为广泛的要属程控放大器实现方法是可变增益放大器(VGA)，可变增益放大器通过电压值控制增益大小，在数据采集中的应用非常流行，它具有外围器件少、电路设计简单、增益控制范围广等特点。</p>
+<h3
+id="多路模拟开关和运放组合实现的程控放大器">多路模拟开关和运放组合实现的程控放大器</h3>
+<h4 id="反相输入程控放大器">反相输入程控放大器</h4>
+<p><img
+src="E:\blog\blog\source\img\post\analog_circuit\反相输入程控放大器.jpg" srcset="/img/loading.gif" lazyload /></p>
+<p>第一种反向输入程控放大器是将多路开关接在信号输入端，其电路原理如图2.1.1所示。在理想情况下：
+<span class="math display">\[
+A_v=\frac{u_o}{u_i}=-\frac{R_f}{R_i}(i=1,2,...,8)
+\]</span>
+因此，实际的改变<em>R</em>i的大小，即可自动改变放大器的增益。多路模拟开关的作用是依据三位二进制地址<em>A</em>0、<em>A</em>1<em>、A</em>2以及选通端<em>EN</em>的状态来选择八路(<em>R</em>1、<em>R</em>2…<em>R</em>i)中的一路,
+使输人信号<em>u</em>i经输入电阻<em>R</em>i和运放接通。显然，这种电路的优点是结构简单。</p>
+<p>但由于多路开关的导通电阻<em>R</em>on有一定大小，因此放大倍数突际上取决于<em>R</em>f与(<em>R</em>i+<em>R</em>on)之比，即
+<span class="math display">\[
+A_v=\frac{u_o}{u_i}=-\frac{R_f}{R_i+R_{on}}
+\]</span>
+为了减少<em>R</em>on所造成的增益误差，要求<em>R</em>i&gt;&gt;<em>R</em>on，而<em>R</em>i越大，对高速度、低漂移和低噪声等越不利。</p>
+<p><img
+src="E:\blog\blog\source\img\post\analog_circuit\第二组反相输入.jpg" srcset="/img/loading.gif" lazyload /></p>
+<p>第二种反向输入程控放大器是将多路开关接在反馈端，其电路图如图2.1.2所示。其放大倍数为
+<span class="math display">\[
+A_v=\frac{u_o}{u_i}=-\frac{R_{fj}+R_{on}}{R_i}
+\]</span>
+同样地，该电路的输入阻抗小，反馈端电阻<em>R</em>fj大小也是变化的，存在增益误差。</p>
+<p><img
+src="E:\blog\blog\source\img\post\analog_circuit\第三种.jpg" srcset="/img/loading.gif" lazyload /></p>
+<p>有时为了提高运放反相输入的放大倍数，但又不希望<em>R</em>f过高，或者输入电阻和反馈电阻的数值已确定，但又希望能在原有基础上改变放大倍数。上图示出了第三种反相输入程控放大器的原理。</p>
+<p>当流过<em>R</em>L和<em>R</em>j的电流远大于流过<em>R</em>f的电流时：
+<span class="math display">\[
+A_v=\frac{u_o}{u_i}=-\frac{R_f}{R_i}\cdot\frac{R_L+R_j+R_{on}}{R_j+R_{on}}(j=1,2,...,8)
+\]</span>
+显然，改变<em>RL</em>和<em>Rj</em>的值，可改变放大器的放大倍数。但要注意，这种电路是用改变负反馈的深度来实现增益变化的，且放大倍数的设置较前面两种繁琐。</p>
+<p>综上所述，反相输入程控放大器的特点原理简单，特殊情况下可以通过选用精密测量电阻和高性能模拟开关组成精密程控增益放大器，但缺点是漂移较大、输入阻抗不高、放大倍数参数设计比较复杂。</p>
+<h4 id="同相输入程控放大器">同相输入程控放大器</h4>
+<p>信号由运放同相端输入，与多路模拟开关亦可组成程控放大器，图2.1.4示出了它的原理电路。</p>
+<p><img
+src="E:\blog\blog\source\img\post\analog_circuit\同相输入.jpg" srcset="/img/loading.gif" lazyload /></p>
+<p>其放大倍数为 <span class="math display">\[
+A_v=\frac{u_o}{u_i}=1+\frac{R_{fj}}{R&#39;}(j=1,2,...,8)
+\]</span>
+由于是同相输入，因此放大器输入阻抗很高，但此时由于集成运放的两个输入端不再处于“虚地”的电位，而是有较强的共模输入电压。因此，当输入信号的变化具有较高的频率或较大的速率时，由于运放的共模抑制比指标迅速下降，使误差增大。</p>
+<h4 id="差分输入程控放大器">差分输入程控放大器</h4>
+<p>为了提高运放的共模抑制比，可使用仪表放大器和多路模拟开关组成程控放大器，如下图所示。</p>
+<p><img
+src="E:\blog\blog\source\img\post\analog_circuit\差分输入程控.jpg" srcset="/img/loading.gif" lazyload /></p>
+<p>该电路的放大倍数为 <span class="math display">\[
+A_v=\frac{u_o}{u_{i+}-u_{i-}}=-\frac{R_3}{R_2}(1+\frac{2R_1}{R_{gj}})(j=1,2,...,8)
+\]</span>
+不管<em>R</em>gj、<em>R</em>2和<em>R</em>3为何数值，A1和A2两个放大器的共模增益都等于1，A3将A1、A2输出的差分信号变换成以地为参考点的单端输出信号，一般通过改变电阻<em>R</em>gj或<em>R</em>2和<em>R</em>3来调整放大倍数。</p>
+<h3
+id="数字电位器和仪表放大器组合实现的程控放大器">数字电位器和仪表放大器组合实现的程控放大器</h3>
+<p>数字电位器是一种具有数字接口的有源器件，可以很方便地通过微控器接口来调整其阻值，相对于多路模拟开关，有更高的精度，并且它具有耐冲击、抗振动、噪音小、使用寿命长等优点，更重要的是它可以代替电路中的机械电位器，容易实现控制自动化和操作上的智能化，在自动测控系统和智能仪器中得到越来越广泛的应用。</p>
+<p>例如应用较为典型的美国Xicor公司推出的X系列固体非易失性数字电位器产品X9241。X9241是4个数字控制电位器为一体的单块CMOS集成电路，每个数字电位器由63个电阻串联而成，4个数字电位器可以级联，在程控放大器中最大可以提供256级的增益控制。X9241在两个电阻连接处通过开关连接到滑动引脚，电阻串上的滑动点位置通过I2C总线控制。每个电位器由可变滑动点计数寄存器（WCR）和4个非易失性数据寄存器（DR0~DR3）控制，使用者能够直接读写,从而控制电阻值大小，达到控制增益的目的。</p>
+<p>INA128是TI公司生产的低价格、高精度的仪表放大器，它只需外接一只电阻器<em>R</em>g便可设置增益大小，其性能要优于三个运放组成的仪表放大器。INA128的管脚5(REF)为参考端，用来确定零输出电压，当前端电路和后端电路的地不明确共地时可为后端引入精密的补偿,还可以利用该参考端提供一个虚地电压来放大双极性信号，参考端允许电压变化范围为-VS～+VS。如果INA128相对地输出，则参考端应接地。引脚7和4为正负电源输入端，双电源工作时电源范围为±2.25V～±18V。引脚8和1之间接电阻<em>R</em>g，其大小决定了放大器的增益G，计算公式为
+<span class="math display">\[
+G=1+\frac{50kΩ}{R_G}
+\]</span>
+下图为数字电位器和仪表放大器组合实现的程控放大器电路原理图。</p>
+<p><img
+src="E:\blog\blog\source\img\post\analog_circuit\数字电位器.jpg" srcset="/img/loading.gif" lazyload /></p>
+<h3 id="可编程增益放大器pga">可编程增益放大器（PGA）</h3>
+<p>由于模拟开关和放大器组成的程控放大器中受多路开关的导通电阻<em>R</em>on的影响，在很多要求较高精度的场合是不适用的；另外，数字电位器实质上也是多通道选择器件，同样需要和放大器共同构成程控放大器，而随着半导体集成电路的发展，目前许多半导体器件厂家将模拟电路与数字电路集成在一起，已推出了单片集成的数字程控增益放大器（Programmable
+Gain
+Amplifiers，PGA），例如TI公司的PGAxxx系列产品PGA101、PGA203、PGA206等等。它们具有低漂移、低非线性、高共模抑制比和宽的通频带等优点，使用简单方便，但其增益量程有限，只能实现特定的几种增益切换。下面以可编程增益放大器PGA103为具体实例，介绍它的功能及在程控增益放大器中的典型设计电路。</p>
+<p>PGA103是一种通用的双电源供电的可编程增益放大器，可通过两个与CMOS/TTL兼容的输入端把增益设定为1、10或100。PGA103即使在G=100的情况下也能提供快速的稳定时间(G=100，精度为0.01%
+时，稳定时间为8µs)。可在数据采集系统、通用模拟板、医用仪表等信号动态范围宽的场合应用。</p>
+<p>PGA103的典型应用电路如下图所示。</p>
+<p><img src="E:\blog\blog\source\img\post\analog_circuit\PGA.jpg" srcset="/img/loading.gif" lazyload /></p>
+<p>PGA103的供电范围为-18V～18V，1、2脚为增益控制端，<em>A</em>1<em>A</em>0=00时，G=1；<em>A</em>1<em>A</em>0=01时，G=10；<em>A</em>1<em>A</em>0=10时，G=100；<em>A</em>1<em>A</em>0=1时，无效输入，虽然这种逻辑代码不会导致器件损害，但是选择这种代码时放大器的输出将变为不可预计的。当选择有效的代码时，输出将恢复。</p>
+<h3 id="可变增益放大器">可变增益放大器</h3>
+<p>在自动化程度要求较高的系统中，希望能够在程序中用软件控制放大器的增益，或者放大器本身能自动将增益调整到适当的范围。可变增益放大器(VGA)就是一种利用D/A转换器实现的程控增益放大器，D/A转换器内部有一组模拟开关的电阻网络，用它代替运放反馈部件，与仪表放大器一起可组成程控增益放大或衰减器，再配合软件判断功能就可实现数据采集系统的自动切换量程。随着可变增益放大技术的不断发展
+,
+它在自动测控、智能测控、智能仪器仪表等重要领域的应用也越来越广泛。它们在历届的全国大学生电子设计大赛、省大学生电子设计大赛中的仪器仪表类赛题被大量采用。</p>
+<h2
+id="模拟开关和运放组成的程控放大器设计">模拟开关和运放组成的程控放大器设计</h2>
+<p>本课介绍一种以CD4052模拟开关和TL082双路运放组成的多路模拟开关和运放组成的程控放大器设计方法。该程控放大器可通过程序控制实现4档的程控放大，增益分别为：+2、+4、+8、+16V/V。</p>
+<h3 id="芯片介绍">芯片介绍</h3>
+<h4 id="多路模拟开关cd4052">多路模拟开关CD4052</h4>
+<p>CD4052是一种差分、双路、双向、4通道数字控制模拟开关，有<em>A</em>、<em>B</em>两个二进制控制输入端和<em>INH</em>输入端，具有低导通阻抗和很低的截止漏电流。当<em>INH</em>输入端=“1”时，所有通道截止；当<em>INH</em>输入端=“0”时，二位二进制输入信号选通4对通道中的一个通道，可连接该输入至输出。这些开关电路在整个<em>V</em>DD～<em>V</em>SS和<em>V</em>DD～<em>V</em>EE电源范围内具有极低的静态功耗，而与控制信号的逻辑状态无关。</p>
+<p>如图2.2.1所示为CD4052的引脚定义。</p>
+<p><img
+src="E:\blog\blog\source\img\post\analog_circuit\CD4052.jpg" srcset="/img/loading.gif" lazyload /></p>
+<p>CD4052的器件特性如下：</p>
+<ul>
+<li><p>宽范围的数字和模拟信号电平：数字3~15V，模拟可达15Vpp；</p></li>
+<li><p>低导通阻抗：在<em>V</em>DD-<em>V</em>EE=15V的条件下，整个15Vpp信号输入范围的典型值为125Ω；</p></li>
+<li><p>高截止阻抗：在<em>V</em>DD-<em>V</em>EE=10V的条件下，通道漏电流的典型值为±10pA；</p></li>
+<li><p>超高带宽：-3dB带宽的典型值为25MHz；</p></li>
+<li><p>极低的静态功耗：在<em>V</em>DD-<em>V</em>SS=<em>V</em>DD-<em>V</em>EE=10V条件下，静态功耗的典型值为1µW；</p></li>
+<li><p>易于控制的通道切换：片上二进制地址解码。</p></li>
+</ul>
+<p>CD4052的真值表如表2.2.1所列。</p>
+<h4 id="通用运放tl082">通用运放TL082</h4>
+<p>TL082是一个通用的J-FET场效应管双路运放，图2.2.2为TL082的引脚定义。</p>
+<p><img
+src="E:\blog\blog\source\img\post\analog_circuit\TL082.jpg" srcset="/img/loading.gif" lazyload /></p>
+<p>TL082的特性如下：</p>
+<ul>
+<li><p>低输入偏置电流和偏置电流</p></li>
+<li><p>高压摆率：13V/µs（典型值）</p></li>
+<li><p>较高的带宽：单位增益带宽积为3MHz</p></li>
+<li><p>内部频率补偿</p></li>
+<li><p>输出短路保护</p></li>
+</ul>
+<h3 id="硬件电路设计">硬件电路设计</h3>
+<p>CD4052模拟开关和TL082双路运放组成的程控放大器硬件电路如图2.2.3所示。模拟开关CD4052放在反相放大器的反馈端，TL082运放的第一路用作缓冲器，以提高信号的输入阻抗；<em>R</em>6为补偿电阻，保证集成运放输入级差分放大电路的对称性；电路中的每一个增益选择电阻通过电位器<em>RW</em>1、
+<em>RW</em>2、<em>RW</em>3和<em>RW</em>4调节；芯片CD4052和TL082都为±5V供电，电路中加了适当的去耦电容。控制端“<em>INH</em>”直接接地有效，也就是说通道选择仅通过“<em>A</em>”、“<em>B</em>”控制，通过J2接口引出连接单片机控制。</p>
+<p><img
+src="E:\blog\blog\source\img\post\analog_circuit\电路设计.jpg" srcset="/img/loading.gif" lazyload /></p>
+<p>若忽略CD4052导通电阻的影响，理论上通道选择与增益的对应关系为 <span
+class="math display">\[
+AB=00,A_v=\frac{RW_1}{R_5}=\frac{4k}{2k}=2\\
+AB=01,A_v=\frac{RW_2}{R_5}=\frac{8k}{2k}=4\\
+AB=10,A_v=\frac{RW_3}{R_5}=\frac{16k}{2k}=8\\
+AB=11,A_v=\frac{RW_4}{R_5}=\frac{32k}{2k}=16
+\]</span></p>
+<h4 id="测试结果与结论">测试结果与结论</h4>
+<p>按照图2.2.3连接电路，信号选择100mVpp、40kHz的正弦波，上电后模拟开关CD4052通道选择依次为<em>AB</em>=00、
+<em>AB</em>=01、 <em>AB</em>=10和
+<em>AB</em>=11，分别调节电位器<em>RW</em>1、
+<em>RW</em>2、<em>RW</em>3和<em>RW</em>4使放大倍数分别为2倍、4倍、8倍和16倍。实际测试波形分别如图2.2.4、图2.2.5、图2.2.6和图2.2.7所示。</p>
+<p>测试波形完成之后在用万用表测量实际电位器的阻值得出的结果为：<em>RW</em>1=1.89kΩ，<em>RW</em>2=4.92
+kΩ，<em>RW</em>3=7.93kΩ，<em>RW</em>4=15.96
+kΩ，由此可以得出CD4052在不同增益下的导通电阻也尽不相同。</p>
+<p>利用多路模拟开关和运放组成的程控放大器设计方法，原理简单，但电路设计比较复杂，且由于模拟开关具有导通电阻，其值一般还会随频率和幅值的变化而变化，对增益的精度影响较大。</p>
+<h2
+id="基于vca821的压控增益放大器设计技巧">基于VCA821的压控增益放大器设计技巧</h2>
+<p>VCA821是TI公司推出的直流耦合、宽频带、低噪声、低畸变、线性dB、高增益精度的压控VGA芯片。本课重点介绍VCA821的压控增益放大电路的设计技巧。</p>
+<p>VCA821压控增益放大电路如下图所示。图中省去输入输出的50Ω阻抗，OUT1为输入，OUT2为输出，R3为增益电阻，R5为反馈电阻，供电电压为±5V。</p>
+<p><img
+src="E:\blog\blog\source\img\post\analog_circuit\电路图2.png" srcset="/img/loading.gif" lazyload /></p>
+<p>按照官方芯片手册的连接方式来设计电路，增益控制引脚接一个增益电阻，实现最大增益的设置，其增益值（放大倍数A）由R5和R3的比值来确定，即A=2×（R5/R3）。如果提高增益，那会降低带宽。另外，提高增益电阻的电阻阻值，可以提高VCA821的输入电压范围。根据官方芯片手册可知，R6和C17起到了避免振荡的作用。</p>
+<p>以下重点强调设计中的几个要点。</p>
+<p>反馈电阻和增益电阻只是设定了电路的最大增益，实际的增益是通过VG的电压来进行控制的，如下图所示。</p>
+<p><img src="E:\blog\blog\source\img\post\analog_circuit\波2.png" srcset="/img/loading.gif" lazyload /></p>
+<p>另外像这种高速芯片，布线的时候特别注意电源引脚的去耦处理，最小化各引脚走线的分布电容，电感（开窗处理，短走线）等。</p>
+<p>增益电阻不仅决定模块的增益，还决定着模块的最大输入电压，如下图所示。</p>
+<p><img src="E:\blog\blog\source\img\post\analog_circuit\波1.jpg" srcset="/img/loading.gif" lazyload /></p>
+<p>VCA821模块输出需要50Ω抗匹配，否则在放大倍数过大（如100倍）的时候会出现信号反射现象，导致波形严重失真。加了50Ω负载虽失真现象得到改善，但是依然会出现顶部失真现象。</p>
+<p>结论：放大倍数不能太大，虽然增益电阻阻值也会影响，但是放大倍数起主导因素。</p>
+<p>当波形出现失真时，减小反馈电阻阻值对失真度没多大改善。而适当的增加增益电阻阻值，可以解决波形失真的问题。增益电阻阻值不能取太小,应该大于20Ω.</p>
+<p>结论：图2.3.3的前提条件是,流过增益电阻的电流最大为2.6mA，过小的增益电阻阻值会使其流经电流超过最大值，影响输出幅频特性。</p>
+<p>当想通过增大增益电阻的阻值来减小放大倍数从而提高带宽的时候，会出现放大倍数减小。但是，在-3dB带宽不变的情况，此时适当的减小反馈电阻阻值会提高带宽。</p>
+<p>失真的另一个原因是：由芯片手册知VCA821信号频率和输出摆幅越大，谐波失真越大。</p>
+<p><img
+src="E:\blog\blog\source\img\post\analog_circuit\波形图.jpg" srcset="/img/loading.gif" lazyload /></p>
+<h2 id="波形叠加放大电路">波形叠加放大电路</h2>
+<h2 id="低速和高速电压比较电路">低速和高速电压比较电路</h2>
+<h2 id="模拟滤波器基础">模拟滤波器基础</h2>
+<h2 id="基于ti-filterpro的有源滤波器快速设计">基于TI
+FilterPro的有源滤波器快速设计</h2>
+<h2 id="高速adc电路设计">高速ADC电路设计</h2>
+<h2 id="高速dac电路设计">高速DAC电路设计</h2>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>模拟电路设计</div>
+      <div>http://example.com/2023/07/21/模拟电路设计/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Eternity</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>July 21, 2023</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/07/20/%E4%BB%AA%E5%99%A8%E4%BB%AA%E8%A1%A8%E7%B1%BB%E9%A2%98%E7%9B%AE/" title="仪器仪表类题目">
+                        <span class="hidden-mobile">仪器仪表类题目</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+  <script>
+  Fluid.utils.createScript('https://lib.baomitu.com/mermaid/8.14.0/mermaid.min.js', function() {
+    mermaid.initialize({"theme":"default"});
+
+    Fluid.utils.listenDOMLoaded(function() {
+      Fluid.events.registerRefreshCallback(function() {
+        if ('mermaid' in window) {
+          mermaid.init();
+        }
+      });
+    });
+  });
+</script>
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>
