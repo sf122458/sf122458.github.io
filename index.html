@@ -71,6 +71,20 @@
 
 
   
+
+
+  <link rel="stylesheet" href="https://unpkg.com/aplayer@1.10.1/dist/APlayer.min.css"><!--我的APlayer的样式-->
+  <script src="https://unpkg.com/aplayer@1.10.1/dist/APlayer.min.js"></script><!--APlayer的依赖-->
+  <script src="https://unpkg.com/meting@2/dist/Meting.min.js"></script><!--Meting的依赖-->
+  <meting-js
+    server="netease"
+    type="playlist"
+    autoplay=false 
+    fixed=true 
+    lrc-type=0
+    id="8591373853"> 
+  </meting-js> 
+
 <meta name="generator" content="Hexo 6.3.0"></head>
 
 
@@ -440,12 +454,6 @@
     
 
     
-      <div class="col-lg-7 mx-auto nopadding-x-md">
-        <div class="container custom mx-auto">
-           <!--音乐--> <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.css"> <script src="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.js"></script> <script src="https://cdn.jsdelivr.net/npm/meting@1.2/dist/Meting.min.js"></script> <div id="player" class="aplayer aplayer-withlist aplayer-fixed" data-id="8591373853" data-server="netease" data-type="playlist" data-order="list" data-fixed="true" data-listfolded="true" data-theme="#2D8CF0" lrcType="0"></div> 
-        </div>
-      </div>
-    
   </main>
 
   <footer>
@@ -523,14 +531,14 @@
     <div class="noscript-warning">Blog works best with JavaScript enabled</div>
   </noscript>
 
-<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
-<script src="https://cdn.bootcss.com/jquery.pjax/2.0.1/jquery.pjax.min.js"></script>
-<script>
+  <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdn.bootcss.com/jquery.pjax/2.0.1/jquery.pjax.min.js"></script>
+  <script>
   // 对所有链接跳转事件绑定pjax容器pjax-container 
-  $(document).pjax('a', '#pjax-container', {
-    fragment:'#pjax-container',
-    timeout:8000
-    });   
-</script>
+    $(document).pjax('a', '#pjax-container', {
+      fragment:'#pjax-container',
+      timeout:8000
+      });   
+  </script>
 </body>
 </html>
