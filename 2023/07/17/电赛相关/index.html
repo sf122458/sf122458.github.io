@@ -85,6 +85,7 @@
 <meta name="generator" content="Hexo 6.3.0"></head>
 
 
+
 <body>
   
 
@@ -1399,7 +1400,7 @@ class="math inline">\(\frac{A}{\sqrt3}\)</span></li>
     
       <div class="col-lg-7 mx-auto nopadding-x-md">
         <div class="container custom mx-auto">
-           <!--音乐--> <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.css"> <script src="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.js"></script> <script src="https://cdn.jsdelivr.net/npm/meting@1.2/dist/Meting.min.js"></script> <div id="player" class="aplayer aplayer-withlist aplayer-fixed" data-id="8591373853" data-server="netease" data-type="playlist" data-order="list" data-fixed="true" data-listfolded="true" data-theme="#2D8CF0" showlrc="false" lrc-type="0"></div> 
+           <!--音乐--> <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.css"> <script src="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.js"></script> <script src="https://cdn.jsdelivr.net/npm/meting@1.2/dist/Meting.min.js"></script> <div id="player" class="aplayer aplayer-withlist aplayer-fixed" data-id="8591373853" data-server="netease" data-type="playlist" data-order="list" data-fixed="true" data-listfolded="true" data-theme="#2D8CF0" lrcType="0"></div> 
         </div>
       </div>
     
@@ -1409,14 +1410,13 @@ class="math inline">\(\frac{A}{\sqrt3}\)</span></li>
     <div class="footer-inner">
   
     <div class="footer-content">
-       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+      <!-- <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> -->
     </div>
   
   
   
   
 </div>
-
   </footer>
 
   <!-- Scripts -->
@@ -1616,5 +1616,15 @@ class="math inline">\(\frac{A}{\sqrt3}\)</span></li>
   <noscript>
     <div class="noscript-warning">Blog works best with JavaScript enabled</div>
   </noscript>
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/jquery.pjax/2.0.1/jquery.pjax.min.js"></script>
+<script>
+  // 对所有链接跳转事件绑定pjax容器pjax-container 
+  $(document).pjax('a', '#pjax-container', {
+    fragment:'#pjax-container',
+    timeout:8000
+    });   
+</script>
 </body>
 </html>
