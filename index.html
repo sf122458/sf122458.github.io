@@ -73,6 +73,7 @@
   
 
 
+<div id="pjax-container">
   <link rel="stylesheet" href="https://unpkg.com/aplayer@1.10.1/dist/APlayer.min.css"><!--我的APlayer的样式-->
   <script src="https://unpkg.com/aplayer@1.10.1/dist/APlayer.min.js"></script><!--APlayer的依赖-->
   <script src="https://unpkg.com/meting@2/dist/Meting.min.js"></script><!--Meting的依赖-->
@@ -84,6 +85,7 @@
     lrc-type=0
     id="8591373853"> 
   </meting-js> 
+</div>
 
 <meta name="generator" content="Hexo 6.3.0"></head>
 
@@ -239,6 +241,46 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
+        <a href="/2023/08/15/Pytorch%E5%AD%A6%E4%B9%A0/" target="_self">
+          Pytorch学习
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2023/08/15/Pytorch%E5%AD%A6%E4%B9%A0/" target="_self">
+        <div>
+          Transforms的使用 torchvision中的数据集使用 DataLoader的使用 nn.Module的使用 现有模型的使用与修改 网络模型的保存与读取 模型保存读取有两种方式，即保存模型结构与参数以及以字典形式保存模型参数。 1234567891011# 保存方式1，模型结构+模型参数torch.save(vgg16,&quot;vgg16_method1.pth&quo
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2023-08-15 12:42" pubdate>
+              2023-08-15
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Pytorch/">#Pytorch</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
         <a href="/2023/07/25/%E6%B5%8B%E9%87%8F%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86/" target="_self">
           理论知识
         </a>
@@ -273,14 +315,14 @@
       <h2 class="index-header">
         
         <a href="/2023/07/21/%E6%A8%A1%E6%8B%9F%E7%94%B5%E8%B7%AF%E8%AE%BE%E8%AE%A1/" target="_self">
-          模拟电路设计
+          电路设计
         </a>
       </h2>
 
       
       <a class="index-excerpt index-excerpt__noimg" href="/2023/07/21/%E6%A8%A1%E6%8B%9F%E7%94%B5%E8%B7%AF%E8%AE%BE%E8%AE%A1/" target="_self">
         <div>
-          模电的相关笔记
+          数电、模电的相关笔记
         </div>
       </a>
 
@@ -531,14 +573,6 @@
     <div class="noscript-warning">Blog works best with JavaScript enabled</div>
   </noscript>
 
-  <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
-  <script src="https://cdn.bootcss.com/jquery.pjax/2.0.1/jquery.pjax.min.js"></script>
-  <script>
-  // 对所有链接跳转事件绑定pjax容器pjax-container 
-    $(document).pjax('a', '#pjax-container', {
-      fragment:'#pjax-container',
-      timeout:8000
-      });   
-  </script>
+
 </body>
 </html>

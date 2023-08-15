@@ -24,7 +24,7 @@
 <meta property="og:description" content="与信号测量有关的理论">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2023-07-25T07:06:18.000Z">
-<meta property="article:modified_time" content="2023-07-25T14:19:54.130Z">
+<meta property="article:modified_time" content="2023-07-26T04:55:03.192Z">
 <meta property="article:author" content="Eternity">
 <meta name="twitter:card" content="summary_large_image">
   
@@ -83,6 +83,7 @@
   
 
 
+<div id="pjax-container">
   <link rel="stylesheet" href="https://unpkg.com/aplayer@1.10.1/dist/APlayer.min.css"><!--我的APlayer的样式-->
   <script src="https://unpkg.com/aplayer@1.10.1/dist/APlayer.min.js"></script><!--APlayer的依赖-->
   <script src="https://unpkg.com/meting@2/dist/Meting.min.js"></script><!--Meting的依赖-->
@@ -94,6 +95,7 @@
     lrc-type=0
     id="8591373853"> 
   </meting-js> 
+</div>
 
 <meta name="generator" content="Hexo 6.3.0"></head>
 
@@ -234,7 +236,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          954 words
+          958 words
         
       </span>
     
@@ -313,6 +315,7 @@ class="math inline">\(f_s\)</span>，引入低通滤波器</p></li>
 <p>设定一个长度为N的先进先出队列，同时为了排序构造一个同样长度为N的已排序数组，每个周期采样一个新的数值，插入采样队列队尾并移除队首的旧值。对这个队列进行插入排序（其他快速排序方法均可），然后去掉用户指定个数的较大值与较小值，取中间剩下值的平均数作为最终结果。</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-comment">/*定义滤波数据类型*/</span><br><span class="hljs-keyword">typedef</span>	<span class="hljs-type">int</span> filter_type;<br><span class="hljs-comment">// 函数声明</span><br>filter_type <span class="hljs-title function_">filter</span><span class="hljs-params">(filter_type value_buf[], filter_type new_value, <span class="hljs-type">int</span> num)</span>;<br><br><span class="hljs-comment">/* 递推平均滤波函数 */</span><br>filter_type <span class="hljs-title function_">filter</span><span class="hljs-params">(filter_type value_buf[], filter_type new_value, <span class="hljs-type">int</span> num)</span><br>&#123;<br>	<span class="hljs-type">static</span> <span class="hljs-type">int</span> i;<br>	<span class="hljs-type">int</span> count;<br>	filter_type sum = <span class="hljs-number">0</span>;<br> <br>	value_buf[i++] = new_value;<br><br>	<span class="hljs-keyword">if</span> (i == num)<br>		i = <span class="hljs-number">0</span>;<br>	<span class="hljs-keyword">for</span> (count=<span class="hljs-number">0</span>; count&lt;num; count++)<br>		sum += value_buf[count];<br> <br>	<span class="hljs-keyword">return</span> (filter_type)(sum/num);<br>&#125;<br></code></pre></td></tr></table></figure>
 <h3 id="锁相环与频率合成">锁相环与频率合成</h3>
+<h3 id="阻抗匹配">阻抗匹配</h3>
 
                 
               </div>
@@ -375,12 +378,18 @@ class="math inline">\(f_s\)</span>，引入低通滤波器</p></li>
                   <article class="post-prev col-6">
                     
                     
+                      <a href="/2023/08/15/Pytorch%E5%AD%A6%E4%B9%A0/" title="Pytorch学习">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Pytorch学习</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/07/21/%E6%A8%A1%E6%8B%9F%E7%94%B5%E8%B7%AF%E8%AE%BE%E8%AE%A1/" title="模拟电路设计">
-                        <span class="hidden-mobile">模拟电路设计</span>
+                      <a href="/2023/07/21/%E6%A8%A1%E6%8B%9F%E7%94%B5%E8%B7%AF%E8%AE%BE%E8%AE%A1/" title="电路设计">
+                        <span class="hidden-mobile">电路设计</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -711,14 +720,6 @@ class="math inline">\(f_s\)</span>，引入低通滤波器</p></li>
     <div class="noscript-warning">Blog works best with JavaScript enabled</div>
   </noscript>
 
-  <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
-  <script src="https://cdn.bootcss.com/jquery.pjax/2.0.1/jquery.pjax.min.js"></script>
-  <script>
-  // 对所有链接跳转事件绑定pjax容器pjax-container 
-    $(document).pjax('a', '#pjax-container', {
-      fragment:'#pjax-container',
-      timeout:8000
-      });   
-  </script>
+
 </body>
 </html>

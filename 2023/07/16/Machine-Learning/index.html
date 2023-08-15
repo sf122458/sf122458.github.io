@@ -83,6 +83,7 @@
   
 
 
+<div id="pjax-container">
   <link rel="stylesheet" href="https://unpkg.com/aplayer@1.10.1/dist/APlayer.min.css"><!--我的APlayer的样式-->
   <script src="https://unpkg.com/aplayer@1.10.1/dist/APlayer.min.js"></script><!--APlayer的依赖-->
   <script src="https://unpkg.com/meting@2/dist/Meting.min.js"></script><!--Meting的依赖-->
@@ -94,6 +95,7 @@
     lrc-type=0
     id="8591373853"> 
   </meting-js> 
+</div>
 
 <meta name="generator" content="Hexo 6.3.0"></head>
 
@@ -1562,14 +1564,6 @@ class="math inline">\(P(x|y)\)</span>真的服从或者趋近于高斯分布，�
     <div class="noscript-warning">Blog works best with JavaScript enabled</div>
   </noscript>
 
-  <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
-  <script src="https://cdn.bootcss.com/jquery.pjax/2.0.1/jquery.pjax.min.js"></script>
-  <script>
-  // 对所有链接跳转事件绑定pjax容器pjax-container 
-    $(document).pjax('a', '#pjax-container', {
-      fragment:'#pjax-container',
-      timeout:8000
-      });   
-  </script>
+
 </body>
 </html>
