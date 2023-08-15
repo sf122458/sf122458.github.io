@@ -16,15 +16,15 @@
   <meta name="author" content="Eternity">
   <meta name="keywords" content="">
   
-    <meta name="description" content="Transforms的使用 torchvision中的数据集使用 DataLoader的使用 nn.Module的使用 现有模型的使用与修改 网络模型的保存与读取 模型保存读取有两种方式，即保存模型结构与参数以及以字典形式保存模型参数。 1234567891011# 保存方式1，模型结构+模型参数torch.save(vgg16,&quot;vgg16_method1.pth&amp;quo">
+    <meta name="description" content="Pytorch的相关笔记">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Pytorch学习">
 <meta property="og:url" content="http://example.com/2023/08/15/Pytorch%E5%AD%A6%E4%B9%A0/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="Transforms的使用 torchvision中的数据集使用 DataLoader的使用 nn.Module的使用 现有模型的使用与修改 网络模型的保存与读取 模型保存读取有两种方式，即保存模型结构与参数以及以字典形式保存模型参数。 1234567891011# 保存方式1，模型结构+模型参数torch.save(vgg16,&quot;vgg16_method1.pth&amp;quo">
+<meta property="og:description" content="Pytorch的相关笔记">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2023-08-15T04:42:39.000Z">
-<meta property="article:modified_time" content="2023-08-15T14:41:26.826Z">
+<meta property="article:modified_time" content="2023-08-15T15:09:57.807Z">
 <meta property="article:author" content="Eternity">
 <meta property="article:tag" content="Pytorch">
 <meta name="twitter:card" content="summary_large_image">
@@ -301,7 +301,7 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 保存方式1，模型结构+模型参数</span><br>torch.save(vgg16,<span class="hljs-string">&quot;vgg16_method1.pth&quot;</span>)<br><br><span class="hljs-comment"># 加载方式1</span><br>model = torch.load(<span class="hljs-string">&quot;vgg16_method1.pth&quot;</span>)<br><br><span class="hljs-comment"># 保存方式2，模型参数</span><br>torch.save(vgg16.state_dict(),<span class="hljs-string">&quot;vgg16_method2.pth&quot;</span>)<br><br><span class="hljs-comment"># 加载方式2</span><br>model.load_state_dict(torch.model.load(<span class="hljs-string">&quot;vgg16_method2.pth&quot;</span>))<br></code></pre></td></tr></table></figure>
 <h2 id="模型训练">模型训练</h2>
 <p>GPU训练，对模型、数据、损失函数使用CUDA方法</p>
-<figure class="highlight abnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs abnf"><span class="hljs-attribute">model</span> <span class="hljs-operator">=</span> Model()<br><span class="hljs-attribute">model</span> <span class="hljs-operator">=</span> model.cuda()<br></code></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python">model = Model()<br>model = model.cuda()<br></code></pre></td></tr></table></figure>
 
                 
               </div>
