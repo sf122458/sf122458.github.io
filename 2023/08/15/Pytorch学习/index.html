@@ -23,8 +23,8 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="Pytorch的相关笔记">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2023-08-15T04:42:39.000Z">
-<meta property="article:modified_time" content="2023-08-15T15:48:18.455Z">
+<meta property="article:published_time" content="2023-08-15T04:00:00.000Z">
+<meta property="article:modified_time" content="2023-08-16T13:04:23.019Z">
 <meta property="article:author" content="Eternity">
 <meta property="article:tag" content="Pytorch">
 <meta name="twitter:card" content="summary_large_image">
@@ -226,7 +226,7 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-08-15 12:42" pubdate>
+        <time datetime="2023-08-15 12:00" pubdate>
           August 15, 2023 pm
         </time>
       </span>
@@ -238,7 +238,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.7k words
+          4.6k words
         
       </span>
     
@@ -249,7 +249,7 @@
         
         
         
-          14 mins
+          39 mins
         
       </span>
     
@@ -292,6 +292,55 @@
               <div class="markdown-body">
                 
                 <h1 id="python基础语法">Python基础语法</h1>
+<h2 id="函数">函数</h2>
+<h3 id="定义函数">定义函数</h3>
+<ul>
+<li><p>定义函数</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">func</span>():<br>	<span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Hello!&quot;</span>)<br>	<br><br>func()<br></code></pre></td></tr></table></figure></li>
+<li><p>向函数传递信息</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">func</span>(<span class="hljs-params">username</span>):<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Hello, &quot;</span> + username.title() + <span class="hljs-string">&quot;!&quot;</span>)<br>    <br>fun(<span class="hljs-string">&#x27;tom&#x27;</span>)<br></code></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="实参与形参">实参与形参</h3>
+<ul>
+<li><p>关键字实参与默认值</p>
+<p><strong>使用默认值时，在形参列表中需要先列出没有默认值的形参</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">describe</span>(<span class="hljs-params">name，<span class="hljs-built_in">type</span>=<span class="hljs-string">&#x27;cat&#x27;</span></span>):<br>	<span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;My &quot;</span> + <span class="hljs-built_in">type</span>.name + <span class="hljs-string">&quot;&#x27;s name is &#x27;&quot;</span> + name.title() + <span class="hljs-string">&quot;.&quot;</span>)<br>    <br>describe(name=<span class="hljs-string">&#x27;tom&#x27;</span>)<br>describe(<span class="hljs-string">&#x27;tom&#x27;</span>)<br></code></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="返回值">返回值</h3>
+<ul>
+<li><p>返回简单值</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">get_name</span>(<span class="hljs-params">first_name,last_name</span>):<br>    full_name = first_name + <span class="hljs-string">&#x27;&#x27;</span> + last_name<br>    <span class="hljs-keyword">return</span> full_name.title()<br><br>musician = get_formatted_name(<span class="hljs-string">&#x27;jimi&#x27;</span>,<span class="hljs-string">&#x27;hendrix&#x27;</span>)<br><span class="hljs-built_in">print</span>(musician)<br></code></pre></td></tr></table></figure></li>
+<li><p>让实参变为可选的</p>
+<p>若参数可能没有传入，则将其默认值设为空</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">get_name</span>(<span class="hljs-params">first_name,last_name,middle_name=<span class="hljs-string">&#x27;&#x27;</span></span>):<br>    <span class="hljs-keyword">if</span> middle_name:<br>    	full_name = first_name + <span class="hljs-string">&#x27;&#x27;</span> + middle_name + <span class="hljs-string">&#x27;&#x27;</span> + last_name<br>    <span class="hljs-keyword">else</span>:<br>        full_name = first_name + <span class="hljs-string">&#x27;&#x27;</span> + last_name<br>    <span class="hljs-keyword">return</span> full_name.title()<br><br>musician = get_formatted_name(<span class="hljs-string">&#x27;jimi&#x27;</span>,<span class="hljs-string">&#x27;hendrix&#x27;</span>)<br>musician = get_formatted_name(<span class="hljs-string">&#x27;john&#x27;</span>,<span class="hljs-string">&#x27;hooker&#x27;</span>,<span class="hljs-string">&#x27;lee&#x27;</span>)<br></code></pre></td></tr></table></figure></li>
+<li><p>返回字典</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">build_person</span>(<span class="hljs-params">first_name,last_name</span>):<br>	person = &#123;<span class="hljs-string">&#x27;first&#x27;</span>:first_name, <span class="hljs-string">&#x27;last&#x27;</span>:last_name&#125;<br>    <span class="hljs-keyword">return</span> person<br><br>musician = build_person(<span class="hljs-string">&#x27;jimi&#x27;</span>,<span class="hljs-string">&#x27;hendrix&#x27;</span>)<br></code></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="传递列表">传递列表</h3>
+<ul>
+<li><p>传递列表</p>
+<p>将列表传递给函数后，函数就能直接访问内容。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">greet</span>(<span class="hljs-params">names</span>):<br>    <span class="hljs-keyword">for</span> name <span class="hljs-keyword">in</span> names:<br>        msg = <span class="hljs-string">&quot;Hello &quot;</span> + name.title() + <span class="hljs-string">&quot;!&quot;</span><br>        <span class="hljs-built_in">print</span>(msg)<br>        <br>usernames = [<span class="hljs-string">&#x27;hannah&#x27;</span>,<span class="hljs-string">&#x27;ty&#x27;</span>]<br>greet(usernames)<br></code></pre></td></tr></table></figure></li>
+<li><p>在函数中修改列表</p>
+<p>将列表传递给函数后，函数对列表所做的修改都是永久性的。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">func</span>(<span class="hljs-params">unfinished,completed</span>):<br>    <span class="hljs-keyword">while</span> unfinished:<br>        current = unfinished.pop()<br>        completed.append(current)<br></code></pre></td></tr></table></figure></li>
+<li><p>禁止函数修改列表</p>
+<p>可以通过向函数传递列表副本，从而不改变列表。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">func(list_name[:])<br></code></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="传递任意数量的实参">传递任意数量的实参</h3>
+<ul>
+<li><p>传递任意数量的实参</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">make_pizza</span>(<span class="hljs-params">*topping</span>):<br>	<span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;\nMaking a pizza needs:&quot;</span>)<br>    <span class="hljs-keyword">for</span> topping <span class="hljs-keyword">in</span> toppings:<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;- &#x27;</span> + topping)<br>        <br>make_pizza(<span class="hljs-string">&#x27;mushroom&#x27;</span>,<span class="hljs-string">&#x27;green peppers&#x27;</span>,<span class="hljs-string">&#x27;extra cheese&#x27;</span>)<br></code></pre></td></tr></table></figure></li>
+<li><p>结合使用位置实参和任意数量实参</p>
+<p><strong>必须将接纳任意数量实参的形参放在最后</strong>，Python优先匹配位置实参和关键字实参，再将余下的实参收集到最后一个形参中。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">make_pizza</span>(<span class="hljs-params">size,*topping</span>):<br>	<span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;\nMaking a pizza needs:&quot;</span>)<br>    <span class="hljs-keyword">for</span> topping <span class="hljs-keyword">in</span> toppings:<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;- &#x27;</span> + topping)<br>        <br>make_pizza(<span class="hljs-number">12</span>,<span class="hljs-string">&#x27;mushroom&#x27;</span>,<span class="hljs-string">&#x27;green peppers&#x27;</span>,<span class="hljs-string">&#x27;extra cheese&#x27;</span>)<br></code></pre></td></tr></table></figure></li>
+<li><p>使用任意数量的关键字实参</p>
+<p>创建字典接收任意数量的键值对。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">build_profile</span>(<span class="hljs-params">first,last,**user_info</span>):<br>    profile = &#123;&#125;<br>    profile[<span class="hljs-string">&#x27;first_name&#x27;</span>] = first<br>    profile[<span class="hljs-string">&#x27;last_name&#x27;</span>] = last<br>    <span class="hljs-keyword">for</span> key,value <span class="hljs-keyword">in</span> user_info.items():<br>        profile[key] = value<br>    <span class="hljs-keyword">return</span> profile<br><br>user_profile = build_profile(<span class="hljs-string">&#x27;albert&#x27;</span>,<span class="hljs-string">&#x27;einstein&#x27;</span>,location=<span class="hljs-string">&#x27;princeton&#x27;</span>,field=<span class="hljs-string">&#x27;physics&#x27;</span>)<br></code></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="模块函数导入">模块、函数导入</h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 导入整个模块</span><br><span class="hljs-keyword">import</span> module_name<br>module_name.func_name()<br><br><span class="hljs-comment"># 导入特定函数</span><br><span class="hljs-keyword">from</span> module_name <span class="hljs-keyword">import</span> func_name<br>func_name()<br><br><span class="hljs-comment"># 使用as给函数指定别名</span><br><span class="hljs-keyword">from</span> module_name <span class="hljs-keyword">import</span> func_name <span class="hljs-keyword">as</span> fn<br>fn()<br><br><span class="hljs-comment"># 使用as给模块指定别名</span><br><span class="hljs-keyword">import</span> module_name <span class="hljs-keyword">as</span> mn<br>mn.func_name()<br><br><span class="hljs-comment"># 导入模块中所有函数(不建议使用，因为当模块中函数存在重名时，会出现函数覆盖，可能引发错误)</span><br><span class="hljs-keyword">from</span> module_name <span class="hljs-keyword">import</span> *<br>func_name()<br></code></pre></td></tr></table></figure>
 <h2 id="类">类</h2>
 <h3 id="类的创建与使用">类的创建与使用</h3>
 <ul>
@@ -316,9 +365,11 @@
 <li><p>将实例用作属性</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Car</span>():<br>	<span class="hljs-keyword">pass</span><br>	<br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Battery</span>():<br>	<span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self,battery_size=<span class="hljs-number">70</span></span>):<br>		self.battery_size = battery_size<br>		<br>	<span class="hljs-keyword">def</span> <span class="hljs-title function_">describe</span>(<span class="hljs-params">self</span>):<br>		<span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;This car has a &quot;</span> + <span class="hljs-built_in">str</span>(self.battery_size) + <span class="hljs-string">&quot;-kWh battery&quot;</span>)<br>		<br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Elecar</span>(<span class="hljs-title class_ inherited__">Car</span>):<br>	<span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self,model,year</span>):<br>		<span class="hljs-built_in">super</span>().__init__(model,year)<br>		self.battery = Battery()<br>		<br>		<br>my_tesla = Elecar(<span class="hljs-string">&#x27;tesla&#x27;</span>,<span class="hljs-number">2016</span>)<br>my_tesla.battery.describe()<br></code></pre></td></tr></table></figure></li>
 </ul>
-<h1 id="pytorch学习内容">Pytorch学习内容</h1>
+<h1 id="pytorch基础语法">Pytorch基础语法</h1>
+<p><strong>Pytorch Documention</strong>:<a
+target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/index.html">PyTorch documentation
+— PyTorch 2.0 documentation</a></p>
 <h2 id="transforms的使用">Transforms的使用</h2>
-<p>通过transforms.ToTensor()解决两个问题</p>
 <h2 id="torchvision中的数据集使用">torchvision中的数据集使用</h2>
 <h2 id="dataloader的使用">DataLoader的使用</h2>
 <h2 id="nn.module的使用">nn.Module的使用</h2>
@@ -328,7 +379,7 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 保存方式1，模型结构+模型参数</span><br>torch.save(vgg16,<span class="hljs-string">&quot;vgg16_method1.pth&quot;</span>)<br><br><span class="hljs-comment"># 加载方式1</span><br>model = torch.load(<span class="hljs-string">&quot;vgg16_method1.pth&quot;</span>)<br><br><span class="hljs-comment"># 保存方式2，模型参数</span><br>torch.save(vgg16.state_dict(),<span class="hljs-string">&quot;vgg16_method2.pth&quot;</span>)<br><br><span class="hljs-comment"># 加载方式2</span><br>model.load_state_dict(torch.model.load(<span class="hljs-string">&quot;vgg16_method2.pth&quot;</span>))<br></code></pre></td></tr></table></figure>
 <h2 id="模型训练">模型训练</h2>
 <p>GPU训练，对模型、数据、损失函数使用CUDA方法</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python">model = Model()<br>model = model.cuda()<br></code></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 方式1，直接调用CUDA</span><br>model = Model()<br>model = model.cuda()<br><br><span class="hljs-comment"># 方式2，使用to方法选择CPU、CUDA进行训练</span><br>device = torch.device(<span class="hljs-string">&quot;cuda&quot;</span> <span class="hljs-keyword">if</span> torch.cuda.is_available() <span class="hljs-keyword">else</span> <span class="hljs-string">&quot;cpu&quot;</span>)<br>imgs, labels = data<br>imgs, labels = imgs.to(device), labels.to(device)<br></code></pre></td></tr></table></figure>
 
                 
               </div>
