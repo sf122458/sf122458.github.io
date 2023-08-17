@@ -19,12 +19,12 @@
     <meta name="description" content="电赛相关要点">
 <meta property="og:type" content="article">
 <meta property="og:title" content="信号发生与调理&#x2F;采集与处理">
-<meta property="og:url" content="http://eternity0126.top/2023/07/17/%E7%94%B5%E8%B5%9B%E7%9B%B8%E5%85%B3/index.html">
+<meta property="og:url" content="http://eternity0126.top/2023/07/17/%E4%BF%A1%E5%8F%B7%E5%8F%91%E7%94%9F%E4%B8%8E%E8%B0%83%E7%90%86%E9%87%87%E9%9B%86%E4%B8%8E%E5%A4%84%E7%90%86/index.html">
 <meta property="og:site_name" content="Eternity&#39;s Blog">
 <meta property="og:description" content="电赛相关要点">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2023-07-17T01:29:04.000Z">
-<meta property="article:modified_time" content="2023-07-20T12:02:40.068Z">
+<meta property="article:modified_time" content="2023-08-17T15:42:13.362Z">
 <meta property="article:author" content="Eternity">
 <meta property="article:tag" content="电赛相关">
 <meta name="twitter:card" content="summary_large_image">
@@ -253,7 +253,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          9.9k words
+          9.6k words
         
       </span>
     
@@ -264,7 +264,7 @@
         
         
         
-          83 mins
+          81 mins
         
       </span>
     
@@ -314,26 +314,7 @@
             
               <div class="markdown-body">
                 
-                <h3 id="题型相关">题型相关</h3>
-<ul>
-<li>涉及数字系统设计</li>
-</ul>
-<pre><code class=" mermaid">graph LR
-A(Analog Signal)
-B(信号调理)
-C(ADC)
-D(数字系统)
-E(DAC)
-F(功率放大)
-G(输出)
-A--&gt;B--&gt;C--&gt;D--&gt;E--&gt;F--&gt;G
-</code></pre>
-<ul>
-<li><p>目标信号具有高频、工频附件频率（50Hz）、小幅值、小功率特点</p></li>
-<li><p>信号采集（前端设计）：阻抗匹配、信号类型、电平类型等参数，其次关注频率特性等，以此为参考选型</p></li>
-<li><p>信号发生与处理（后端设计）：不同类型信号的发生、放大、调制、移相等问题</p></li>
-</ul>
-<h3 id="基础元器件">基础元器件</h3>
+                <h3 id="基础元器件">基础元器件</h3>
 <h4 id="电阻">电阻</h4>
 <ul>
 <li><p>可能遇到的问题</p>
@@ -757,12 +738,6 @@ class="math inline">\(/V_{ee}\)</span></td>
 <li>隔离器件：光耦（PC817等）</li>
 <li>缓冲器（BUFFER）</li>
 </ul>
-<h3 id="电流模块介绍">电流模块介绍</h3>
-<ul>
-<li><p>通用类：最小系统板、仿真器、串口通讯模块、</p></li>
-<li><p>信号测量类：DDS、高速ADC模块</p></li>
-<li><p>通讯类：无线通讯要求（ESP）</p></li>
-</ul>
 <h3 id="信号基础">信号基础</h3>
 <h4 id="信号类型">信号类型</h4>
 <ul>
@@ -1055,7 +1030,7 @@ t)\)</span>进行采样</li>
 <li><p>优点：适用于对一般具有随机干扰的信号滤波</p></li>
 <li><p>缺点：比较浪费RAM</p></li>
 <li><p>代码</p>
-<figure class="highlight excel"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs excel">#define <span class="hljs-built_in">N</span> <span class="hljs-number">12</span><br>uint8_t AverageValueFilter()<br>&#123;<br>	<span class="hljs-built_in">int</span> <span class="hljs-built_in">sum</span> = <span class="hljs-number">0</span>;<br>	for(<span class="hljs-built_in">count</span> = <span class="hljs-number">0</span>;<span class="hljs-built_in">count</span> &lt; <span class="hljs-built_in">N</span>;<span class="hljs-built_in">count</span>++)<br>	&#123;<br>		<span class="hljs-built_in">sum</span> += get_ad();<br>		delay();<br>	&#125;<br>	return (uint8_t)(<span class="hljs-built_in">sum</span>/<span class="hljs-built_in">N</span>);<br>&#125;<br></code></pre></td></tr></table></figure></li>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">define</span> N 12</span><br><span class="hljs-function"><span class="hljs-type">uint8_t</span> <span class="hljs-title">AverageValueFilter</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>	<span class="hljs-type">int</span> sum = <span class="hljs-number">0</span>;<br>	<span class="hljs-keyword">for</span>(count = <span class="hljs-number">0</span>;count &lt; N;count++)<br>	&#123;<br>		sum += <span class="hljs-built_in">get_ad</span>();<br>		<span class="hljs-built_in">delay</span>();<br>	&#125;<br>	<span class="hljs-keyword">return</span> (<span class="hljs-type">uint8_t</span>)(sum/N);<br>&#125;<br></code></pre></td></tr></table></figure></li>
 </ul></li>
 <li><p>一阶滞后滤波法</p>
 <ul>
@@ -1064,7 +1039,7 @@ t)\)</span>进行采样</li>
 <li><p>缺点：相位滞后，灵敏度低；不能消除滤波频率高于采样频率的<span
 class="math inline">\(\frac{1}{2}\)</span>的干扰信号</p></li>
 <li><p>代码：</p>
-<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs nginx"><span class="hljs-comment">#define a 128</span><br><span class="hljs-attribute">uint8_t</span> value;<br><span class="hljs-attribute">uint8_t</span> OneFactorialFilter()<br>&#123;<br>	<span class="hljs-attribute">uint8_t</span> new_value;<br>	<span class="hljs-attribute">uint8_t</span> return_value;<br>	<span class="hljs-attribute">new_value</span> = get_ad();<br>	<span class="hljs-attribute">return_value</span> = a*value + (<span class="hljs-number">255</span>-a)*new_value;<br>	<span class="hljs-attribute">return_value</span> /= <span class="hljs-number">255</span>;<br>	<span class="hljs-attribute">value</span> = return_value;<br>	<span class="hljs-attribute">return</span> return_value;<br>&#125;<br></code></pre></td></tr></table></figure></li>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">define</span> a 128</span><br><span class="hljs-type">uint8_t</span> value;<br><span class="hljs-function"><span class="hljs-type">uint8_t</span> <span class="hljs-title">OneFactorialFilter</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>	<span class="hljs-type">uint8_t</span> new_value;<br>	<span class="hljs-type">uint8_t</span> return_value;<br>	new_value = <span class="hljs-built_in">get_ad</span>();<br>	return_value = a*value + (<span class="hljs-number">255</span>-a)*new_value;<br>	return_value /= <span class="hljs-number">255</span>;<br>	value = return_value;<br>	<span class="hljs-keyword">return</span> return_value;<br>&#125;<br></code></pre></td></tr></table></figure></li>
 </ul></li>
 <li><p>限幅滤波法</p>
 <ul>
@@ -1072,7 +1047,7 @@ class="math inline">\(\frac{1}{2}\)</span>的干扰信号</p></li>
 <li><p>优点：能有效克服因偶然因素引起的脉冲干扰</p></li>
 <li><p>缺点：无法抑制周期性干扰，平滑度差</p></li>
 <li><p>代码：</p>
-<figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs haxe"><span class="hljs-meta">#define A 10</span><br>uint8_t value;<br>uint8_t AmplitudeLimitFilter()<br>&#123;<br>	uint8_t <span class="hljs-keyword">new</span><span class="hljs-type">_value</span>;<br>	<span class="hljs-keyword">new</span><span class="hljs-type">_value</span> = get_ad();<br>	<span class="hljs-keyword">if</span>((<span class="hljs-keyword">new</span><span class="hljs-type">_value</span> - value &gt; A)||(value - <span class="hljs-keyword">new</span><span class="hljs-type">_value</span> &gt; A))<br>	&#123;<br>		<span class="hljs-keyword">return</span> value;<br>	&#125;<br>	value = <span class="hljs-keyword">new</span><span class="hljs-type">_value</span>;<br>	<span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span><span class="hljs-type">_value</span>;<br>&#125;<br></code></pre></td></tr></table></figure></li>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">define</span> A 10</span><br><span class="hljs-type">uint8_t</span> value;<br><span class="hljs-function"><span class="hljs-type">uint8_t</span> <span class="hljs-title">AmplitudeLimitFilter</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>	<span class="hljs-type">uint8_t</span> new_value;<br>	new_value = <span class="hljs-built_in">get_ad</span>();<br>	<span class="hljs-keyword">if</span>((new_value - value &gt; A)||(value - new_value &gt; A))<br>	&#123;<br>		<span class="hljs-keyword">return</span> value;<br>	&#125;<br>	value = new_value;<br>	<span class="hljs-keyword">return</span> new_value;<br>&#125;<br></code></pre></td></tr></table></figure></li>
 </ul></li>
 <li><p>中位值滤波法</p>
 <ul>
@@ -1080,7 +1055,7 @@ class="math inline">\(\frac{1}{2}\)</span>的干扰信号</p></li>
 <li><p>优点：能克服因偶然因素引起的波动干扰，对类似温度等变化缓慢的被测参数有较好的滤波效果</p></li>
 <li><p>缺点：对速度等快速变化的参数不适合</p></li>
 <li><p>代码</p>
-<figure class="highlight excel"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs excel">#define <span class="hljs-built_in">N</span> <span class="hljs-number">11</span><br>uint8_t MiddleValueFilter()<br>&#123;<br>	uint8_t value_buf[<span class="hljs-built_in">N</span>];<br>	uint8_t <span class="hljs-built_in">count</span>,i,j,temp;<br>	for(<span class="hljs-built_in">count</span> = <span class="hljs-number">0</span>; <span class="hljs-built_in">count</span> &lt; <span class="hljs-built_in">N</span>; <span class="hljs-built_in">count</span>++)<br>	&#123;<br>		value_buf[<span class="hljs-built_in">count</span>] = get_ad();<br>		delay();<br>	&#125;<br>	for(j = <span class="hljs-number">0</span>; j &lt; <span class="hljs-built_in">N</span>-<span class="hljs-number">1</span>; j++)<br>	&#123;<br>		for(i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-built_in">N</span>-j; i++)<br>		&#123;<br>			<span class="hljs-built_in">if</span>(value_buf[i] &gt; value_buf[i+<span class="hljs-number">1</span>])<br>			&#123;<br>				temp = value_buf[i];<br>				value_buf[i] = value_buf[i+<span class="hljs-number">1</span>];<br>				value_buf[i+<span class="hljs-number">1</span>] = temp;<br>			&#125;<br>		&#125;<br>	&#125;<br>	return value_buf[(<span class="hljs-built_in">N</span>-<span class="hljs-number">1</span>)/<span class="hljs-number">2</span>];<br>&#125;<br></code></pre></td></tr></table></figure></li>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">define</span> N 11</span><br><span class="hljs-function"><span class="hljs-type">uint8_t</span> <span class="hljs-title">MiddleValueFilter</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>	<span class="hljs-type">uint8_t</span> value_buf[N];<br>	<span class="hljs-type">uint8_t</span> count,i,j,temp;<br>	<span class="hljs-keyword">for</span>(count = <span class="hljs-number">0</span>; count &lt; N; count++)<br>	&#123;<br>		value_buf[count] = <span class="hljs-built_in">get_ad</span>();<br>		<span class="hljs-built_in">delay</span>();<br>	&#125;<br>	<span class="hljs-keyword">for</span>(j = <span class="hljs-number">0</span>; j &lt; N<span class="hljs-number">-1</span>; j++)<br>	&#123;<br>		<span class="hljs-keyword">for</span>(i = <span class="hljs-number">0</span>; i &lt; N-j; i++)<br>		&#123;<br>			<span class="hljs-keyword">if</span>(value_buf[i] &gt; value_buf[i+<span class="hljs-number">1</span>])<br>			&#123;<br>				temp = value_buf[i];<br>				value_buf[i] = value_buf[i+<span class="hljs-number">1</span>];<br>				value_buf[i+<span class="hljs-number">1</span>] = temp;<br>			&#125;<br>		&#125;<br>	&#125;<br>	<span class="hljs-keyword">return</span> value_buf[(N<span class="hljs-number">-1</span>)/<span class="hljs-number">2</span>];<br>&#125;<br></code></pre></td></tr></table></figure></li>
 </ul></li>
 <li><p>递推平均滤波法</p>
 <ul>
@@ -1102,7 +1077,7 @@ class="math inline">\(\frac{1}{2}\)</span>的干扰信号</p></li>
 <li><p>优点：对于变化缓慢的被测参数有较好的滤波效果，可避免临界值上的反复跳动</p></li>
 <li><p>缺点：对于快速变化的参数不适合，且容易将干扰值导入系统</p></li>
 <li><p>代码：</p>
-<figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs haxe"><span class="hljs-meta">#define N 12</span><br>uint8_t filter()<br>&#123;<br>	uint8_t count = <span class="hljs-number">0</span>, <span class="hljs-keyword">new</span><span class="hljs-type">_value</span>, value;<br>	<span class="hljs-keyword">new</span><span class="hljs-type">_value</span> = get_ad();<br>	<span class="hljs-keyword">if</span>(value == <span class="hljs-keyword">new</span><span class="hljs-type">_value</span>)<br>	&#123;<br>		count = <span class="hljs-number">0</span>;<br>	&#125;<br>	<span class="hljs-keyword">else</span><br>	&#123;<br>		count++;<br>		<span class="hljs-keyword">if</span>(count &gt; N)<br>		&#123;<br>			count = <span class="hljs-number">0</span>;<br>			value = <span class="hljs-keyword">new</span><span class="hljs-type">_value</span>;<br>		&#125;<br>	&#125;<br>	<span class="hljs-keyword">return</span> value;<br>&#125;<br></code></pre></td></tr></table></figure></li>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">define</span> N 12</span><br><span class="hljs-function"><span class="hljs-type">uint8_t</span> <span class="hljs-title">filter</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>	<span class="hljs-type">uint8_t</span> count = <span class="hljs-number">0</span>, new_value, value;<br>	new_value = <span class="hljs-built_in">get_ad</span>();<br>	<span class="hljs-keyword">if</span>(value == new_value)<br>	&#123;<br>		count = <span class="hljs-number">0</span>;<br>	&#125;<br>	<span class="hljs-keyword">else</span><br>	&#123;<br>		count++;<br>		<span class="hljs-keyword">if</span>(count &gt; N)<br>		&#123;<br>			count = <span class="hljs-number">0</span>;<br>			value = new_value;<br>		&#125;<br>	&#125;<br>	<span class="hljs-keyword">return</span> value;<br>&#125;<br></code></pre></td></tr></table></figure></li>
 </ul></li>
 <li><p>中位值平均滤波法</p>
 <ul>
@@ -1124,9 +1099,6 @@ class="math inline">\(y[n]=x[n]*b[n]\)</span></p></li>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">typedef</span> <span class="hljs-keyword">struct</span>&#123;<br><span class="hljs-type">uint16_t</span> numTaps;<br><span class="hljs-type">float32_t</span> *pState;<br><span class="hljs-type">float32_t</span> *pCoeffs;<br>&#125;<br><span class="hljs-built_in">arm_fir_instance_f32</span>();<br></code></pre></td></tr></table></figure></li>
 </ul></li>
 </ul>
-<h4 id="fft">FFT</h4>
-<p>略</p>
-<h4 id="pid">PID</h4>
 <h4 id="模拟信号产生">模拟信号产生</h4>
 <ul>
 <li>正弦波产生：文氏电桥振荡器
@@ -1164,11 +1136,11 @@ f=\frac{f_c}{2^N}\)</span></li>
 <ul>
 <li><p>直流电源的测量：</p>
 <pre><code class=" mermaid">graph LR
-A(&quot;被测电压&quot;)
-B(&quot;调理电路&quot;)
-C(&quot;A/D转换器&quot;)
-D(&quot;显示电路&quot;)
-A--&gt;B--&gt;C--&gt;D
+  A(&quot;被测电压&quot;)
+  B(&quot;调理电路&quot;)
+  C(&quot;A/D转换器&quot;)
+  D(&quot;显示电路&quot;)
+  A--&gt;B--&gt;C--&gt;D
 </code></pre>
 <ul>
 <li>测量范围一般为0~3.3V</li>
@@ -1265,7 +1237,7 @@ class="math inline">\(\frac{A}{\sqrt3}\)</span></li>
   <div class="license-box my-3">
     <div class="license-title">
       <div>信号发生与调理/采集与处理</div>
-      <div>http://eternity0126.top/2023/07/17/电赛相关/</div>
+      <div>http://eternity0126.top/2023/07/17/信号发生与调理采集与处理/</div>
     </div>
     <div class="license-meta">
       
