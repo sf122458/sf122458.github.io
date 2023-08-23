@@ -24,7 +24,7 @@
 <meta property="og:description" content="Pytorch的相关笔记">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2023-08-15T04:00:00.000Z">
-<meta property="article:modified_time" content="2023-08-17T15:30:52.669Z">
+<meta property="article:modified_time" content="2023-08-23T08:09:09.211Z">
 <meta property="article:author" content="Eternity">
 <meta property="article:tag" content="Pytorch">
 <meta name="twitter:card" content="summary_large_image">
@@ -253,7 +253,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          11k words
+          15k words
         
       </span>
     
@@ -264,7 +264,7 @@
         
         
         
-          92 mins
+          125 mins
         
       </span>
     
@@ -388,6 +388,9 @@
 <li><p>将实例用作属性</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Car</span>():<br>	<span class="hljs-keyword">pass</span><br>	<br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Battery</span>():<br>	<span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self,battery_size=<span class="hljs-number">70</span></span>):<br>		self.battery_size = battery_size<br>		<br>	<span class="hljs-keyword">def</span> <span class="hljs-title function_">describe</span>(<span class="hljs-params">self</span>):<br>		<span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;This car has a &quot;</span> + <span class="hljs-built_in">str</span>(self.battery_size) + <span class="hljs-string">&quot;-kWh battery&quot;</span>)<br>		<br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Elecar</span>(<span class="hljs-title class_ inherited__">Car</span>):<br>	<span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self,model,year</span>):<br>		<span class="hljs-built_in">super</span>().__init__(model,year)<br>		self.battery = Battery()<br>		<br>		<br>my_tesla = Elecar(<span class="hljs-string">&#x27;tesla&#x27;</span>,<span class="hljs-number">2016</span>)<br>my_tesla.battery.describe()<br></code></pre></td></tr></table></figure></li>
 </ul>
+<h2 id="命令行">命令行</h2>
+<h3 id="argparse模块的使用">argparse模块的使用</h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> argparse<br><br><span class="hljs-comment"># 创建解释器</span><br>parser = argparse.ArgmentParser(description=<span class="hljs-string">&quot;当前文件描述&quot;</span>)<br><br><span class="hljs-comment"># 添加optional argument，默认是可选的，即可以不用填，有默认值</span><br>parser.add_argument(<span class="hljs-string">&quot;--a&quot;</span>, <span class="hljs-built_in">type</span>=<span class="hljs-built_in">int</span>, default=<span class="hljs-number">5</span>, <span class="hljs-built_in">help</span>=<span class="hljs-string">&quot;operator A&quot;</span>)<br><br><span class="hljs-comment"># 添加positional argument，默认是不可选的，即必须要填</span><br>parser.add_argument(<span class="hljs-string">&quot;a&quot;</span>, <span class="hljs-built_in">type</span>=<span class="hljs-built_in">int</span>, <span class="hljs-built_in">help</span>=<span class="hljs-string">&quot;xxx&quot;</span>)<br><br><span class="hljs-comment"># 添加action argument，给定&quot;store_true&quot;后，命令行调用后为True，未调用为False</span><br>parser.add_argument(<span class="hljs-string">&quot;--verbose&quot;</span>, action=<span class="hljs-string">&quot;store_true&quot;</span>, default=<span class="hljs-number">0</span>, <span class="hljs-built_in">help</span>=<span class="hljs-string">&quot;Print Message&quot;</span>)<br><br><span class="hljs-comment"># 解析命令行</span><br>args = parser.parse_args()<br><br>------------------------------<br>命令行操作<br>python test.py --<span class="hljs-built_in">help</span>			查看所有参数<br><br>python test.py --a=<span class="hljs-number">1</span>	--verbose<br>------------------------------<br></code></pre></td></tr></table></figure>
 <h1 id="pytorch基础语法">Pytorch基础语法</h1>
 <p><strong>Pytorch Documention</strong>:<a
 target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/index.html">PyTorch documentation
@@ -476,83 +479,130 @@ class="math inline">\(\text{iteration}=\frac{\text{epoch}}{\text{batchsize}}\)</
 </ul>
 <p>DataLoader的参数如下：</p>
 <ul>
-<li><strong>dataset</strong> (<a
+<li><p><strong>dataset</strong> (<a
 target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/data.html?highlight=dataloader#torch.utils.data.Dataset"><em>Dataset</em></a>)
-– 决定从哪里读取数据集。</li>
-<li><strong>batch_size</strong> (<a
+– 决定从哪里读取数据集。</p></li>
+<li><p><strong>batch_size</strong> (<a
 target="_blank" rel="noopener" href="https://docs.python.org/3/library/functions.html#int"><em>int</em></a><em>,</em>
-<em>optional</em>) – 每批训练的样本数(默认值为<code>1</code>)。</li>
-<li><strong>shuffle</strong> (<a
+<em>optional</em>) – 每批训练的样本数(默认值为<code>1</code>)。</p></li>
+<li><p><strong>shuffle</strong> (<a
 target="_blank" rel="noopener" href="https://docs.python.org/3/library/functions.html#bool"><em>bool</em></a><em>,</em>
 <em>optional</em>) –
-每一个epoch是否为乱序(默认为<code>False</code>)。</li>
-<li><strong>sampler</strong> (<a
+每一个epoch是否为乱序(默认为<code>False</code>)。</p></li>
+<li><p><strong>sampler</strong> (<a
 target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/data.html?highlight=dataloader#torch.utils.data.Sampler"><em>Sampler</em></a>
-<em>or</em> <em>Iterable,</em> <em>optional</em>) – defines the strategy
-to draw samples from the dataset. Can be any <code>Iterable</code> with
-<code>__len__</code> implemented. If specified, <code>shuffle</code>
-must not be specified.</li>
-<li><strong>batch_sampler</strong> (<a
+<em>or</em> <em>Iterable,</em> <em>optional</em>) – <code>sampler</code>
+是 PyTorch
+中用于控制数据加载顺序的对象，它定义了在数据加载过程中如何对样本进行采样和排序的逻辑。因此选择<code>sampler</code>后<code>shuffle</code>参数不需要指定。常见的<code>sampler</code>的定义如下：</p>
+<ul>
+<li><code>SequentialSampler</code>：顺序采样器，按照数据集中样本的顺序逐个采样，即按照索引依次获取样本。适用于不需要对样本顺序进行改变的情况。</li>
+<li><code>RandomSampler</code>：随机采样器，随机地从数据集中采样样本，可以用于训练集的随机采样和验证集的无重复采样。</li>
+<li><code>SubsetRandomSampler</code>：子集随机采样器，从指定的样本子集中随机采样样本。适用于需要从数据集中选择特定样本子集进行训练的情况。</li>
+<li><code>WeightedRandomSampler</code>：加权随机采样器，根据每个样本的权重进行随机采样。适用于不平衡数据集（imbalanced
+dataset）中的样本采样，可以提高少数类样本的采样概率。</li>
+<li><code>BatchSampler</code>：批次采样器，将样本索引划分为多个批次，每个批次中的样本索引按照指定的规则进行采样。可以用来实现自定义的样本采样逻辑，如带有样本约束条件的采样。</li>
+</ul></li>
+<li><p><strong>batch_sampler</strong> (<a
 target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/data.html?highlight=dataloader#torch.utils.data.Sampler"><em>Sampler</em></a>
 <em>or</em> *Iterable**,* <em>optional</em>) – like
 <code>sampler</code>, but returns a batch of indices at a time. Mutually
 exclusive with <code>batch_size</code>, <code>shuffle</code>,
-<code>sampler</code>, and <code>drop_last</code>.</li>
-<li><strong>num_workers</strong> (<a
+<code>sampler</code>, and <code>drop_last</code>.</p></li>
+<li><p><strong>num_workers</strong> (<a
 target="_blank" rel="noopener" href="https://docs.python.org/3/library/functions.html#int"><em>int</em></a><em>,</em>
-<em>optional</em>) – 是否采用多线程读取数据(默认为<code>0</code>)。</li>
-<li><strong>collate_fn</strong> (<em>Callable,</em> <em>optional</em>) –
-merges a list of samples to form a mini-batch of Tensor(s). Used when
-using batched loading from a map-style dataset.</li>
-<li><strong>pin_memory</strong> (<a
+<em>optional</em>) –
+是否采用多线程读取数据(默认为<code>0</code>)。<code>num_workers</code>
+参数用于指定 DataLoader
+中用于加载数据的子进程的数量。每个子进程都是一个独立的工作单元，负责从存储设备中读取数据、进行预处理并返回给主进程。增加
+<code>num_workers</code>
+的值可以提高数据加载的速度，特别是在数据加载和预处理过程比较耗时时，可以充分利用多核处理器的计算能力。</p>
+<p>需要注意的是，增加 <code>num_workers</code>
+的值并不总是能够线性地提高数据加载的速度，因为子进程的数量过多也会导致进程间的通信和调度开销增加。在选择合适的
+<code>num_workers</code>
+值时，需要根据具体的硬件环境、数据集大小和数据加载的复杂度进行调优。</p></li>
+<li><p><strong>collate_fn</strong> (<em>Callable,</em>
+<em>optional</em>) –
+定义如何对每个样本的特征和标签进行处理，并将它们组合成一个批次（batch）的数据。</p>
+<p><code>collate_fn</code>
+函数会接收一个样本列表作为输入，并返回一个批次的数据作为输出。在
+<code>collate_fn</code>
+函数中，可以针对不同的数据类型（如图像、文本等）进行自定义的处理和转换操作，以适应模型的输入要求。</p>
+<p>通常，<code>collate_fn</code>
+函数的输入是一个样本列表，每个样本是数据集中的一个元素。每个样本可以是一个元组或字典，其中包含了样本的特征和标签等信息。<code>collate_fn</code>
+函数需要将样本列表中的特征和标签分别提取出来，并进行适当的处理和转换，最终返回一个包含批次数据的对象（如张量、列表等）。</p></li>
+<li><p><strong>pin_memory</strong> (<a
 target="_blank" rel="noopener" href="https://docs.python.org/3/library/functions.html#bool"><em>bool</em></a><em>,</em>
 <em>optional</em>) – If <code>True</code>, the data loader will copy
 Tensors into device/CUDA pinned memory before returning them. If your
 data elements are a custom type, or your <code>collate_fn</code> returns
-a batch that is a custom type, see the example below.</li>
-<li><strong>drop_last</strong> (<a
+a batch that is a custom type, see the example below.</p></li>
+<li><p><strong>drop_last</strong> (<a
 target="_blank" rel="noopener" href="https://docs.python.org/3/library/functions.html#bool"><em>bool</em></a><em>,</em>
 <em>optional</em>) –
-当样本数不能被batchsize整除时，如果为<code>True</code>，舍弃最后一批不完整的数据(默认为<code>False</code>)。</li>
-<li><strong>timeout</strong> (<em>numeric,</em> <em>optional</em>) – if
-positive, the timeout value for collecting a batch from workers. Should
-always be non-negative. (default: <code>0</code>)</li>
-<li><strong>worker_init_fn</strong> (<em>Callable,</em>
+当样本数不能被batchsize整除时，如果为<code>True</code>，舍弃最后一批不完整的数据(默认为<code>False</code>)。</p></li>
+<li><p><strong>timeout</strong> (<em>numeric,</em> <em>optional</em>) –
+if positive, the timeout value for collecting a batch from workers.
+Should always be non-negative. (default: <code>0</code>)</p></li>
+<li><p><strong>worker_init_fn</strong> (<em>Callable,</em>
 <em>optional</em>) – If not <code>None</code>, this will be called on
 each worker subprocess with the worker id (an int in
 <code>[0, num_workers - 1]</code>) as input, after seeding and before
-data loading. (default: <code>None</code>)</li>
-<li><strong>generator</strong> (<a
+data loading. (default: <code>None</code>)</p></li>
+<li><p><strong>generator</strong> (<a
 target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.Generator.html#torch.Generator"><em>torch.Generator</em></a><em>,</em>
 <em>optional</em>) – If not <code>None</code>, this RNG will be used by
 RandomSampler to generate random indexes and multiprocessing to generate
-base_seed for workers. (default: <code>None</code>)</li>
-<li><strong>prefetch_factor</strong> (<a
+base_seed for workers. (default: <code>None</code>)</p></li>
+<li><p><strong>prefetch_factor</strong> (<a
 target="_blank" rel="noopener" href="https://docs.python.org/3/library/functions.html#int"><em>int</em></a><em>,</em>
 <em>optional,</em> <em>keyword-only arg</em>) – Number of batches loaded
 in advance by each worker. <code>2</code> means there will be a total of
 2 * num_workers batches prefetched across all workers. (default value
 depends on the set value for num_workers. If value of num_workers=0
 default is <code>None</code>. Otherwise if value of num_workers&gt;0
-default is <code>2</code>).</li>
-<li><strong>persistent_workers</strong> (<a
+default is <code>2</code>).</p></li>
+<li><p><strong>persistent_workers</strong> (<a
 target="_blank" rel="noopener" href="https://docs.python.org/3/library/functions.html#bool"><em>bool</em></a><em>,</em>
 <em>optional</em>) – If <code>True</code>, the data loader will not
 shutdown the worker processes after a dataset has been consumed once.
 This allows to maintain the workers Dataset instances alive. (default:
-<code>False</code>)</li>
-<li><strong>pin_memory_device</strong> (<a
+<code>False</code>)</p></li>
+<li><p><strong>pin_memory_device</strong> (<a
 target="_blank" rel="noopener" href="https://docs.python.org/3/library/stdtypes.html#str"><em>str</em></a><em>,</em>
 <em>optional</em>) – the data loader will copy Tensors into device
-pinned memory before returning them if pin_memory is set to true.</li>
+pinned memory before returning them if pin_memory is set to
+true.</p></li>
 </ul>
 <h3 id="dataloader的使用">DataLoader的使用</h3>
 <p>以数据集CIFAR10为例：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> torchvision<br><span class="hljs-keyword">from</span> torch.utils.data <span class="hljs-keyword">import</span> DataLoader<br><span class="hljs-keyword">from</span> torch.utils.tensorboard <span class="hljs-keyword">import</span> SummaryWriter<br><br>test_data = torchvision.datasets.CIFAR10(<span class="hljs-string">&quot;./CIFAR10&quot;</span>,<span class="hljs-comment"># 一般将数据集保存在同一工程文件下，使用相对路径读取</span><br>                                         train=<span class="hljs-literal">False</span>,<span class="hljs-comment"># 选择测试集</span><br>                                         transform=torchvision.transforms.ToTensor())<br>test_loader = DataLoader(dataset=test_data, <span class="hljs-comment"># 选择数据集</span><br>                         batch_size=<span class="hljs-number">4</span>, <span class="hljs-comment"># 设定批大小为4</span><br>                         shuffle=<span class="hljs-literal">True</span>, <span class="hljs-comment"># 打乱数据集</span><br>                         num_workers=<span class="hljs-number">0</span>, <span class="hljs-comment"># 单进程读取数据</span><br>                         drop_last=<span class="hljs-literal">False</span>) <span class="hljs-comment"># 保留最后一批数据</span><br><br><span class="hljs-comment"># 测试数据集中第一张图片及target</span><br>img, target = test_data[<span class="hljs-number">0</span>]<br><span class="hljs-built_in">print</span>(img.shape)<br><span class="hljs-built_in">print</span>(target)<br>------------------------------<br><span class="hljs-comment"># 输出</span><br>torch.Size([<span class="hljs-number">3</span>,<span class="hljs-number">32</span>,<span class="hljs-number">32</span>])	<span class="hljs-comment"># 输出图片为3通道，大小为32*32</span><br><span class="hljs-number">3</span>					<span class="hljs-comment"># 输出图片标签为3</span><br>------------------------------<br><br><span class="hljs-comment"># 在定义test_loader时，设置了batch_size=4，表示一次性从数据集中取出4个数据</span><br><span class="hljs-keyword">for</span> data <span class="hljs-keyword">in</span> test_loader:<br>    imgs, targets = data<br>    <span class="hljs-built_in">print</span>(imgs.shape)<br>    <span class="hljs-built_in">print</span>(targets)<br>------------------------------<br><span class="hljs-comment"># 第一次循环输出</span><br>torch.Size([<span class="hljs-number">4</span>,<span class="hljs-number">3</span>,<span class="hljs-number">32</span>,<span class="hljs-number">32</span>])	<span class="hljs-comment"># 4表示batch_size=4，后面三个参数表示输出图片为3通道，大小为32*32</span><br>tensor([<span class="hljs-number">0</span>,<span class="hljs-number">4</span>,<span class="hljs-number">3</span>,<span class="hljs-number">8</span>])		<span class="hljs-comment"># 表示该批取出的图片的标签信息</span><br>------------------------------<br></code></pre></td></tr></table></figure>
-<h2 id="nn.module的使用">nn.Module的使用</h2>
+<h2 id="模型搭建">模型搭建</h2>
+<h3 id="nn.module类">nn.Module类</h3>
+<p>在自定义网络时，需要继承<code>nn.Module</code>类，并重新实现构造<code>__init__</code>构造函数和<code>forward</code>这两个函数。<strong>其中<code>forward</code>函数是必须要重写的，它能实现各个层之间的连接关系</strong>。</p>
+<p>一般的，在<code>__init__</code>中实现层的参数设定，在<code>forward</code>中实现层之间的连接关系。<strong>所有放在<code>__init__</code>里面的层都是这个模型的固有属性</strong>。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> torch<br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">MyNet</span>(torch.nn.Module):<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self</span>):<br>        <span class="hljs-built_in">super</span>(MyNet, self).__init__()  <span class="hljs-comment"># 调用父类的构造函数</span><br>        self.conv1 = torch.nn.Conv2d(<span class="hljs-number">3</span>, <span class="hljs-number">32</span>, <span class="hljs-number">3</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>)<br>        self.relu1=torch.nn.ReLU()<br>        self.max_pooling1=torch.nn.MaxPool2d(<span class="hljs-number">2</span>,<span class="hljs-number">1</span>)<br> <br>        self.conv2 = torch.nn.Conv2d(<span class="hljs-number">3</span>, <span class="hljs-number">32</span>, <span class="hljs-number">3</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>)<br>        self.relu2=torch.nn.ReLU()<br>        self.max_pooling2=torch.nn.MaxPool2d(<span class="hljs-number">2</span>,<span class="hljs-number">1</span>)<br> <br>        self.dense1 = torch.nn.Linear(<span class="hljs-number">32</span> * <span class="hljs-number">3</span> * <span class="hljs-number">3</span>, <span class="hljs-number">128</span>)<br>        self.dense2 = torch.nn.Linear(<span class="hljs-number">128</span>, <span class="hljs-number">10</span>)<br> <br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">forward</span>(<span class="hljs-params">self, x</span>):<br>        x = self.conv1(x)<br>        x = self.relu1(x)<br>        x = self.max_pooling1(x)<br>        x = self.conv2(x)<br>        x = self.relu2(x)<br>        x = self.max_pooling2(x)<br>        x = self.dense1(x)<br>        x = self.dense2(x)<br>        <span class="hljs-keyword">return</span> x<br> <br>model = MyNet()<br></code></pre></td></tr></table></figure>
+<p>此外，还可以使用<code>Sequential</code>容器实现层之间的连接。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> torch<br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">MyNet</span>(torch.nn.Module):<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self</span>):<br>        <span class="hljs-built_in">super</span>(MyNet, self).__init__()  <span class="hljs-comment"># 调用父类的构造函数</span><br>        self.conv1 = torch.nn.Conv2d(<span class="hljs-number">3</span>, <span class="hljs-number">32</span>, <span class="hljs-number">3</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>)<br>        self.relu1=torch.nn.ReLU()<br>        self.max_pooling1=torch.nn.MaxPool2d(<span class="hljs-number">2</span>,<span class="hljs-number">1</span>)<br> <br>        self.conv2 = torch.nn.Conv2d(<span class="hljs-number">3</span>, <span class="hljs-number">32</span>, <span class="hljs-number">3</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>)<br>        self.relu2=torch.nn.ReLU()<br>        self.max_pooling2=torch.nn.MaxPool2d(<span class="hljs-number">2</span>,<span class="hljs-number">1</span>)<br> <br>        self.dense1 = torch.nn.Linear(<span class="hljs-number">32</span> * <span class="hljs-number">3</span> * <span class="hljs-number">3</span>, <span class="hljs-number">128</span>)<br>        self.dense2 = torch.nn.Linear(<span class="hljs-number">128</span>, <span class="hljs-number">10</span>)<br> 		<br>        self.model = nn.Sequential(<br>        				nn.Conv2d(<span class="hljs-number">3</span>, <span class="hljs-number">32</span>, <span class="hljs-number">3</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>),<br>            			nn.ReLU(),<br>            			nn.MaxPool2d(<span class="hljs-number">2</span>,<span class="hljs-number">1</span>),<br>            			nn.Conv2d(<span class="hljs-number">3</span>, <span class="hljs-number">32</span>, <span class="hljs-number">3</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>),<br>            			nn.ReLU(),<br>            			nn.MaxPool2d(<span class="hljs-number">2</span>,<span class="hljs-number">1</span>),<br>            			nn.Linear(<span class="hljs-number">32</span> * <span class="hljs-number">3</span> * <span class="hljs-number">3</span>, <span class="hljs-number">128</span>),<br>            			nn.Linear(<span class="hljs-number">128</span>,<span class="hljs-number">10</span>)<br>        			)<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">forward</span>(<span class="hljs-params">self, x</span>):<br>        <span class="hljs-keyword">return</span> self.model(x)<br> <br>model = MyNet()<br></code></pre></td></tr></table></figure>
 <h2 id="模型训练">模型训练</h2>
 <p>GPU训练，对模型、数据、损失函数使用CUDA方法</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 方式1，直接调用CUDA</span><br>model = Model()<br>model = model.cuda()<br><br><span class="hljs-comment"># 方式2，使用to方法选择CPU、CUDA进行训练</span><br>device = torch.device(<span class="hljs-string">&quot;cuda&quot;</span> <span class="hljs-keyword">if</span> torch.cuda.is_available() <span class="hljs-keyword">else</span> <span class="hljs-string">&quot;cpu&quot;</span>)<br>imgs, labels = data<br>imgs, labels = imgs.to(device), labels.to(device)<br></code></pre></td></tr></table></figure>
+<h2 id="优化器">优化器</h2>
+<h2 id="自定义层的实现">自定义层的实现</h2>
+<p>要实现一个自定义层，需要有以下步骤：</p>
+<ul>
+<li>自定义一个类，该类继承<code>nn.Module</code>类，并且要实现基本函数：<code>__init__</code>构造函数和<code>forward</code>逻辑运算函数。</li>
+<li>在<code>__init__</code>中实现层的参数定义</li>
+<li>在<code>forward</code>中实现批数据的前向传播，<strong>只要在<code>nn.Module</code>的子类中定义了<code>forward</code>函数，<code>backward</code>函数会自动实现</strong>。但是如果自定义参数不可导，就需要手动实现<code>backward</code>函数。</li>
+</ul>
+<p>自定义层实现这样一个功能：输入为两个<span
+class="math inline">\(N\)</span>维向量<span
+class="math inline">\(x_1\)</span>和<span
+class="math inline">\(x_2\)</span>，参数为一个<span
+class="math inline">\(N\times N\)</span>的矩阵<span
+class="math inline">\(M\)</span>，输出为<span
+class="math inline">\(\text{label}=\text{sigmoid}(x_1\times M\times
+x_2)\)</span>。代码如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> torch<br><span class="hljs-keyword">import</span> torch.nn <span class="hljs-keyword">as</span> nn<br><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np<br><span class="hljs-keyword">from</span> torch.autograd <span class="hljs-keyword">import</span> Variable<br><span class="hljs-keyword">import</span> math<br><span class="hljs-keyword">from</span> torch <span class="hljs-keyword">import</span> optim<br><span class="hljs-keyword">import</span> torch.utils.data <span class="hljs-keyword">as</span> Data<br> <br> <br><span class="hljs-comment"># 定义DisMult层</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">DisMult</span>(nn.Module):<br>	<span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self, emb_size</span>):<br> <br>		<span class="hljs-comment"># nn.Module子类的函数必须在构造函数中执行父类的构造函数</span><br>		<span class="hljs-comment"># 下式等价于nn.Module.__init__(self)</span><br>		<span class="hljs-built_in">super</span>(DisMult, self).__init__()<br>		<span class="hljs-comment"># 隐特征维度</span><br>		self.emb_size = emb_size<br>		<span class="hljs-comment"># 关系特定的方阵</span><br>		<span class="hljs-comment"># self.weights = nn.Parameter(torch.Tensor(emb_size, emb_size), requires_grad=requires_grad)</span><br>		self.weights = nn.Parameter(torch.Tensor(emb_size, emb_size))<br>		<span class="hljs-comment"># 初始化参数</span><br>		self.reset_parameters()<br> <br>	<span class="hljs-comment"># 初始化参数</span><br>	<span class="hljs-keyword">def</span> <span class="hljs-title function_">reset_parameters</span>(<span class="hljs-params">self</span>):<br>		stdv = <span class="hljs-number">1.</span> / math.sqrt(self.weights.size(<span class="hljs-number">0</span>))<br>		self.weights.data.uniform_(-stdv, stdv)<br> <br>	<span class="hljs-comment"># 前向传播函数</span><br>	<span class="hljs-keyword">def</span> <span class="hljs-title function_">forward</span>(<span class="hljs-params">self, input1, input2</span>):<br>		<span class="hljs-comment"># 前向传播的逻辑</span><br>		result = torch.<span class="hljs-built_in">sum</span>((input1 @ self.weights) * input2, dim=<span class="hljs-number">1</span>)<br> <br>		<span class="hljs-keyword">return</span> torch.sigmoid(result)<br></code></pre></td></tr></table></figure>
 
                 
               </div>
@@ -621,6 +671,12 @@ pinned memory before returning them if pin_memory is set to true.</li>
                 <div class="post-prevnext my-3">
                   <article class="post-prev col-6">
                     
+                    
+                      <a href="/2023/08/20/learnings/" title="论文阅读:Advancing Spiking Neural Networks towards Deep Residual Learning">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">论文阅读:Advancing Spiking Neural Networks towards Deep Residual Learning</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
                     
                   </article>
                   <article class="post-next col-6">

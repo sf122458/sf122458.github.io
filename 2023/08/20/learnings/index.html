@@ -1,0 +1,861 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/avatar/mizuki.png">
+  <link rel="icon" href="/img/avatar/mizuki.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Eternity">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="Advancing Spiking Neural Networks towards Deep Residual Learning 目标 摘要 文章中首先确定了先前残差SNN中阻碍信息流和退化问题的原因。为了解决该问题，团队提出了 全新的面向SNN的残差结构——MS-ResNet。 可以确保网络具有良好表现且对深度不太敏感，因而能够延伸可直接训练的SNN深度，如在CIFAR-10训练集上">
+<meta property="og:type" content="article">
+<meta property="og:title" content="论文阅读:Advancing Spiking Neural Networks towards Deep Residual Learning">
+<meta property="og:url" content="http://eternity0126.top/2023/08/20/learnings/index.html">
+<meta property="og:site_name" content="Eternity&#39;s Blog">
+<meta property="og:description" content="Advancing Spiking Neural Networks towards Deep Residual Learning 目标 摘要 文章中首先确定了先前残差SNN中阻碍信息流和退化问题的原因。为了解决该问题，团队提出了 全新的面向SNN的残差结构——MS-ResNet。 可以确保网络具有良好表现且对深度不太敏感，因而能够延伸可直接训练的SNN深度，如在CIFAR-10训练集上">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-08-20T05:49:06.000Z">
+<meta property="article:modified_time" content="2023-08-23T07:56:33.239Z">
+<meta property="article:author" content="Eternity">
+<meta property="article:tag" content="论文阅读">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>论文阅读:Advancing Spiking Neural Networks towards Deep Residual Learning - Eternity&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"eternity0126.top","root":"/","version":"1.9.5","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Eternity@SJTU</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/playlist/" target="_self">
+                <i class="iconfont icon-music"></i>
+                <span>Playlist</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>Links</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/bg/bg_index.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="论文阅读:Advancing Spiking Neural Networks towards Deep Residual Learning"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-08-20 13:49" pubdate>
+          August 20, 2023 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          12k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          100 mins
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> views
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">论文阅读:Advancing Spiking Neural Networks towards Deep Residual Learning</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1
+id="advancing-spiking-neural-networks-towards-deep-residual-learning">Advancing
+Spiking Neural Networks towards Deep Residual Learning</h1>
+<h2 id="目标">目标</h2>
+<h2 id="摘要">摘要</h2>
+<p>文章中首先确定了先前残差SNN中阻碍信息流和退化问题的原因。为了解决该问题，团队提出了</p>
+<p>全新的面向SNN的残差结构——MS-ResNet。</p>
+<p>可以确保网络具有良好表现且对深度不太敏感，因而能够延伸可直接训练的SNN深度，如在CIFAR-10训练集上可以达到482层，且不用注意任何退化问题。</p>
+<h2 id="问题">问题</h2>
+<ul>
+<li>SNN模型的获取
+<ul>
+<li><h2
+id="从预训练好的ann模型转换获得">从预训练好的ANN模型转换获得</h2></li>
+<li><h2
+id="使用代理梯度surrogate-gradient训练模型">使用代理梯度(surrogate
+gradient)训练模型</h2></li>
+</ul></li>
+</ul>
+<h2 id="观点">观点</h2>
+<h3 id="snn神经元模型">SNN神经元模型</h3>
+<p>文章采用了LIF模型，该模型具有低计算复杂度</p>
+<p>文章选择了可迭代的LIF模型，公式如下： <span class="math display">\[
+\begin{aligned}
+&amp;u_i^t=\tau_{mem}\cdot u_i^{t-1}+\sum_{j=1}^nu_{ij}o_j^t,\\
+&amp;o_i^t=g(u_i^t)=\left\{
+\begin{align}
+&amp;1,\quad \text{if}\space u_i^t-V_{th}\geq 0\\
+&amp;0,\quad \text{otherwise}
+\end{align},
+\right.
+\end{aligned}
+\]</span> 此处<span
+class="math inline">\(u_i^t\)</span>表示在t时间步某一层第i个神经元的膜电位，<span
+class="math inline">\(\tau_{mem}\)</span>代表泄露的衰减系数，突触的输入是上一层脉冲的加权和。<span
+class="math inline">\(g(\cdot)\)</span>描述了由<span
+class="math inline">\(V_{th}\)</span>控制的点火活动，且一旦脉冲触发，<span
+class="math inline">\(u_i^t\)</span>随后便会设置为<span
+class="math inline">\(V_{reset}\)</span>，即<span
+class="math inline">\(o_i^{t-1}=1\)</span>。</p>
+<p>代理梯度定义如下： <span class="math display">\[
+\frac{\partial o_i^t}{\partial
+u_i^t}=\frac{1}{a}\text{sign}(|u_i^t-V_{th}|\leq\frac{a}{2}).
+\]</span> 引入系数<span
+class="math inline">\(a\)</span>确保函数的积分为1。</p>
+<p>文章中引用了TDBN技术作为脉冲模型的卷积BN，公式如下： <span
+class="math display">\[
+u_i^t=\tau_{mem}u_i^{t-1}+\text{TDBN}(I_i^t,\mu_{c_i},\sigma_{c_i}^2,V_{th}),
+\]</span></p>
+<p>捷径连接可以插在 ，公式如下： <span class="math display">\[
+o^{l+1}=\text{LIF}(F(o^l;W^{l+1})+o^l),
+\]</span> 此处<span
+class="math inline">\(F(\cdot)\)</span>表示残差路径上的总的函数计算，<span
+class="math inline">\(o^l\)</span>为在模拟时间<span
+class="math inline">\(T\)</span>上的脉冲串输出向量，<span
+class="math inline">\(l\)</span>表示层数下标。在模型的最后，一个全连接层对来着最后特征图的每个神经元脉冲进行计数，作为分类器做出最后的决定。</p>
+<h2 id="snn中的退化问题">SNN中的退化问题</h2>
+<h2 id="脉冲残差块">脉冲残差块</h2>
+<p>文章中模型的优势：</p>
+<ul>
+<li>An unimpeded inference flow which can avoid unavailing residual
+expression and workload imbalance.</li>
+<li>Achieving block dynamical isometry which is an important metric to
+avoid the gradient vanishing or explosion problem.</li>
+<li>Primary energy-efficient features which are intentionally maintained
+and will suit for further implementation on neuromorphic hardwar</li>
+</ul>
+<h3 id="vanilla-resnet与ms-resnet对比">Vanilla
+ResNet与MS-ResNet对比</h3>
+<p>特殊地，当考虑仅来自不会经过状态转变的神经元的输入时，有： <span
+class="math display">\[
+\begin{aligned}
+o_i^{t,l+2}
+&amp;=\text{LIF}(F(o^{t,l+1};W^{l+2})+o_i^{t,l+1})\\
+&amp;=\text{LIF}(F(o^{t,l};W^{l+2})+o_i^{t,l}),
+\end{aligned}
+\]</span> 这意味着</p>
+<p>而对于MS-ResNet，去除尾部的<span
+class="math inline">\(\text{LIF}(\cdot)\)</span>为数据流提供了干净的通道</p>
+<h2 id="代码分析">代码分析</h2>
+<h3 id="ms_resnet.py">MS_ResNet.py</h3>
+<p>该文件中实现了模型搭建。</p>
+<ul>
+<li>部分参数</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 部分参数</span><br>thresh = <span class="hljs-number">0.5</span>  <span class="hljs-comment"># 阈值电压</span><br>lens = <span class="hljs-number">0.5</span>  <span class="hljs-comment"># hyper-parameters of approximate function，代表代理梯度中的a/2</span><br>decay = <span class="hljs-number">0.25</span>  <span class="hljs-comment"># 衰减常数</span><br>num_classes = <span class="hljs-number">10</span> <span class="hljs-comment"># 在CIFAR-10数据集上分10类</span><br>time_window = <span class="hljs-number">6</span> <span class="hljs-comment"># 6个时间步</span><br>device = torch.device(<span class="hljs-string">&quot;cuda&quot;</span> <span class="hljs-keyword">if</span> torch.cuda.is_available() <span class="hljs-keyword">else</span> <span class="hljs-string">&quot;cpu&quot;</span>)<br></code></pre></td></tr></table></figure>
+<ul>
+<li>自定义正向、反向传播</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 自定义正向、反向传播</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">ActFun</span>(torch.autograd.Function):<br><br><span class="hljs-meta">    @staticmethod</span><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">forward</span>(<span class="hljs-params">ctx, <span class="hljs-built_in">input</span></span>):<br>        ctx.save_for_backward(<span class="hljs-built_in">input</span>) <span class="hljs-comment"># 存储在forward()期间生成的值</span><br>        <span class="hljs-keyword">return</span> <span class="hljs-built_in">input</span>.gt(thresh).<span class="hljs-built_in">float</span>() <span class="hljs-comment"># 判断input是否大于阈值，并将返回值True与False转化为含1与0的Tensor</span><br><br><span class="hljs-meta">    @staticmethod</span><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">backward</span>(<span class="hljs-params">ctx, grad_output</span>):<br>        <span class="hljs-built_in">input</span>, = ctx.saved_tensors<br>        grad_input = grad_output.clone()    <span class="hljs-comment"># 复制Tensor，但不共享内存地址</span><br>        temp = <span class="hljs-built_in">abs</span>(<span class="hljs-built_in">input</span> - thresh) &lt; lens   <span class="hljs-comment"># </span><br>        temp = temp / (<span class="hljs-number">2</span> * lens)            <span class="hljs-comment"># 此处temp等于梯度</span><br>        <span class="hljs-keyword">return</span> grad_input * temp.<span class="hljs-built_in">float</span>()    <span class="hljs-comment"># </span><br><br><br>act_fun = ActFun.apply<br></code></pre></td></tr></table></figure>
+<ul>
+<li>脉冲神经元</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 脉冲神经元</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">mem_update</span>(nn.Module):<br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self</span>):<br>        <span class="hljs-built_in">super</span>(mem_update, self).__init__()<br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">forward</span>(<span class="hljs-params">self, x</span>):                   <span class="hljs-comment"># x为长度为6的tensor</span><br>        mem = torch.zeros_like(x[<span class="hljs-number">0</span>]).to(device)<br>        spike = torch.zeros_like(x[<span class="hljs-number">0</span>]).to(device)<br>        output = torch.zeros_like(x)<br>        mem_old = <span class="hljs-number">0</span>                         <span class="hljs-comment"># 记录上一个时间步的膜电位</span><br>        <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(time_window):<br>            <span class="hljs-keyword">if</span> i &gt;= <span class="hljs-number">1</span>:<br>                mem = mem_old * decay * (<span class="hljs-number">1</span> - spike.detach()) + x[i]<br>            <span class="hljs-keyword">else</span>:<br>                mem = x[i]<br>            spike = act_fun(mem)            <span class="hljs-comment"># 返回是否产生脉冲值，脉冲值为1，从而使下一次迭代时，膜电位先变为rest状态</span><br>            mem_old = mem.clone()<br>            output[i] = spike<br>        <span class="hljs-keyword">return</span> output<br></code></pre></td></tr></table></figure>
+<ul>
+<li>对<code>nn</code>中的<code>BatchNorm3d</code>函数的<code>reset_parameters</code>方法重写</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">BatchNorm3d1</span>(torch.nn.BatchNorm3d):<br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">reset_parameters</span>(<span class="hljs-params">self</span>):<br>        self.reset_running_stats()                  <span class="hljs-comment"># 重置统计量</span><br>        <span class="hljs-keyword">if</span> self.affine:                             <span class="hljs-comment"># 如果允许变换</span><br>            nn.init.constant_(self.weight, thresh)  <span class="hljs-comment"># 将weight赋值为电位阈值</span><br>            nn.init.zeros_(self.bias)               <span class="hljs-comment"># 将bias赋值为0</span><br><br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">BatchNorm3d2</span>(torch.nn.BatchNorm3d):<br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">reset_parameters</span>(<span class="hljs-params">self</span>):<br>        self.reset_running_stats()<br>        <span class="hljs-keyword">if</span> self.affine:<br>            nn.init.constant_(self.weight, <span class="hljs-number">0</span>)       <span class="hljs-comment"># 将weight赋值为0</span><br>            nn.init.zeros_(self.bias)               <span class="hljs-comment"># 将bias赋值为0</span><br></code></pre></td></tr></table></figure>
+<ul>
+<li>批标准化</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 批标准化</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">batch_norm_2d</span>(nn.Module):<br>    <span class="hljs-string">&quot;&quot;&quot;TDBN&quot;&quot;&quot;</span><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self, num_features, eps=<span class="hljs-number">1e-5</span>, momentum=<span class="hljs-number">0.1</span></span>):<br>        <span class="hljs-built_in">super</span>(batch_norm_2d, self).__init__()<br>        self.bn = BatchNorm3d1(num_features)<br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">forward</span>(<span class="hljs-params">self, <span class="hljs-built_in">input</span></span>):<br>        y = <span class="hljs-built_in">input</span>.transpose(<span class="hljs-number">0</span>, <span class="hljs-number">2</span>).contiguous().transpose(<span class="hljs-number">0</span>, <span class="hljs-number">1</span>).contiguous()<br>        y = self.bn(y)<br>        <span class="hljs-keyword">return</span> y.contiguous().transpose(<span class="hljs-number">0</span>, <span class="hljs-number">1</span>).contiguous().transpose(<span class="hljs-number">0</span>, <span class="hljs-number">2</span>)<br><br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">batch_norm_2d1</span>(nn.Module):<br>    <span class="hljs-string">&quot;&quot;&quot;TDBN-Zero init&quot;&quot;&quot;</span><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self, num_features, eps=<span class="hljs-number">1e-5</span>, momentum=<span class="hljs-number">0.1</span></span>):<br>        <span class="hljs-built_in">super</span>(batch_norm_2d1, self).__init__()<br>        self.bn = BatchNorm3d2(num_features)<br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">forward</span>(<span class="hljs-params">self, <span class="hljs-built_in">input</span></span>):<br>        y = <span class="hljs-built_in">input</span>.transpose(<span class="hljs-number">0</span>, <span class="hljs-number">2</span>).contiguous().transpose(<span class="hljs-number">0</span>, <span class="hljs-number">1</span>).contiguous()<br>        y = self.bn(y)<br>        <span class="hljs-keyword">return</span> y.contiguous().transpose(<span class="hljs-number">0</span>, <span class="hljs-number">1</span>).contiguous().transpose(<span class="hljs-number">0</span>, <span class="hljs-number">2</span>)<br></code></pre></td></tr></table></figure>
+<ul>
+<li>实现SNN中的二维卷积操作</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 实现SNN中的二维卷积操作</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Snn_Conv2d</span>(nn.Conv2d):<br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self,</span><br><span class="hljs-params">                 in_channels,</span><br><span class="hljs-params">                 out_channels,</span><br><span class="hljs-params">                 kernel_size,</span><br><span class="hljs-params">                 stride=<span class="hljs-number">1</span>,</span><br><span class="hljs-params">                 padding=<span class="hljs-number">0</span>,</span><br><span class="hljs-params">                 dilation=<span class="hljs-number">1</span>,</span><br><span class="hljs-params">                 groups=<span class="hljs-number">1</span>,</span><br><span class="hljs-params">                 bias=<span class="hljs-literal">True</span>,</span><br><span class="hljs-params">                 padding_mode=<span class="hljs-string">&#x27;zeros&#x27;</span>,</span><br><span class="hljs-params">                 marker=<span class="hljs-string">&#x27;b&#x27;</span></span>):<br>        <span class="hljs-built_in">super</span>(Snn_Conv2d,<br>              self).__init__(in_channels, out_channels, kernel_size, stride,<br>                             padding, dilation, groups, bias, padding_mode)<br>        self.marker = marker<br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">forward</span>(<span class="hljs-params">self, <span class="hljs-built_in">input</span></span>):<br>        weight = self.weight<br>        h = (<span class="hljs-built_in">input</span>.size()[<span class="hljs-number">3</span>] - self.kernel_size[<span class="hljs-number">0</span>] +<br>             <span class="hljs-number">2</span> * self.padding[<span class="hljs-number">0</span>]) // self.stride[<span class="hljs-number">0</span>] + <span class="hljs-number">1</span><br>        w = (<span class="hljs-built_in">input</span>.size()[<span class="hljs-number">4</span>] - self.kernel_size[<span class="hljs-number">0</span>] +<br>             <span class="hljs-number">2</span> * self.padding[<span class="hljs-number">0</span>]) // self.stride[<span class="hljs-number">0</span>] + <span class="hljs-number">1</span><br>        c1 = torch.zeros(time_window,<br>                         <span class="hljs-built_in">input</span>.size()[<span class="hljs-number">1</span>],<br>                         self.out_channels,<br>                         h,<br>                         w,<br>                         device=<span class="hljs-built_in">input</span>.device)<br>        <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(time_window):<br>            c1[i] = F.conv2d(<span class="hljs-built_in">input</span>[i], weight, self.bias, self.stride,<br>                             self.padding, self.dilation, self.groups)<br>        <span class="hljs-keyword">return</span> c1<br></code></pre></td></tr></table></figure>
+<ul>
+<li>实现模型中的基本块</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">BasicBlock_104</span>(nn.Module):<br>    expansion = <span class="hljs-number">1</span><br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self, in_channels, out_channels, stride=<span class="hljs-number">1</span></span>):<br>        <span class="hljs-built_in">super</span>().__init__()<br>        self.residual_function = nn.Sequential(<br>            mem_update(),<br>            Snn_Conv2d(in_channels,<br>                       out_channels,<br>                       kernel_size=<span class="hljs-number">3</span>,<br>                       stride=stride,<br>                       padding=<span class="hljs-number">1</span>,<br>                       bias=<span class="hljs-literal">False</span>),<br>            batch_norm_2d(out_channels),<br>            mem_update(),<br>            Snn_Conv2d(out_channels,<br>                       out_channels * BasicBlock_104.expansion,<br>                       kernel_size=<span class="hljs-number">3</span>,<br>                       padding=<span class="hljs-number">1</span>,<br>                       bias=<span class="hljs-literal">False</span>),<br>            batch_norm_2d1(out_channels * BasicBlock_104.expansion),<br>        )<br>        self.shortcut = nn.Sequential()<br><br>        <span class="hljs-keyword">if</span> stride != <span class="hljs-number">1</span> <span class="hljs-keyword">or</span> in_channels != BasicBlock_104.expansion * out_channels:<br>            self.shortcut = nn.Sequential(<br>                nn.AvgPool3d((<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">2</span>), stride=(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">2</span>)),<br>                Snn_Conv2d(in_channels,<br>                           out_channels * BasicBlock_104.expansion,<br>                           kernel_size=<span class="hljs-number">1</span>,<br>                           stride=<span class="hljs-number">1</span>,<br>                           bias=<span class="hljs-literal">False</span>),<br>                batch_norm_2d(out_channels * BasicBlock_104.expansion),<br>            )<br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">forward</span>(<span class="hljs-params">self, x</span>):<br>        <span class="hljs-keyword">return</span> (self.residual_function(x) + self.shortcut(x))<br>    <br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">BasicBlock_18</span>(nn.Module):<br>    expansion = <span class="hljs-number">1</span><br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self, in_channels, out_channels, stride=<span class="hljs-number">1</span></span>):<br>        <span class="hljs-built_in">super</span>().__init__()<br>        self.residual_function = nn.Sequential(<br>            mem_update(),<br>            Snn_Conv2d(in_channels,<br>                       out_channels,<br>                       kernel_size=<span class="hljs-number">3</span>,<br>                       stride=stride,<br>                       padding=<span class="hljs-number">1</span>,<br>                       bias=<span class="hljs-literal">False</span>),<br>            batch_norm_2d(out_channels),<br>            mem_update(),<br>            Snn_Conv2d(out_channels,<br>                       out_channels * BasicBlock_18.expansion,<br>                       kernel_size=<span class="hljs-number">3</span>,<br>                       padding=<span class="hljs-number">1</span>,<br>                       bias=<span class="hljs-literal">False</span>),<br>            batch_norm_2d1(out_channels * BasicBlock_18.expansion),<br>        )<br>        self.shortcut = nn.Sequential()<br><br>        <span class="hljs-keyword">if</span> stride != <span class="hljs-number">1</span> <span class="hljs-keyword">or</span> in_channels != BasicBlock_18.expansion * out_channels:<br>            self.shortcut = nn.Sequential(<br>                Snn_Conv2d(in_channels,<br>                           out_channels * BasicBlock_18.expansion,<br>                           kernel_size=<span class="hljs-number">1</span>,<br>                           stride=stride,<br>                           bias=<span class="hljs-literal">False</span>),<br>                batch_norm_2d(out_channels * BasicBlock_18.expansion),<br>            )<br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">forward</span>(<span class="hljs-params">self, x</span>):<br>        <span class="hljs-keyword">return</span> (self.residual_function(x) + self.shortcut(x))<br></code></pre></td></tr></table></figure>
+<ul>
+<li>定义ResNet104、ResNet18与ResNet34</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">ResNet_104</span>(nn.Module):<br>    <span class="hljs-comment"># Channel:</span><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self, block, num_block, num_classes=<span class="hljs-number">1000</span></span>):<br>        <span class="hljs-built_in">super</span>().__init__()<br>        k = <span class="hljs-number">1</span><br>        self.in_channels = <span class="hljs-number">64</span> * k<br>        self.conv1 = nn.Sequential(<br>            Snn_Conv2d(<span class="hljs-number">3</span>, <span class="hljs-number">64</span> * k, kernel_size=<span class="hljs-number">3</span>, padding=<span class="hljs-number">1</span>, stride=<span class="hljs-number">2</span>),<br>            Snn_Conv2d(<span class="hljs-number">64</span> * k, <span class="hljs-number">64</span> * k, kernel_size=<span class="hljs-number">3</span>, padding=<span class="hljs-number">1</span>, stride=<span class="hljs-number">1</span>),<br>            Snn_Conv2d(<span class="hljs-number">64</span> * k, <span class="hljs-number">64</span> * k, kernel_size=<span class="hljs-number">3</span>, padding=<span class="hljs-number">1</span>, stride=<span class="hljs-number">1</span>),<br>            batch_norm_2d(<span class="hljs-number">64</span> * k),<br>        )<br>        self.pool = nn.MaxPool2d(kernel_size=<span class="hljs-number">3</span>, stride=<span class="hljs-number">2</span>, padding=<span class="hljs-number">1</span>)<br><br>        self.mem_update = mem_update()<br>        self.conv2_x = self._make_layer(block, <span class="hljs-number">64</span> * k, num_block[<span class="hljs-number">0</span>], <span class="hljs-number">2</span>)<br>        self.conv3_x = self._make_layer(block, <span class="hljs-number">128</span> * k, num_block[<span class="hljs-number">1</span>], <span class="hljs-number">2</span>)<br>        self.conv4_x = self._make_layer(block, <span class="hljs-number">256</span> * k, num_block[<span class="hljs-number">2</span>], <span class="hljs-number">2</span>)<br>        self.conv5_x = self._make_layer(block, <span class="hljs-number">512</span> * k, num_block[<span class="hljs-number">3</span>], <span class="hljs-number">2</span>)<br>        self.fc = nn.Linear(<span class="hljs-number">512</span> * block.expansion * k, num_classes)<br>        self.dropout = nn.Dropout(p=<span class="hljs-number">0.2</span>)<br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">_make_layer</span>(<span class="hljs-params">self, block, out_channels, num_blocks, stride</span>):<br><br>        strides = [stride] + [<span class="hljs-number">1</span>] * (num_blocks - <span class="hljs-number">1</span>)<br>        layers = []<br>        <span class="hljs-keyword">for</span> stride <span class="hljs-keyword">in</span> strides:<br>            layers.append(block(self.in_channels, out_channels, stride))<br>            self.in_channels = out_channels * block.expansion<br><br>        <span class="hljs-keyword">return</span> nn.Sequential(*layers)<br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">forward</span>(<span class="hljs-params">self, x</span>):<br>        <span class="hljs-built_in">input</span> = torch.zeros(time_window,<br>                            x.size()[<span class="hljs-number">0</span>],<br>                            <span class="hljs-number">3</span>,<br>                            x.size()[<span class="hljs-number">2</span>],<br>                            x.size()[<span class="hljs-number">3</span>],<br>                            device=device)<br>        <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(time_window):<br>            <span class="hljs-built_in">input</span>[i] = x<br>        output = self.conv1(<span class="hljs-built_in">input</span>)<br>        output = self.conv2_x(output)<br>        output = self.conv3_x(output)<br>        output = self.conv4_x(output)<br>        output = self.conv5_x(output)<br>        output = self.mem_update(output)<br>        output = F.adaptive_avg_pool3d(output, (<span class="hljs-literal">None</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>))<br>        output = output.view(output.size()[<span class="hljs-number">0</span>], output.size()[<span class="hljs-number">1</span>], -<span class="hljs-number">1</span>)<br>        output = output.<span class="hljs-built_in">sum</span>(dim=<span class="hljs-number">0</span>) / output.size()[<span class="hljs-number">0</span>]<br>        output = self.dropout(output)<br>        output = self.fc(output)<br>        <span class="hljs-keyword">return</span> output<br><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">resnet104</span>():<br>    <span class="hljs-keyword">return</span> ResNet_104(BasicBlock_104, [<span class="hljs-number">3</span>, <span class="hljs-number">8</span>, <span class="hljs-number">32</span>, <span class="hljs-number">8</span>])<br></code></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">ResNet_origin_18</span>(nn.Module):<br>    <span class="hljs-comment"># Channel:</span><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self, block, num_block, num_classes=<span class="hljs-number">1000</span></span>):<br>        <span class="hljs-built_in">super</span>().__init__()<br>        k = <span class="hljs-number">1</span><br>        self.in_channels = <span class="hljs-number">64</span> * k<br>        self.conv1 = nn.Sequential(<br>            Snn_Conv2d(<span class="hljs-number">3</span>,<br>                       <span class="hljs-number">64</span> * k,<br>                       kernel_size=<span class="hljs-number">7</span>,<br>                       padding=<span class="hljs-number">3</span>,<br>                       bias=<span class="hljs-literal">False</span>,<br>                       stride=<span class="hljs-number">2</span>),<br>            batch_norm_2d(<span class="hljs-number">64</span> * k),<br>        )<br>        self.pool = nn.MaxPool2d(kernel_size=<span class="hljs-number">3</span>, stride=<span class="hljs-number">2</span>, padding=<span class="hljs-number">1</span>)<br><br>        self.mem_update = mem_update()<br>        self.conv2_x = self._make_layer(block, <span class="hljs-number">64</span> * k, num_block[<span class="hljs-number">0</span>], <span class="hljs-number">2</span>)<br>        self.conv3_x = self._make_layer(block, <span class="hljs-number">128</span> * k, num_block[<span class="hljs-number">1</span>], <span class="hljs-number">2</span>)<br>        self.conv4_x = self._make_layer(block, <span class="hljs-number">256</span> * k, num_block[<span class="hljs-number">2</span>], <span class="hljs-number">2</span>)<br>        self.conv5_x = self._make_layer(block, <span class="hljs-number">512</span> * k, num_block[<span class="hljs-number">3</span>], <span class="hljs-number">2</span>)<br>        self.fc = nn.Linear(<span class="hljs-number">512</span> * block.expansion * k, num_classes)<br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">_make_layer</span>(<span class="hljs-params">self, block, out_channels, num_blocks, stride</span>):<br>        strides = [stride] + [<span class="hljs-number">1</span>] * (num_blocks - <span class="hljs-number">1</span>)<br>        layers = []<br>        <span class="hljs-keyword">for</span> stride <span class="hljs-keyword">in</span> strides:<br>            layers.append(block(self.in_channels, out_channels, stride))<br>            self.in_channels = out_channels * block.expansion<br><br>        <span class="hljs-keyword">return</span> nn.Sequential(*layers)<br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">forward</span>(<span class="hljs-params">self, x</span>):<br>        <span class="hljs-built_in">input</span> = torch.zeros(time_window,<br>                            x.size()[<span class="hljs-number">0</span>],<br>                            <span class="hljs-number">3</span>,<br>                            x.size()[<span class="hljs-number">2</span>],<br>                            x.size()[<span class="hljs-number">3</span>],<br>                            device=device)<br>        <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(time_window):<br>            <span class="hljs-built_in">input</span>[i] = x<br>        output = self.conv1(<span class="hljs-built_in">input</span>)<br>        output = self.conv2_x(output)<br>        output = self.conv3_x(output)<br>        output = self.conv4_x(output)<br>        output = self.conv5_x(output)<br>        output = self.mem_update(output)<br>        output = F.adaptive_avg_pool3d(output, (<span class="hljs-literal">None</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>))<br>        output = output.view(output.size()[<span class="hljs-number">0</span>], output.size()[<span class="hljs-number">1</span>], -<span class="hljs-number">1</span>)<br>        output = output.<span class="hljs-built_in">sum</span>(dim=<span class="hljs-number">0</span>) / output.size()[<span class="hljs-number">0</span>]<br>        output = self.fc(output)<br>        <span class="hljs-keyword">return</span> output<br><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">resnet18</span>():<br>    <span class="hljs-keyword">return</span> ResNet_origin_18(BasicBlock_18, [<span class="hljs-number">2</span>, <span class="hljs-number">2</span>, <span class="hljs-number">2</span>, <span class="hljs-number">2</span>])<br><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">resnet34</span>():<br>    <span class="hljs-keyword">return</span> ResNet_origin_18(BasicBlock_18, [<span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">6</span>, <span class="hljs-number">3</span>])<br></code></pre></td></tr></table></figure>
+<h3 id="utils.py">utils.py</h3>
+<p>该文件中存储了部分工具函数。</p>
+<ul>
+<li>模型选择：检测输入的网络类型参数并返回相应的网络</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">get_network</span>(<span class="hljs-params">args</span>):<br>    <span class="hljs-string">&quot;&quot;&quot; return given network</span><br><span class="hljs-string">    &quot;&quot;&quot;</span><br>    <span class="hljs-keyword">if</span> args.net == <span class="hljs-string">&#x27;resnet18&#x27;</span>:<br>        <span class="hljs-keyword">from</span> models.MS_ResNet <span class="hljs-keyword">import</span> resnet18<br>        net = resnet18()<br>    <span class="hljs-keyword">elif</span> args.net == <span class="hljs-string">&#x27;resnet34&#x27;</span>:<br>        <span class="hljs-keyword">from</span> models.MS_ResNet <span class="hljs-keyword">import</span> resnet34<br>        net = resnet34()<br>    <span class="hljs-keyword">elif</span> args.net == <span class="hljs-string">&#x27;resnet104&#x27;</span>:<br>        <span class="hljs-keyword">from</span> models.MS_ResNet <span class="hljs-keyword">import</span> resnet104<br>        net = resnet104()<br>    <span class="hljs-keyword">else</span>:<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;the network name you have entered is not supported yet&#x27;</span>)<br>        sys.exit()<br><br>    <span class="hljs-keyword">return</span> net<br></code></pre></td></tr></table></figure>
+<ul>
+<li>获取训练集</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">get_training_dataloader</span>(<span class="hljs-params">traindir,</span><br><span class="hljs-params">                            sampler=<span class="hljs-literal">None</span>,</span><br><span class="hljs-params">                            batch_size=<span class="hljs-number">16</span>,</span><br><span class="hljs-params">                            num_workers=<span class="hljs-number">2</span>,		</span><br><span class="hljs-params">                            shuffle=<span class="hljs-literal">True</span>		<span class="hljs-comment"># 打乱数据集</span></span><br><span class="hljs-params">                           </span>):<br>    normalize = transforms.Normalize(mean=[<span class="hljs-number">0.485</span>, <span class="hljs-number">0.456</span>, <span class="hljs-number">0.406</span>],<br>                                     std=[<span class="hljs-number">0.229</span>, <span class="hljs-number">0.224</span>, <span class="hljs-number">0.225</span>])<br>    ImageNet_training = datasets.ImageFolder(<br>        traindir,<br>        transforms.Compose([<br>            transforms.RandomResizedCrop(<span class="hljs-number">224</span>),<br>            transforms.AutoAugment(),<br>            transforms.ToTensor(),<br>            normalize,<br>        ]))<br>    <span class="hljs-keyword">if</span> sampler <span class="hljs-keyword">is</span> <span class="hljs-keyword">not</span> <span class="hljs-literal">None</span>:<br>        ImageNet_training_loader = DataLoader(<br>            ImageNet_training,<br>            shuffle=shuffle,<br>            num_workers=num_workers,<br>            batch_size=batch_size,<br>            pin_memory=<span class="hljs-literal">True</span>,<br>            sampler=DistributedSampler(ImageNet_training))<br>    <span class="hljs-keyword">else</span>:<br>        ImageNet_training_loader = DataLoader(ImageNet_training,<br>                                              shuffle=shuffle,<br>                                              num_workers=num_workers,<br>                                              batch_size=batch_size,<br>                                              pin_memory=<span class="hljs-literal">True</span>)<br><br>    <span class="hljs-keyword">return</span> ImageNet_training_loader<br></code></pre></td></tr></table></figure>
+<ul>
+<li>获取测试集</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">get_test_dataloader</span>(<span class="hljs-params">valdir,</span><br><span class="hljs-params">                        sampler=<span class="hljs-literal">None</span>,</span><br><span class="hljs-params">                        batch_size=<span class="hljs-number">16</span>,</span><br><span class="hljs-params">                        num_workers=<span class="hljs-number">2</span>,</span><br><span class="hljs-params">                        shuffle=<span class="hljs-literal">False</span></span>):<br>    normalize = transforms.Normalize(mean=[<span class="hljs-number">0.485</span>, <span class="hljs-number">0.456</span>, <span class="hljs-number">0.406</span>],<br>                                     std=[<span class="hljs-number">0.229</span>, <span class="hljs-number">0.224</span>, <span class="hljs-number">0.225</span>])<br>    ImageNet_test = datasets.ImageFolder(<br>        valdir,<br>        transforms.Compose([<br>            transforms.Resize(<span class="hljs-number">256</span>),  <span class="hljs-comment"># 320</span><br>            transforms.CenterCrop(<span class="hljs-number">224</span>),  <span class="hljs-comment"># 288</span><br>            transforms.ToTensor(),<br>            normalize,<br>        ]))<br>    <span class="hljs-keyword">if</span> sampler <span class="hljs-keyword">is</span> <span class="hljs-keyword">not</span> <span class="hljs-literal">None</span>:<br>        ImageNet_test_loader = DataLoader(<br>            ImageNet_test,<br>            shuffle=shuffle,<br>            num_workers=num_workers,<br>            batch_size=batch_size,<br>            pin_memory=<span class="hljs-literal">True</span>,<br>            sampler=DistributedSampler(ImageNet_test))<br>    <span class="hljs-keyword">else</span>:<br>        ImageNet_test_loader = DataLoader(ImageNet_test,<br>                                          shuffle=shuffle,<br>                                          num_workers=num_workers,<br>                                          batch_size=batch_size)<br><br>    <span class="hljs-keyword">return</span> ImageNet_test_loader<br></code></pre></td></tr></table></figure>
+<h3 id="train_amp.py">train_amp.py</h3>
+<p>该文件中进行了模型的训练。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python"><br></code></pre></td></tr></table></figure>
+<h3 id="test.py">test.py</h3>
+<p>该文件中进行了模型的测试。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python"><br></code></pre></td></tr></table></figure>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/" class="print-no-link">#论文阅读</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>论文阅读:Advancing Spiking Neural Networks towards Deep Residual Learning</div>
+      <div>http://eternity0126.top/2023/08/20/learnings/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Eternity</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>August 20, 2023</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/08/15/Pytorch%E5%AD%A6%E4%B9%A0/" title="Pytorch学习">
+                        <span class="hidden-mobile">Pytorch学习</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+  <script>
+  Fluid.utils.createScript('https://lib.baomitu.com/mermaid/8.14.0/mermaid.min.js', function() {
+    mermaid.initialize({"theme":"default"});
+
+    Fluid.utils.listenDOMLoaded(function() {
+      Fluid.events.registerRefreshCallback(function() {
+        if ('mermaid' in window) {
+          mermaid.init();
+        }
+      });
+    });
+  });
+</script>
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+      <!-- <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> -->
+    </div>
+  
+  
+  
+  
+</div>
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+
+
+</body>
+</html>
