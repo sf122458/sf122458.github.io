@@ -24,7 +24,7 @@
 <meta property="og:description" content="Pytorch的相关笔记">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2023-08-15T04:00:00.000Z">
-<meta property="article:modified_time" content="2023-08-23T08:09:09.211Z">
+<meta property="article:modified_time" content="2023-08-30T11:13:13.216Z">
 <meta property="article:author" content="Eternity">
 <meta property="article:tag" content="Pytorch">
 <meta name="twitter:card" content="summary_large_image">
@@ -253,7 +253,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          15k words
+          16k words
         
       </span>
     
@@ -264,7 +264,7 @@
         
         
         
-          125 mins
+          130 mins
         
       </span>
     
@@ -395,6 +395,14 @@
 <p><strong>Pytorch Documention</strong>:<a
 target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/index.html">PyTorch documentation
 — PyTorch 2.0 documentation</a></p>
+<h2 id="深度学习基本概念">深度学习基本概念</h2>
+<h3 id="epoch与batch">epoch与batch</h3>
+<ul>
+<li>epoch -
+指将整个训练数据集完整过一遍的次数。在每个epoch中，算法将使用训练数据集中的每个样本进行前向传播、计算损失、反向传播和参数更新。训练过程通常会通过多个epoch来不断迭代，以逐渐优化模型的性能。一个epoch的完成意味着模型已经使用了训练数据集中的所有样本进行了一次训练。</li>
+<li>batch -
+指将训练数据集划分为小块进行训练的方式。由于训练数据集通常很大，无法一次性全部加载到内存中进行处理，所以将其划分为较小的批次进行训练。每个批次包含多个样本，通常是2的幂次方（如32、64、128等），以便更好地利用硬件加速器（如GPU）的并行计算能力。在每个batch中，模型将针对该批次中的样本进行前向传播、计算损失、反向传播和参数更新。</li>
+</ul>
 <h2 id="torchvision">torchvision</h2>
 <h3 id="torchvision概念">torchvision概念</h3>
 <p>torchvision用于处理图像数据，主要包含以下四部分：</p>
@@ -577,7 +585,20 @@ true.</p></li>
 <p>以数据集CIFAR10为例：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> torchvision<br><span class="hljs-keyword">from</span> torch.utils.data <span class="hljs-keyword">import</span> DataLoader<br><span class="hljs-keyword">from</span> torch.utils.tensorboard <span class="hljs-keyword">import</span> SummaryWriter<br><br>test_data = torchvision.datasets.CIFAR10(<span class="hljs-string">&quot;./CIFAR10&quot;</span>,<span class="hljs-comment"># 一般将数据集保存在同一工程文件下，使用相对路径读取</span><br>                                         train=<span class="hljs-literal">False</span>,<span class="hljs-comment"># 选择测试集</span><br>                                         transform=torchvision.transforms.ToTensor())<br>test_loader = DataLoader(dataset=test_data, <span class="hljs-comment"># 选择数据集</span><br>                         batch_size=<span class="hljs-number">4</span>, <span class="hljs-comment"># 设定批大小为4</span><br>                         shuffle=<span class="hljs-literal">True</span>, <span class="hljs-comment"># 打乱数据集</span><br>                         num_workers=<span class="hljs-number">0</span>, <span class="hljs-comment"># 单进程读取数据</span><br>                         drop_last=<span class="hljs-literal">False</span>) <span class="hljs-comment"># 保留最后一批数据</span><br><br><span class="hljs-comment"># 测试数据集中第一张图片及target</span><br>img, target = test_data[<span class="hljs-number">0</span>]<br><span class="hljs-built_in">print</span>(img.shape)<br><span class="hljs-built_in">print</span>(target)<br>------------------------------<br><span class="hljs-comment"># 输出</span><br>torch.Size([<span class="hljs-number">3</span>,<span class="hljs-number">32</span>,<span class="hljs-number">32</span>])	<span class="hljs-comment"># 输出图片为3通道，大小为32*32</span><br><span class="hljs-number">3</span>					<span class="hljs-comment"># 输出图片标签为3</span><br>------------------------------<br><br><span class="hljs-comment"># 在定义test_loader时，设置了batch_size=4，表示一次性从数据集中取出4个数据</span><br><span class="hljs-keyword">for</span> data <span class="hljs-keyword">in</span> test_loader:<br>    imgs, targets = data<br>    <span class="hljs-built_in">print</span>(imgs.shape)<br>    <span class="hljs-built_in">print</span>(targets)<br>------------------------------<br><span class="hljs-comment"># 第一次循环输出</span><br>torch.Size([<span class="hljs-number">4</span>,<span class="hljs-number">3</span>,<span class="hljs-number">32</span>,<span class="hljs-number">32</span>])	<span class="hljs-comment"># 4表示batch_size=4，后面三个参数表示输出图片为3通道，大小为32*32</span><br>tensor([<span class="hljs-number">0</span>,<span class="hljs-number">4</span>,<span class="hljs-number">3</span>,<span class="hljs-number">8</span>])		<span class="hljs-comment"># 表示该批取出的图片的标签信息</span><br>------------------------------<br></code></pre></td></tr></table></figure>
 <h2 id="模型搭建">模型搭建</h2>
-<h3 id="nn.module类">nn.Module类</h3>
+<h3 id="nn.module类中的常用函数">nn.Module类中的常用函数</h3>
+<h4 id="conv2d">Conv2d</h4>
+<p><code>nn.Conv2d</code>定义了一个卷积层，参数如下：</p>
+<p>计算前后两个卷积层的<code>kernel_size</code>的公式： <span
+class="math display">\[
+\text{Output}=\frac{\text{Width}-\text{kernel\_size}+2*\text{Padding}}{\text{Stride}}+1
+\]</span> 默认情况下，<span
+class="math inline">\(\text{Padding}=0,\text{Stride=1}\)</span>，则有
+<span class="math display">\[
+\text{Output}=\text{Width}-\text{kernel\_size}+1
+\]</span></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs"><br></code></pre></td></tr></table></figure>
+<h3
+id="使用nn.module类搭建模块与模型">使用nn.Module类搭建模块与模型</h3>
 <p>在自定义网络时，需要继承<code>nn.Module</code>类，并重新实现构造<code>__init__</code>构造函数和<code>forward</code>这两个函数。<strong>其中<code>forward</code>函数是必须要重写的，它能实现各个层之间的连接关系</strong>。</p>
 <p>一般的，在<code>__init__</code>中实现层的参数设定，在<code>forward</code>中实现层之间的连接关系。<strong>所有放在<code>__init__</code>里面的层都是这个模型的固有属性</strong>。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> torch<br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">MyNet</span>(torch.nn.Module):<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self</span>):<br>        <span class="hljs-built_in">super</span>(MyNet, self).__init__()  <span class="hljs-comment"># 调用父类的构造函数</span><br>        self.conv1 = torch.nn.Conv2d(<span class="hljs-number">3</span>, <span class="hljs-number">32</span>, <span class="hljs-number">3</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>)<br>        self.relu1=torch.nn.ReLU()<br>        self.max_pooling1=torch.nn.MaxPool2d(<span class="hljs-number">2</span>,<span class="hljs-number">1</span>)<br> <br>        self.conv2 = torch.nn.Conv2d(<span class="hljs-number">3</span>, <span class="hljs-number">32</span>, <span class="hljs-number">3</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>)<br>        self.relu2=torch.nn.ReLU()<br>        self.max_pooling2=torch.nn.MaxPool2d(<span class="hljs-number">2</span>,<span class="hljs-number">1</span>)<br> <br>        self.dense1 = torch.nn.Linear(<span class="hljs-number">32</span> * <span class="hljs-number">3</span> * <span class="hljs-number">3</span>, <span class="hljs-number">128</span>)<br>        self.dense2 = torch.nn.Linear(<span class="hljs-number">128</span>, <span class="hljs-number">10</span>)<br> <br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">forward</span>(<span class="hljs-params">self, x</span>):<br>        x = self.conv1(x)<br>        x = self.relu1(x)<br>        x = self.max_pooling1(x)<br>        x = self.conv2(x)<br>        x = self.relu2(x)<br>        x = self.max_pooling2(x)<br>        x = self.dense1(x)<br>        x = self.dense2(x)<br>        <span class="hljs-keyword">return</span> x<br> <br>model = MyNet()<br></code></pre></td></tr></table></figure>
