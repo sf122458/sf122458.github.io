@@ -16,23 +16,24 @@
   <meta name="author" content="Eternity">
   <meta name="keywords" content="">
   
-    <meta name="description" content="微波技术笔记">
+    <meta name="description" content="通信原理笔记">
 <meta property="og:type" content="article">
-<meta property="og:title" content="微波技术">
-<meta property="og:url" content="http://eternity0126.top/2023/09/10/%E5%BE%AE%E6%B3%A2%E6%8A%80%E6%9C%AF/index.html">
+<meta property="og:title" content="通信原理">
+<meta property="og:url" content="http://eternity0126.top/2023/09/10/1%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%86/index.html">
 <meta property="og:site_name" content="Eternity&#39;s Blog">
-<meta property="og:description" content="微波技术笔记">
+<meta property="og:description" content="通信原理笔记">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2023-09-10T13:21:58.000Z">
-<meta property="article:modified_time" content="2023-09-10T13:24:15.913Z">
+<meta property="article:published_time" content="2023-09-10T13:20:56.000Z">
+<meta property="article:modified_time" content="2023-09-12T15:05:02.285Z">
 <meta property="article:author" content="Eternity">
+<meta property="article:tag" content="课程内容">
 <meta name="twitter:card" content="summary_large_image">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>微波技术 - Eternity&#39;s Blog</title>
+  <title>通信原理 - Eternity&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -229,7 +230,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="微波技术"></span>
+            <span id="subtitle" data-typed-text="通信原理"></span>
           
         </div>
 
@@ -240,7 +241,7 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-09-10 21:21" pubdate>
+        <time datetime="2023-09-10 21:20" pubdate>
           September 10, 2023 pm
         </time>
       </span>
@@ -252,7 +253,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          4 words
+          420 words
         
       </span>
     
@@ -263,7 +264,7 @@
         
         
         
-          1 mins
+          4 mins
         
       </span>
     
@@ -308,12 +309,72 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">微波技术</h1>
+            <h1 id="seo-header">通信原理</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="微波技术">微波技术</h1>
+                <h1 id="通信原理">通信原理</h1>
+<h2 id="第一章-通信系统概论">第一章 通信系统概论</h2>
+<h3 id="通信系统的模型">通信系统的模型</h3>
+<h4 id="通信系统的组成">通信系统的组成</h4>
+<pre><code class=" mermaid">graph LR
+信源--&gt;发送设备--&gt;传输媒介--&gt;接收设备--&gt;信宿
+噪声--&gt;传输媒介
+</code></pre>
+<ul>
+<li>信源：将消息转换成基带信号
+<ul>
+<li>基带信号的能力主要分布在<strong>低频部分</strong></li>
+</ul></li>
+<li>发送设备：基带信号处理（例如：滤波、放大、调制）后转变为适合在信道中传输的形式
+<ul>
+<li>调制：频谱搬移、提高抗干扰能力、实现多路复用
+<ul>
+<li>多路复用
+<ul>
+<li>时分</li>
+<li>频分</li>
+<li>码分：使用弱相关的伪随机码，进行扩频通讯</li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li>信道：信息传输的媒质
+<ul>
+<li>信号经过信道会产生畸变：<span
+class="math inline">\(y(t)=x(t)*h(t)+n(t)\)</span>，理想情况下，<span
+class="math inline">\(h(t)=\delta(t),n(t)=0\)</span></li>
+</ul></li>
+<li>接收设备：将基带信号从带畸变的信号与噪声和干扰的混合波形中恢复出来——解调</li>
+<li>信宿：将恢复出来的基带信号转变为用户所需的要的消息形式</li>
+</ul>
+<h4 id="模拟通信和数字通信">模拟通信和数字通信</h4>
+<ul>
+<li>模拟信号与数字信号</li>
+</ul>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th>时间t连续</th>
+<th>时间t离散</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>信号幅度连续</td>
+<td>模拟信号</td>
+<td>抽样信号</td>
+</tr>
+<tr class="even">
+<td>信号幅度离散</td>
+<td>量化信号</td>
+<td>数字信号</td>
+</tr>
+</tbody>
+</table>
+<h3 id="通信系统的质量指标">通信系统的质量指标</h3>
+<h2 id="第二章-随机信号和噪声">第二章 随机信号和噪声</h2>
 
                 
               </div>
@@ -323,6 +384,13 @@
               <div class="post-metas my-3">
   
   
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E8%AF%BE%E7%A8%8B%E5%86%85%E5%AE%B9/" class="print-no-link">#课程内容</a>
+      
+    </div>
+  
 </div>
 
 
@@ -331,8 +399,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>微波技术</div>
-      <div>http://eternity0126.top/2023/09/10/微波技术/</div>
+      <div>通信原理</div>
+      <div>http://eternity0126.top/2023/09/10/1通信原理/</div>
     </div>
     <div class="license-meta">
       
@@ -376,9 +444,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/09/10/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/" title="离散数学">
+                      <a href="/2023/09/10/1%E6%95%B0%E5%AD%97%E4%BF%A1%E5%8F%B7%E5%A4%84%E7%90%86/" title="数字信号处理">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">离散数学</span>
+                        <span class="hidden-mobile">数字信号处理</span>
                         <span class="visible-mobile">Previous</span>
                       </a>
                     
@@ -386,8 +454,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/09/10/%E6%95%B0%E5%AD%97%E4%BF%A1%E5%8F%B7%E5%A4%84%E7%90%86/" title="数字信号处理">
-                        <span class="hidden-mobile">数字信号处理</span>
+                      <a href="/2023/08/20/learnings/" title="论文阅读:Advancing Spiking Neural Networks towards Deep Residual Learning">
+                        <span class="hidden-mobile">论文阅读:Advancing Spiking Neural Networks towards Deep Residual Learning</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

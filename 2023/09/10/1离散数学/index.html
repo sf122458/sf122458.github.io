@@ -16,15 +16,15 @@
   <meta name="author" content="Eternity">
   <meta name="keywords" content="">
   
-    <meta name="description" content="通信原理笔记">
+    <meta name="description" content="离散数学笔记">
 <meta property="og:type" content="article">
-<meta property="og:title" content="通信原理">
-<meta property="og:url" content="http://eternity0126.top/2023/09/10/%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%86/index.html">
+<meta property="og:title" content="离散数学">
+<meta property="og:url" content="http://eternity0126.top/2023/09/10/1%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/index.html">
 <meta property="og:site_name" content="Eternity&#39;s Blog">
-<meta property="og:description" content="通信原理笔记">
+<meta property="og:description" content="离散数学笔记">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2023-09-10T13:20:56.000Z">
-<meta property="article:modified_time" content="2023-09-10T13:23:34.515Z">
+<meta property="article:published_time" content="2023-09-10T13:22:08.000Z">
+<meta property="article:modified_time" content="2023-09-12T15:36:53.065Z">
 <meta property="article:author" content="Eternity">
 <meta property="article:tag" content="课程内容">
 <meta name="twitter:card" content="summary_large_image">
@@ -33,7 +33,7 @@
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>通信原理 - Eternity&#39;s Blog</title>
+  <title>离散数学 - Eternity&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -230,7 +230,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="通信原理"></span>
+            <span id="subtitle" data-typed-text="离散数学"></span>
           
         </div>
 
@@ -241,7 +241,7 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-09-10 21:20" pubdate>
+        <time datetime="2023-09-10 21:22" pubdate>
           September 10, 2023 pm
         </time>
       </span>
@@ -253,7 +253,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          4 words
+          920 words
         
       </span>
     
@@ -264,7 +264,7 @@
         
         
         
-          1 mins
+          8 mins
         
       </span>
     
@@ -309,12 +309,89 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">通信原理</h1>
+            <h1 id="seo-header">离散数学</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="通信原理">通信原理</h1>
+                <h1 id="离散数学">离散数学</h1>
+<h2 id="图论">图论</h2>
+<h3 id="图的概念">图的概念</h3>
+<h4 id="图的定义">图的定义</h4>
+<p>定义：二元组<span
+class="math inline">\((V(G),E(G))\)</span>称为图，其中<span
+class="math inline">\(V(G)\)</span>是非空集合，称为顶点集，<span
+class="math inline">\(E(G)\)</span>由<span
+class="math inline">\(V(G)\)</span>中一些元素对组成，称为边集。</p>
+<p>对于图<span class="math inline">\(G=(V,E)\)</span>，记</p>
+<ul>
+<li><p><span class="math inline">\(V=\{v_1,...,v_n\}\)</span>，每个<span
+class="math inline">\(v_i\)</span>称为顶点(vertex)</p></li>
+<li><p><span class="math inline">\(E=\{e_1,...,e_n\}\)</span>，每个<span
+class="math inline">\(e_i\)</span>称为边(edge)</p></li>
+<li><p>顶点数<span class="math inline">\(|V|=n\)</span>；边数<span
+class="math inline">\(|E|=m\)</span></p></li>
+</ul>
+<h4 id="无向边与无向图">无向边与无向图</h4>
+<p>边<span
+class="math inline">\(e_k=(v_i,v_j)\)</span>表示连接两个顶点<span
+class="math inline">\(v_i,v_j\)</span>的边：</p>
+<ul>
+<li>称<span class="math inline">\(v_i,v_j\)</span>是相邻顶点；<span
+class="math inline">\(e_k\)</span>与<span
+class="math inline">\(v_i,v_j\)</span>相关联</li>
+<li>有共同顶点的两条不同边称为邻接边</li>
+</ul>
+<p>如果边是无方向的，则<span
+class="math inline">\((v_i,v_j)\)</span>和<span
+class="math inline">\((v_j,v_i)\)</span>看作相同的边，称这条边是无向边，<span
+class="math inline">\(v_i,v_j\)</span>是<span
+class="math inline">\(e_k\)</span>的端点</p>
+<h4 id="简单图">简单图</h4>
+<p>自环和重边：</p>
+<ul>
+<li><span class="math inline">\(e_k=(v_i,v_i)\)</span>称为自环</li>
+<li>多条边的端点相同，称为重边</li>
+<li>含有重边的图称为多重图</li>
+</ul>
+<p><strong>定义简单图：不含自环和重边的无向图称为简单图</strong></p>
+<p>令<span class="math inline">\(n\)</span>为顶点个数：</p>
+<ul>
+<li>边集为空的简单图称为空图，记为<span
+class="math inline">\(N_n\)</span>；<span
+class="math inline">\(N_1\)</span>称为平凡图（即只有一个点）</li>
+<li>任两顶点都有关联边的简单图称为完全图，记为<span
+class="math inline">\(K_n\)</span></li>
+</ul>
+<h4 id="度">度</h4>
+<h4 id="二分图和正则图">二分图和正则图</h4>
+<p>定义二分图：如果图<span
+class="math inline">\(G\)</span>的顶点集可划分为不相交的非空子集<span
+class="math inline">\(V_1,V_2\)</span>，使得<span
+class="math inline">\(G\)</span>的每条边的端点分别在<span
+class="math inline">\(V_1,V_2\)</span>中，则称<span
+class="math inline">\(G\)</span>为二分图。</p>
+<p><strong>完全二分图：在简单无向二分图中，<span
+class="math inline">\(V_1\)</span>的每个顶点和<span
+class="math inline">\(V_2\)</span>的每个顶点都相邻，则成为完全二分图，记为<span
+class="math inline">\(K_{|V_1|,|V_2|}\)</span></strong></p>
+<p><strong>定义正则图：所有顶点的度均相等的简单无向图称为正则图</strong></p>
+<ul>
+<li>所有顶点的度数均为<span
+class="math inline">\(k\)</span>的正则图称为<span
+class="math inline">\(k\)</span>度正则图</li>
+<li><span class="math inline">\(K_n\)</span>即为<span
+class="math inline">\(n\)</span>个顶点的<span
+class="math inline">\(n-1\)</span>度正则图</li>
+</ul>
+<h4 id="赋权图">赋权图</h4>
+<h4 id="子图">子图</h4>
+<p>定义子图：给定图<span
+class="math inline">\(G=(V,E)\)</span>，若图<span
+class="math inline">\(G&#39;=(V&#39;,E&#39;)\)</span>满足：<span
+class="math inline">\(V&#39;\subseteq V,E&#39;\subseteq
+E\)</span>，则称<span class="math inline">\(G&#39;\)</span>是<span
+class="math inline">\(G\)</span>的一个子图</p>
 
                 
               </div>
@@ -339,8 +416,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>通信原理</div>
-      <div>http://eternity0126.top/2023/09/10/通信原理/</div>
+      <div>离散数学</div>
+      <div>http://eternity0126.top/2023/09/10/1离散数学/</div>
     </div>
     <div class="license-meta">
       
@@ -384,18 +461,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/09/10/%E6%95%B0%E5%AD%97%E4%BF%A1%E5%8F%B7%E5%A4%84%E7%90%86/" title="数字信号处理">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">数字信号处理</span>
-                        <span class="visible-mobile">Previous</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/08/20/learnings/" title="论文阅读:Advancing Spiking Neural Networks towards Deep Residual Learning">
-                        <span class="hidden-mobile">论文阅读:Advancing Spiking Neural Networks towards Deep Residual Learning</span>
+                      <a href="/2023/09/10/1%E5%BE%AE%E6%B3%A2%E6%8A%80%E6%9C%AF/" title="微波技术">
+                        <span class="hidden-mobile">微波技术</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
