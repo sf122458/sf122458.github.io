@@ -23,11 +23,14 @@
 <meta property="og:site_name" content="Eternity&#39;s Blog">
 <meta property="og:description" content="通信原理笔记">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://eternity0126.top/2023/09/10/img/post/pc/%E4%BF%A1%E6%81%AF%E9%80%9F%E7%8E%87.png">
+<meta property="og:image" content="http://eternity0126.top/2023/09/10/img/post/pc/%E6%97%A0%E8%AE%B0%E5%BF%86%E4%BA%8C%E8%BF%9B%E5%88%B6%E7%BC%96%E7%A0%81%E4%BF%A1%E9%81%93.png">
 <meta property="article:published_time" content="2023-09-10T13:20:56.000Z">
-<meta property="article:modified_time" content="2023-09-12T15:05:02.285Z">
+<meta property="article:modified_time" content="2023-09-13T14:13:40.704Z">
 <meta property="article:author" content="Eternity">
 <meta property="article:tag" content="课程内容">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://eternity0126.top/2023/09/10/img/post/pc/%E4%BF%A1%E6%81%AF%E9%80%9F%E7%8E%87.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
@@ -253,7 +256,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          420 words
+          2.5k words
         
       </span>
     
@@ -264,7 +267,7 @@
         
         
         
-          4 mins
+          21 mins
         
       </span>
     
@@ -374,6 +377,142 @@ class="math inline">\(h(t)=\delta(t),n(t)=0\)</span></li>
 </tbody>
 </table>
 <h3 id="通信系统的质量指标">通信系统的质量指标</h3>
+<h4 id="数字通信系统的质量指标">数字通信系统的质量指标</h4>
+<ul>
+<li><p>有效性：</p>
+<ul>
+<li><p>码元速率/波特率(<span
+class="math inline">\(R_B\)</span>)：每秒传送的码元数，单位波特(Baud)或符号每秒(symbol/s)</p>
+<p><strong>码元：携带信息的信号单元，设<span
+class="math inline">\(T\)</span>为码元持续时间或码元宽度，则<span
+class="math inline">\(R_B=\frac{1}{T}\)</span></strong></p>
+<p><strong>注意：<span
+class="math inline">\(T\)</span>为完整传输一个码元的时间，如使用二进制脉冲表示符号A，每个脉冲宽度为5ms，则码元宽度为10ms</strong></p></li>
+<li><p>信息速率/比特率(<span
+class="math inline">\(R_b\)</span>)：每秒传送的信息量，单位为比特每秒(bit/s)</p>
+<p><img src="..\img\post\pc\信息速率.png" srcset="/img/loading.gif" lazyload /></p>
+<p>上图码元速率相同，均为<span
+class="math inline">\(R_B=\frac{1}{T}\)</span></p>
+<p><strong>提高传输速率需要窄的信号脉冲，从而导致传输带宽增大</strong></p></li>
+<li><p>频带利用率：<span
+class="math inline">\(\eta=\frac{\text{信息速率}}{\text{频带宽度}}\)</span>(bit/s.Hz)，<strong>是常用的传输有效性指标</strong></p></li>
+</ul></li>
+<li><p>可靠性：</p>
+<ul>
+<li><p>误码率(<span
+class="math inline">\(Pe\)</span>)：出错的码元数/传输的总码元数</p>
+<p>误信率(<span
+class="math inline">\(Pb\)</span>)：错误信息的比特数/传输的总比特数</p>
+<p><strong>二进制下误码率等于误信率</strong></p></li>
+</ul></li>
+</ul>
+<h3 id="信息的度量">信息的度量</h3>
+<ul>
+<li><p>信息量：设消息<span
+class="math inline">\(m_k\)</span>，其出现的概率为<span
+class="math inline">\(P_k\)</span>，传输的信息量为<span
+class="math inline">\(I(m_k)\)</span>，则</p>
+<ul>
+<li>当<span class="math inline">\(P_k&lt;P_j\)</span>时，<span
+class="math inline">\(I(m_k)&gt;I(m_j)\)</span></li>
+<li>当<span class="math inline">\(P_k\rightarrow1\)</span>时，<span
+class="math inline">\(I(m_k)\rightarrow0\)</span></li>
+<li><span class="math inline">\(0\le P_k\le1\)</span>，且<span
+class="math inline">\(I(m_k)\ge0\)</span></li>
+<li>当<span
+class="math inline">\(m_k,m_j\)</span>为两个统计独立的消息时，<span
+class="math inline">\(I(m_k,m_j)=I(m_k)+I(m_j)\)</span></li>
+</ul>
+<p>因而将信息量定义为： <span class="math display">\[
+I(m_k)=\log_a(\frac{1}{P_k})=-\log_aP_k
+\]</span> 当<span
+class="math inline">\(a=2\)</span>时，信息量的单位记为bit</p></li>
+<li><p>平均信息量/信息熵：设消息由有限个符号<span
+class="math inline">\(S_1,S_2,...,S_N\)</span>构成，它们之间相互统计独立，
+每个符号出现的概率为<span
+class="math inline">\(P_1,P_2,...,P_N\)</span>，则由这<span
+class="math inline">\(N\)</span>个符号构成的消息的平均信息量为<strong>各符号</strong>的信息量加权求和，即：
+<span class="math display">\[
+H=\sum_{i=1}^NP_i\log_2(\frac{1}{P_i})=-\sum_{i=1}^NP_i\log_2P_i
+\]</span>
+单位为bit/symbol，其代表消息中<strong>平均每个符号携带的信息量，与符号个数无关</strong></p>
+<p><strong>当<span
+class="math inline">\(N\)</span>个符号等概率出现时，信源含有的平均信息量最大：</strong>
+<span class="math display">\[
+H_{max}=\log_2N
+\]</span></p></li>
+<li><p>码元速率与信息速率</p>
+<p>在数字通信系统中，若<span
+class="math inline">\(N\)</span>进制数字信号的码元速率为<span
+class="math inline">\(R_{BN}\)</span>，则<span
+class="math inline">\(N\)</span>进制数字信号的信息速率为 <span
+class="math display">\[
+R_{bN}=R_{BN}\cdot H
+\]</span> <strong>当<span
+class="math inline">\(N\)</span>进制各码元速率等概率出现时，有</strong>
+<span class="math display">\[
+R_{bN}=\log_2N\cdot R_{BN}
+\]</span> 对应单位为<span
+class="math inline">\(\text{bit/s}=\text{bit/symbol}\cdot\text{symbol/s}\)</span></p></li>
+</ul>
+<h3 id="信道与信道容量">信道与信道容量</h3>
+<h4 id="无记忆信道">无记忆信道</h4>
+<p>编码信道(大多数为无记忆信道)。其中，无记忆信道：</p>
+<ul>
+<li>信道内只存在起伏噪声</li>
+<li>输出码元与前后码元的差错无关</li>
+</ul>
+<p>无记忆二进制编码信道：</p>
+<p><img src="../img/post/pc/无记忆二进制编码信道.png" srcset="/img/loading.gif" lazyload /></p>
+<p>有 <span class="math display">\[
+P_{00}+P_{01}=1\\
+P_{10}+P_{11}=1
+\]</span> 转移概率矩阵为 <span class="math display">\[
+P=\left(
+\begin{align}
+P_{00}\quad P_{01}\\
+P_{10}\quad P_{11}
+\end{align}
+\right)
+\]</span> 当信道不存在失真时，转移概率矩阵<span
+class="math inline">\(P\)</span>为单位矩阵。拓展到四进制有 <span
+class="math display">\[
+P=\left(
+\begin{align}
+P_{00}\quad P_{01}\quad P_{02}\quad P_{03}\\
+P_{10}\quad P_{11}\quad P_{12}\quad P_{13}\\
+P_{20}\quad P_{21}\quad P_{22}\quad P_{23}\\
+P_{30}\quad P_{31}\quad P_{32}\quad P_{33}\\
+\end{align}
+\right)
+\]</span> <strong>非对角线元素表示收发不一致的错误转移概率</strong></p>
+<h4 id="恒参信道">恒参信道</h4>
+<p>满足信道参数<span
+class="math inline">\(H(\omega)=A(\omega)e^{-j\theta(\omega)}\)</span>为
+<span class="math display">\[
+A(\omega)=A\\
+\theta(\omega)=\omega t_0
+\]</span></p>
+<h4 id="变参信道">变参信道</h4>
+<p>满足信道参数<span
+class="math inline">\(H(\omega,t)=A(\omega,t)e^{-j\theta(\omega,t)}\)</span></p>
+<h4 id="信道容量">信道容量</h4>
+<p><strong>香农定理：</strong> <span class="math display">\[
+C=B\log_2(1+\frac{S}{N})
+\]</span> 其中，<span
+class="math inline">\(C\)</span>为最大信息速率，<span
+class="math inline">\(B\)</span>为信道带宽，<span
+class="math inline">\(S\)</span>为信道输出端(接收器输入端)的信号平均功率，<span
+class="math inline">\(N\)</span>为信道输出端(接收器输入端)的噪声平均功率</p>
+<p>当<span
+class="math inline">\(B,\frac{S}{N}\)</span>给定时，要实现可靠传输，则
+<span class="math display">\[
+R\le C=B\log_2(1+\frac{S}{N})
+\]</span> 当<span
+class="math inline">\(R,\frac{S}{N}\)</span>给定时，要实现可靠传输，则
+<span class="math display">\[
+B\ge B_{min}=\frac{R}{\log_2(1+\frac{S}{N})}
+\]</span></p>
 <h2 id="第二章-随机信号和噪声">第二章 随机信号和噪声</h2>
 
                 
