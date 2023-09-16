@@ -24,7 +24,7 @@
 <meta property="og:description" content="离散数学笔记">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2023-09-10T13:22:08.000Z">
-<meta property="article:modified_time" content="2023-09-14T12:56:01.326Z">
+<meta property="article:modified_time" content="2023-09-16T14:06:33.793Z">
 <meta property="article:author" content="Eternity">
 <meta property="article:tag" content="课程内容">
 <meta name="twitter:card" content="summary_large_image">
@@ -253,7 +253,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.7k words
+          3.7k words
         
       </span>
     
@@ -264,7 +264,7 @@
         
         
         
-          15 mins
+          32 mins
         
       </span>
     
@@ -314,8 +314,9 @@
             
               <div class="markdown-body">
                 
-                <h1 id="离散数学">离散数学</h1>
-<h2 id="图论">图论</h2>
+                <p><font size="6"><strong>离散数学</strong></font></p>
+<h1 id="图论">图论</h1>
+<h2 id="基本概念">基本概念</h2>
 <h3 id="图的概念">图的概念</h3>
 <h4 id="图的定义">图的定义</h4>
 <p>定义：二元组<span
@@ -467,6 +468,159 @@ class="math inline">\(G_2\)</span>的导出子图与其同构</li>
 <li><p>正向表、逆向表</p></li>
 <li><p>邻接表</p></li>
 </ul>
+<h2 id="道路与回路">道路与回路</h2>
+<h3 id="道路与回路-1">道路与回路</h3>
+<h4 id="有向图的道路和回路">有向图的道路和回路</h4>
+<p>定义有向道路：有向图<span
+class="math inline">\(G=(V,E)\)</span>中，若边序列<span
+class="math inline">\(P=(e_1,...,e_{i_q})\)</span>满足<span
+class="math inline">\(e_{i_k}\)</span>的终点是<span
+class="math inline">\(e_{i_{k+1}}\)</span>的始点，则称<span
+class="math inline">\(P\)</span>是<span
+class="math inline">\(G\)</span>的一条有向道路。</p>
+<p>定义有向回路：若边序列<span
+class="math inline">\(C=(e_{i_1},...,e_{i_q})\)</span>是<span
+class="math inline">\(G\)</span>的一条有向道路，且<span
+class="math inline">\(e_{i_q}\)</span>的终点是<span
+class="math inline">\(e_{i_1}\)</span>的始点，则称<span
+class="math inline">\(C\)</span>为<span
+class="math inline">\(G\)</span>的一条有向回路。</p>
+<h4 id="简单有向道路和初级有向道路">简单有向道路和初级有向道路</h4>
+<p><strong>对于有向道路<span
+class="math inline">\(P=(e_{i_1},...,e_{i_q})\)</span>，若道路内的边互不重复，则称<span
+class="math inline">\(P\)</span>为简单有向道路；若<span
+class="math inline">\(P\)</span>为回路，则称<span
+class="math inline">\(P\)</span>为简单有向回路。</strong></p>
+<p><strong>对于有向道路<span
+class="math inline">\(P=(e_{i_1},...,e_{i_q})\)</span>，若道路内的顶点互不重复，则称<span
+class="math inline">\(P\)</span>为初级有向道路；若<span
+class="math inline">\(P\)</span>为回路，则称<span
+class="math inline">\(P\)</span>为初级有向回路。</strong></p>
+<p><strong>可以得出，初级有向道路（回路）一定是简单有向道路（回路）。</strong></p>
+<h4
+id="无向图的道路和回路简答道路和初级道路">无向图的道路和回路、简答道路和初级道路</h4>
+<p>定义无向图的道路和回路：</p>
+<p>设<span class="math inline">\(C\)</span>是简单图<span
+class="math inline">\(G\)</span>中含顶点数大于3的一个初级回路；如果<span
+class="math inline">\((v_i,v_j)\notin C\)</span>且<span
+class="math inline">\((v_i,v_j)\in E(G)\)</span>，则称<span
+class="math inline">\((v_i,v_j)\)</span>是<span
+class="math inline">\(C\)</span>的一条弦。</p>
+<h4 id="极长初级道路">极长初级道路</h4>
+<p>令<span
+class="math inline">\(P\)</span>是初级道路。<strong>若没有任何<span
+class="math inline">\(P\)</span>之外的顶点和<span
+class="math inline">\(P\)</span>的端点相邻接，则称<span
+class="math inline">\(P\)</span>是一条极长初级道路。</strong></p>
+<h4 id="连通图与连通支">连通图与连通支</h4>
+<p>定义连通图：令<span
+class="math inline">\(G\)</span>是无向图（有向图可当成无向图看），若<span
+class="math inline">\(G\)</span>的任意两个顶点之间都有道路，则<span
+class="math inline">\(G\)</span>是连通图，否则称<span
+class="math inline">\(G\)</span>是非连通图。</p>
+<p><strong>若<span class="math inline">\(H\)</span>是<span
+class="math inline">\(G\)</span>的子图，且<span
+class="math inline">\(H\)</span>是连通图，则称<span
+class="math inline">\(H\)</span>是<span
+class="math inline">\(G\)</span>的连通子图。若<span
+class="math inline">\(G\)</span>的连通子图<span
+class="math inline">\(H\)</span>不是<span
+class="math inline">\(G\)</span>的任何连通子图的真子图，则称<span
+class="math inline">\(H\)</span>是<span
+class="math inline">\(G\)</span>的极大连通子图，或连通支。</strong></p>
+<ul>
+<li>连通支的性质
+<ul>
+<li>图<span class="math inline">\(G\)</span>存在<span
+class="math inline">\(t\)</span>个连通支，则连通支两两不交</li>
+<li>设<span class="math inline">\(G\)</span>是简单图，当<span
+class="math inline">\(m&gt;\frac{1}{2}(n-1)(n-2)\)</span>时，<span
+class="math inline">\(G\)</span>是连通图</li>
+</ul></li>
+</ul>
+<h4 id="割点与割边">割点与割边</h4>
+<p>定义割点与割边：令<span
+class="math inline">\(G=(V,E)\)</span>是图，对<span
+class="math inline">\(v∈V\)</span>，若<span
+class="math inline">\(G-v\)</span>的连通支数比<span
+class="math inline">\(G\)</span>多，则称<span
+class="math inline">\(v\)</span>是<span
+class="math inline">\(G\)</span>的割点。对<span
+class="math inline">\(e∈E\)</span>，若<span
+class="math inline">\(G-e\)</span>的连通支数比<span
+class="math inline">\(G\)</span>多，则称<span
+class="math inline">\(e\)</span>是<span
+class="math inline">\(G\)</span>的割边。</p>
+<h4 id="顶点与边的连通度">顶点与边的连通度</h4>
+<p>对非平凡连通图<span class="math inline">\(G\)</span>，令<span
+class="math inline">\(A\subset V\)</span>是顶点的集合，若<span
+class="math inline">\(G-A\)</span>不连通或只存在一个孤立顶点，则称<span
+class="math inline">\(A\)</span>为<span
+class="math inline">\(G\)</span>的断集或点断集。</p>
+<p><strong>最小的断集大小称为<span
+class="math inline">\(G\)</span>的断量或点连通度，记为<span
+class="math inline">\(\kappa(G)\)</span>。</strong></p>
+<p>对非平凡连通图<span class="math inline">\(G\)</span>，令<span
+class="math inline">\(B\subset E\)</span>是顶点的集合，若<span
+class="math inline">\(G-B\)</span>不连通，则称<span
+class="math inline">\(B\)</span>为<span
+class="math inline">\(G\)</span>的边断集。</p>
+<p><strong>最小的边断集大小称为<span
+class="math inline">\(G\)</span>的边断量或边连通度，记为<span
+class="math inline">\(\lambda(G)\)</span>。</strong></p>
+<ul>
+<li>连通度的性质：连通图<span
+class="math inline">\(G\)</span>中，有<span
+class="math inline">\(\kappa(G)\le\lambda(G)\le\delta(G)\)</span>，其中<span
+class="math inline">\(\delta(G)\)</span>是<span
+class="math inline">\(G\)</span>中顶点的最小度。</li>
+</ul>
+<h3 id="道路和回路的判定">道路和回路的判定</h3>
+<p><strong><span class="math inline">\(A=(a_{ij})_{n\times
+n}\)</span>为邻接矩阵，<span
+class="math inline">\(A^l\)</span>中元素表示<span
+class="math inline">\(v_i\)</span>到<span
+class="math inline">\(v_j\)</span>长度为<span
+class="math inline">\(l\)</span>的道路数。特别地，<span
+class="math inline">\(i=j\)</span>时，元素也表示回路数。<em>这种方法无法表示简单道路数和初级道路数。</em></strong></p>
+<h3 id="欧拉道路与回路">欧拉道路与回路</h3>
+<ul>
+<li><p>对于无向连通图：</p>
+<p>定义欧拉道路/回路：无向连通图的一条包含<strong>所有边</strong>的简单道路/回路，称为欧拉道路/回路。</p>
+<p>存在定理：<strong>无向连通图<span
+class="math inline">\(G\)</span>存在欧拉回路，当且仅当<span
+class="math inline">\(G\)</span>中所有顶点的度都是偶数。</strong></p>
+<p>存在推论：<strong>无向连通图<span
+class="math inline">\(G\)</span>存在欧拉道路，当且仅当<span
+class="math inline">\(G\)</span>中不超过2个顶点的度时奇数。</strong></p></li>
+<li><p>对于有向连通图：</p>
+<p>存在定理：<strong>有向连通图<span
+class="math inline">\(G\)</span>存在欧拉回路，当且仅当<span
+class="math inline">\(G\)</span>中所有顶点的正度和负度相等。</strong></p>
+<p>存在定理：<strong>有向连通图<span
+class="math inline">\(G\)</span>存在欧拉道路，当且仅当<span
+class="math inline">\(G\)</span>中不超过2个顶点的正度和负度不等，且差最多为1。</strong></p></li>
+</ul>
+<h3 id="哈密顿道路与回路">哈密顿道路与回路</h3>
+<h4 id="哈密顿道路回路的定义">哈密顿道路/回路的定义</h4>
+<p>定义哈密顿道路/回路：无向图的一条过<strong>全部顶点</strong>的初级道路/回路，称为哈密顿道路/回路，简称为<span
+class="math inline">\(H\)</span>道路/回路。</p>
+<h4 id="哈密顿道路的充分性定理">哈密顿道路的充分性定理</h4>
+<p>定理1：如果简单图<span
+class="math inline">\(G\)</span>的任意两顶点<span
+class="math inline">\(v_i,v_j\)</span>均满足<span
+class="math inline">\(d(v_i)+d(v_j)\ge n-1\)</span>，则<span
+class="math inline">\(G\)</span>中存在哈密顿道路。</p>
+<p>推论1：如果简单图<span
+class="math inline">\(G\)</span>的任意两顶点<span
+class="math inline">\(v_i,v_j\)</span>均满足<span
+class="math inline">\(d(v_i)+d(v_j)\ge n\)</span>，则<span
+class="math inline">\(G\)</span>中存在哈密顿回路。</p>
+<p>推论2：如果简单图<span
+class="math inline">\(G\)</span>的任意顶点的度均大于等于<span
+class="math inline">\(\frac{n}{2}\)</span>，则<span
+class="math inline">\(G\)</span>中存在哈密顿回路。</p>
+<h4 id="闭合图">闭合图</h4>
 
                 
               </div>
