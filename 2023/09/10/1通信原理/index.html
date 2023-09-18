@@ -26,7 +26,7 @@
 <meta property="og:image" content="http://eternity0126.top/2023/09/10/img/post/pc/%E4%BF%A1%E6%81%AF%E9%80%9F%E7%8E%87.png">
 <meta property="og:image" content="http://eternity0126.top/2023/09/10/img/post/pc/%E6%97%A0%E8%AE%B0%E5%BF%86%E4%BA%8C%E8%BF%9B%E5%88%B6%E7%BC%96%E7%A0%81%E4%BF%A1%E9%81%93.png">
 <meta property="article:published_time" content="2023-09-10T13:20:56.000Z">
-<meta property="article:modified_time" content="2023-09-13T14:50:35.284Z">
+<meta property="article:modified_time" content="2023-09-18T14:40:28.706Z">
 <meta property="article:author" content="Eternity">
 <meta property="article:tag" content="课程内容">
 <meta name="twitter:card" content="summary_large_image">
@@ -256,7 +256,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.5k words
+          4.9k words
         
       </span>
     
@@ -267,7 +267,7 @@
         
         
         
-          21 mins
+          42 mins
         
       </span>
     
@@ -467,8 +467,10 @@ class="math inline">\(\text{bit/s}=\text{bit/symbol}\cdot\text{symbol/s}\)</span
 <p>无记忆二进制编码信道：</p>
 <p><img src="../img/post/pc/无记忆二进制编码信道.png" srcset="/img/loading.gif" lazyload /></p>
 <p>有 <span class="math display">\[
+\begin{align}
 P_{00}+P_{01}=1\\
 P_{10}+P_{11}=1
+\end{align}
 \]</span> 转移概率矩阵为 <span class="math display">\[
 P=\left(
 \begin{align}
@@ -492,20 +494,24 @@ P_{30}\quad P_{31}\quad P_{32}\quad P_{33}\\
 <p>满足信道参数<span
 class="math inline">\(H(\omega)=A(\omega)e^{-j\theta(\omega)}\)</span>为
 <span class="math display">\[
-A(\omega)=A\\
-\theta(\omega)=\omega t_0
+\begin{align}
+A(\omega)&amp;=A\\
+\theta(\omega)&amp;=\omega t_0
+\end{align}
 \]</span></p>
 <h4 id="变参信道">变参信道</h4>
 <p>满足信道参数<span
 class="math inline">\(H(\omega,t)=A(\omega,t)e^{-j\theta(\omega,t)}\)</span></p>
 <h4 id="信道容量">信道容量</h4>
-<p><strong>香农定理：</strong> <span class="math display">\[
+<p><strong>香农定理：</strong>给出了高斯信道上可靠传送信息速率的理论极限。
+<span class="math display">\[
 C=B\log_2(1+\frac{S}{N})
 \]</span> 其中，<span
 class="math inline">\(C\)</span>为最大信息速率，<span
 class="math inline">\(B\)</span>为信道带宽，<span
 class="math inline">\(S\)</span>为信道输出端(接收器输入端)的信号平均功率，<span
-class="math inline">\(N\)</span>为信道输出端(接收器输入端)的噪声平均功率</p>
+class="math inline">\(N\)</span>为信道输出端(接收器输入端)的噪声平均功率。<span
+class="math inline">\(B\)</span>涉及码间串扰问题。</p>
 <p>当<span
 class="math inline">\(B,\frac{S}{N}\)</span>给定时，要实现可靠传输，则
 <span class="math display">\[
@@ -516,6 +522,139 @@ class="math inline">\(R,\frac{S}{N}\)</span>给定时，要实现可靠传输，
 B\ge B_{min}=\frac{R}{\log_2(1+\frac{S}{N})}
 \]</span></p>
 <h2 id="第二章-随机信号和噪声">第二章 随机信号和噪声</h2>
+<h3 id="随机过程的基本概念">随机过程的基本概念</h3>
+<h4 id="随机过程的定义">随机过程的定义</h4>
+<p>由概率论中随机变量<span
+class="math inline">\(X(e)\)</span>推广到不仅与样本元素<span
+class="math inline">\(e\)</span>有关，还与时间<span
+class="math inline">\(t\)</span>有关，得到随机过程<span
+class="math inline">\(X(t,e)\)</span>。</p>
+<p>随机过程的两种定义：</p>
+<ul>
+<li>设随机实验E的样本空间为<span
+class="math inline">\(S=\{e\}\)</span>，若对每个元素<span
+class="math inline">\(e\in S\)</span>，总有一个确知的时间函数<span
+class="math inline">\(X(t,e)\)</span>，<span class="math inline">\(t\in
+T\)</span>与之对应。对于所有的<span class="math inline">\(e\in
+S\)</span>，可得到一簇时间<span
+class="math inline">\(t\)</span>的函数，将这簇函数的全体称为随机过程，记作<span
+class="math inline">\(X(t,e)\)</span>或<span
+class="math inline">\(X(t)\)</span>
+<ul>
+<li>对给定的<span class="math inline">\(t_i\)</span>和<span
+class="math inline">\(e_j\)</span>，<span
+class="math inline">\(X(t,e)\)</span>是一个确定的数值</li>
+<li>对给定的<span class="math inline">\(t_i\)</span>，<span
+class="math inline">\(X(t,e)\)</span>是一个随机变量<span
+class="math inline">\(X(e)\)</span></li>
+<li>对给定的<span class="math inline">\(e_j\)</span>，<span
+class="math inline">\(X(t,e)\)</span>是一个时间函数，称为样本函数<span
+class="math inline">\(x(t,e_j)\)</span></li>
+<li>当<span class="math inline">\(t,e\)</span>都为变量时，<span
+class="math inline">\(X(t,e)\)</span>是一个随机过程</li>
+</ul></li>
+<li>若对每个特定的时间<span
+class="math inline">\(t_i(i=1,2,...)\)</span>，<span
+class="math inline">\(X(t_i,e)\)</span>都是随机变量，则称<span
+class="math inline">\(X(t,e)\)</span>为随机过程。<strong>即将随机过程看作是依赖于时间<span
+class="math inline">\(t\)</span>的一簇随机变量</strong></li>
+</ul>
+<h4
+id="随机过程的概率分布函数和概率密度函数">随机过程的概率分布函数和概率密度函数</h4>
+<p>设随机过程<span class="math inline">\(X(t)\)</span>在任意<span
+class="math inline">\(n\)</span>个时刻的取值<span
+class="math inline">\(X(t_1),X(t_2),...,X(t_n)\)</span>构成<span
+class="math inline">\(n\)</span>维随机变量<span
+class="math inline">\([X(t_1),X(t_2),...,X(t_n)]\)</span>，则定义随机过程<span
+class="math inline">\(X(t)\)</span>的<span
+class="math inline">\(n\)</span>维分布函数和<span
+class="math inline">\(n\)</span>维概率密度函数为 <span
+class="math display">\[
+\begin{align}
+F_X(x_1,x_2,...,x_n;t_1,t_2,...,t_n)&amp;=P\{X(t_1)\le x_1,X(t_2)\le
+x_2,...,X(t_n)\le x_n\}\\
+f_X(x_1,x_2,...,x_n;t_1,t_2,...,t_n)&amp;=\frac{F_X(x_1,x_2,...,x_n)}{\partial
+x_1,\partial x_2,..., \partial x_n}
+\end{align}
+\]</span></p>
+<h4 id="随机过程的数字特征">随机过程的数字特征</h4>
+<ul>
+<li><p>数学期望：时间<span
+class="math inline">\(t\)</span>的确定函数，描述<span
+class="math inline">\(X(t)\)</span>的所有样本在任一时刻<span
+class="math inline">\(t\)</span>的取值的统计平均 <span
+class="math display">\[
+m_X(t)=E[X(t)]=\int_{-\infty}^{\infty}xf_X(x,t)dx
+\]</span> <strong>注意：对随机变量积分</strong></p></li>
+<li><p>方差：时间<span
+class="math inline">\(t\)</span>的确定函数，描述<span
+class="math inline">\(X(t)\)</span>的所有样本与数学期望的偏离程度 <span
+class="math display">\[
+\sigma^2_X(t)=D[X(t)]=Var[X(t)]=E\{[X(t)-m_X(t)]^2\}=\int_{-\infty}^{\infty}[X(t)-m_X(t)]^2f(x,t)dx
+\]</span></p></li>
+<li><p>自相关函数：<strong>反映了<span
+class="math inline">\(X(t)\)</span>在任意两时刻的取值的相关程度</strong>
+<span class="math display">\[
+R_X(t)=E[X(t_1)X(t_2)]=\int_{-\infty}^{\infty}\int_{-\infty}^{\infty}x_1x_2f_X(x_1,x_2;t_1,t_2)dx_1dx_2
+\]</span></p></li>
+<li><p>自协方差函数：<strong>反映了<span
+class="math inline">\(X(t)\)</span>在任意两时刻的起伏值之间的相关程度</strong>
+<span class="math display">\[
+\begin{align}
+C_X(t)&amp;=E\{[X(t_1)-m_X(t_1)][X(t_2)-m_X(t_2)]\}\\
+&amp;=E[X(t_1)X(t_2)-m_X(t_1)X(t_2)-m_X(t_2)X(t_1)+m_X(t_1)m_X(t_2)]\\
+&amp;=E[X(t_1)X(t_2)]-m_X(t_1)E[X(t_2)]-m_X(t_2)E[X(t_1)]-m_X(t_1)m_X(t_2)\\
+&amp;=R_X(t_1,t_2)-m_X(t_1)m_X(t_2)
+\end{align}
+\]</span></p>
+<ul>
+<li><p>当<span
+class="math inline">\(m_X(t_1)=m_X(t_2)=0\)</span>时，<span
+class="math inline">\(C_X(t_1,t_2)=R_X(t_1,t_2)\)</span></p></li>
+<li><p><strong>当<span class="math inline">\(t_1=t_2\)</span>时，有<span
+class="math inline">\(\sigma^2_X(t)=E[X^2(t)]-m_X^2(t)\)</span></strong></p></li>
+</ul></li>
+<li><p>互相关函数：描述两个不同的随机变量过程<span
+class="math inline">\(X(t)\)</span>和<span
+class="math inline">\(Y(t)\)</span>的取值之间的相关程度 <span
+class="math display">\[
+R_XY(t)=E[X(t_1)Y(t_2)]=\int_{-\infty}^{\infty}\int_{-\infty}^{\infty}xyf_{XY}(x,y;t_1,t_2)dxdy
+\]</span></p></li>
+<li><p>互协方差函数：描述两个不同的随机变量过程<span
+class="math inline">\(X(t)\)</span>和<span
+class="math inline">\(Y(t)\)</span>的起伏值之间的相关程度 <span
+class="math display">\[
+C_{XY}(t_1,t_2)=E\{[X(t_1)-m_X(t_1)][Y(t_2)-m_Y(t_2)]\}=R_{XY}(t_1,t_2)-m_X(t_1)m_Y(t_2)
+\]</span></p></li>
+</ul>
+<p>存在几个重要关系：</p>
+<ul>
+<li><p>正交</p>
+<p>对任意的<span class="math inline">\(t_1,t_2\)</span>，总有<span
+class="math inline">\(R_{XY}(t_1,t_2)=0\)</span>，则<span
+class="math inline">\(X(t)\)</span>与<span
+class="math inline">\(Y(t)\)</span>正交</p></li>
+<li><p>不相关</p>
+<p>对任意的<span class="math inline">\(t_1,t_2\)</span>，总有<span
+class="math inline">\(C_{XY}(t_1,t_2)=0\)</span>，则<span
+class="math inline">\(X(t)\)</span>和<span
+class="math inline">\(Y(t)\)</span>不相关</p>
+<p>若<span class="math inline">\(X(t)\)</span>和<span
+class="math inline">\(Y(t)\)</span>不相关，则必有<span
+class="math inline">\(E[X(t_1)Y(t_2)]=E[X(t_1)]E[Y(t_2)]\)</span></p></li>
+<li><p>相互独立</p>
+<p>对所有的<span class="math inline">\(t_1,t_2\)</span>，<span
+class="math inline">\(f_{XY}(x,y;t_1,t_2)=f_X(x,t_1)f_Y(y,t_2)\)</span>，则<span
+class="math inline">\(X(t)\)</span>和<span
+class="math inline">\(Y(t)\)</span>相互独立</p></li>
+</ul>
+<p><strong>注意：均值为0时，正交与不相关等价；独立一定不相关，反之不一定</strong></p>
+<h4 id="随机过程分类">随机过程分类</h4>
+<h3 id="随机过程的平稳性与各态遍历性">随机过程的平稳性与各态遍历性</h3>
+<h3 id="随机过程的功率谱密度">随机过程的功率谱密度</h3>
+<h3 id="线性系统对随机信号的响应">线性系统对随机信号的响应</h3>
+<h3 id="高斯过程和白噪声过程">高斯过程和白噪声过程</h3>
+<h3 id="正弦信号与窄带噪声">正弦信号与窄带噪声</h3>
 
                 
               </div>
