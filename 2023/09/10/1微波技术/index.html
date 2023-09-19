@@ -24,7 +24,7 @@
 <meta property="og:description" content="微波技术笔记">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2023-09-10T13:21:58.000Z">
-<meta property="article:modified_time" content="2023-09-10T13:24:15.913Z">
+<meta property="article:modified_time" content="2023-09-19T14:36:39.275Z">
 <meta property="article:author" content="Eternity">
 <meta name="twitter:card" content="summary_large_image">
   
@@ -252,7 +252,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          4 words
+          2.1k words
         
       </span>
     
@@ -263,7 +263,7 @@
         
         
         
-          1 mins
+          18 mins
         
       </span>
     
@@ -314,6 +314,106 @@
               <div class="markdown-body">
                 
                 <h1 id="微波技术">微波技术</h1>
+<h2 id="第一章">第一章</h2>
+<h3 id="电磁场理论">电磁场理论</h3>
+<h4 id="场论恒等式">场论恒等式</h4>
+<p>斯托克斯定理：<span
+class="math inline">\(\int\limits_{S}(\nabla\times \vec{A})\cdot
+d\vec{s}=\oint\limits_{C}\vec{A}\cdot d\vec{l}\)</span></p>
+<p>散度定理：<span class="math inline">\(\int\limits_{V}\nabla\cdot
+Adv=\oint\limits_{S}A\cdot ds\)</span></p>
+<h4 id="麦克斯韦方程组">麦克斯韦方程组</h4>
+<ul>
+<li><p>法拉第定理</p>
+<p>微分形式：<span class="math inline">\(\nabla\times
+\vec{E}=-\frac{\partial \vec{B}}{\partial t}-\vec{M}\)</span></p>
+<p>积分形式：<span class="math inline">\(\oint\limits_{C}\vec{E}\cdot
+d\vec{l}=-\frac{\partial}{\partial t}\int\limits_{S}\vec{B}\cdot
+d\vec{s}-\int\limits_{S}\vec{M}\cdot d\vec{s}\)</span></p></li>
+<li><p>安培定理</p>
+<p>微分形式：<span class="math inline">\(\nabla\times
+\vec{H}=\frac{\partial \vec{D}}{\partial t}+\vec{J}\)</span></p>
+<p>积分形式：<span class="math inline">\(\oint\limits_{C}\vec{H}\cdot
+d\vec{l}=\frac{\partial}{\partial t}\int\limits_{S}\vec{D}\cdot
+d\vec{s}+\int\limits_{S}\vec{J}\cdot d\vec{s}=\frac{\partial}{\partial
+t}\int\limits_{S}\vec{D}\cdot d\vec{s}+I\)</span></p></li>
+<li><p>高斯定理</p>
+<p>微分形式：<span class="math inline">\(\nabla\cdot
+\vec{D}=\rho\)</span></p>
+<p>积分形式：<span class="math inline">\(\oint\limits_{S}\vec{D}\cdot
+d\vec{s}=\int\limits_{V}\rho dv=Q\)</span></p></li>
+<li><p>磁场的高斯定理</p>
+<p>微分形式：<span class="math inline">\(\nabla \cdot
+\vec{B}=0\)</span></p>
+<p>积分形式：<span class="math inline">\(\oint\limits_{S}\vec{B}\cdot
+d\vec{s}=0\)</span></p></li>
+</ul>
+<p><strong>以上四个方程并不互相独立</strong></p>
+<p>对于各向同性介质，有</p>
+<ul>
+<li><span class="math inline">\(B=\mu_0H\)</span></li>
+<li><span class="math inline">\(D=\epsilon_0E\)</span></li>
+</ul>
+<h4 id="麦克斯韦方程组的谐波形式">麦克斯韦方程组的谐波形式</h4>
+<ul>
+<li><span class="math inline">\(\nabla\times
+\vec{E}=-j\omega\vec{B}-\vec{M}\)</span></li>
+<li><span class="math inline">\(\nabla\times
+\vec{H}=j\omega\vec{D}+\vec{J}\)</span></li>
+<li><span class="math inline">\(\nabla\cdot\vec{D}=\rho\)</span></li>
+<li><span class="math inline">\(\nabla\cdot \vec{B}=0\)</span></li>
+</ul>
+<p>如果在各向同性的介质内</p>
+<ul>
+<li><span class="math inline">\(\nabla\times
+\vec{E}=-j\omega\mu\vec{H}-\vec{M}\)</span></li>
+<li><span class="math inline">\(\nabla\times
+\vec{H}=j\omega\epsilon\vec{E}+\vec{J}\)</span></li>
+<li><span
+class="math inline">\(\nabla\cdot\vec{E}=\frac{\rho}{\epsilon}\)</span></li>
+<li><span class="math inline">\(\nabla\cdot \vec{H}=0\)</span></li>
+</ul>
+<h4 id="互易定理">互易定理</h4>
+<p>根据麦克斯韦方程组的谐波形式以及<span
+class="math inline">\(\nabla\cdot(\vec{A}\times\vec{B})=(\nabla\times
+\vec{A})\cdot\vec{B}-(\nabla\times\vec{B})\cdot\vec{A}\)</span>，可推得
+<span class="math display">\[
+\oint\limits_{S}(\vec{E}_1\times
+\vec{H}_2-\vec{E}_2\times\vec{H}_1)\cdot
+ds=\int\limits_{V}(\vec{E}_2\cdot\vec{J}_1-\vec E_1\cdot \vec J_2+\vec
+H_1\cdot\vec M_2-\vec H_2\cdot\vec M_1)dv
+\]</span> 存在以下特殊情况时：</p>
+<ul>
+<li><p>空间内无源： <span class="math display">\[
+\oint\limits_{S}\vec E_1\times \vec H_2\cdot d\vec
+s=\oint\limits_{S}\vec E_2\times \vec H_1\cdot d\vec s
+\]</span></p></li>
+<li><p>理想导体边界（无切向电场）或者无限边界，即互易定理左侧为零：
+<span class="math display">\[
+\int\limits_{V}(\vec E_1\cdot \vec J_2-\vec H_1\cdot \vec
+M_2)dv=\int\limits_{V}(\vec E_2\cdot\vec J_1-\vec H_2\cdot \vec M_1)dv
+\]</span></p></li>
+</ul>
+<h4 id="镜像定理">镜像定理</h4>
+<h4 id="表面阻抗理论">表面阻抗理论</h4>
+<p>在无源、线性、各向同性的区域内，电磁场满足Helmholtz方程： <span
+class="math display">\[
+\begin{align}
+\nabla^2 \vec E+\omega^2\mu\epsilon \vec E=0\newline
+\nabla^2 \vec H+\omega^2\mu\epsilon \vec H=0
+\end{align}
+\]</span> 可推得平面波公式： $$</p>
+<p>$$ 在良介质中，<span
+class="math inline">\(\epsilon=\epsilon&#39;+j\epsilon&#39;&#39;\)</span>，且<span
+class="math inline">\(\epsilon&#39;&#39;=\frac{\sigma}{\omega}\gg
+\epsilon&#39;\)</span></p>
+<ul>
+<li>趋肤深度</li>
+<li>表面阻抗</li>
+</ul>
+<h2 id="第二章">第二章</h2>
+<h3 id="传输线理论">传输线理论</h3>
+<h4 id="传输线">传输线</h4>
 
                 
               </div>
