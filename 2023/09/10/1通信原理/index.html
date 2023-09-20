@@ -25,8 +25,9 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://eternity0126.top/img/post/pc/%E4%BF%A1%E6%81%AF%E9%80%9F%E7%8E%87.png">
 <meta property="og:image" content="http://eternity0126.top/img/post/pc/%E6%97%A0%E8%AE%B0%E5%BF%86%E4%BA%8C%E8%BF%9B%E5%88%B6%E7%BC%96%E7%A0%81%E4%BF%A1%E9%81%93.png">
+<meta property="og:image" content="http://eternity0126.top/img/post/pc/%E8%87%AA%E7%9B%B8%E5%85%B3%E5%87%BD%E6%95%B0%E6%9B%B2%E7%BA%BF.png">
 <meta property="article:published_time" content="2023-09-10T13:20:56.000Z">
-<meta property="article:modified_time" content="2023-09-19T13:10:43.702Z">
+<meta property="article:modified_time" content="2023-09-20T13:32:20.944Z">
 <meta property="article:author" content="Eternity">
 <meta property="article:tag" content="课程内容">
 <meta name="twitter:card" content="summary_large_image">
@@ -256,7 +257,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          5k words
+          8k words
         
       </span>
     
@@ -267,7 +268,7 @@
         
         
         
-          42 mins
+          67 mins
         
       </span>
     
@@ -649,9 +650,155 @@ class="math inline">\(X(t)\)</span>和<span
 class="math inline">\(Y(t)\)</span>相互独立</p></li>
 </ul>
 <p><strong>注意：均值为0时，正交与不相关等价；独立一定不相关，反之不一定</strong></p>
-<h4 id="随机过程分类">随机过程分类</h4>
 <h3 id="随机过程的平稳性与各态遍历性">随机过程的平稳性与各态遍历性</h3>
+<h4 id="随机过程的平稳性">随机过程的平稳性</h4>
+<ul>
+<li><p>严平稳随机过程</p>
+<p>对于任意的<span class="math inline">\(n\)</span>和<span
+class="math inline">\(\epsilon\)</span>，随机过程<span
+class="math inline">\(X(t)\)</span>的联合概率密度函数满足<span
+class="math inline">\(f(x_1,x_2,...,x_n;t_1,t_2,...,t_n)=f(x_1,x_2,...,x_n;t_1+\epsilon,t_2+\epsilon,...,t_n+\epsilon)\)</span>，则称<span
+class="math inline">\(X(t)\)</span>为n阶严平稳随机过程</p>
+<p><strong>过程的统计特性与所选取的时间起点无关，实际意义在于测试一个平稳过程的统计特性时，无论何时进行，其结果是相同的</strong></p></li>
+<li><p>宽平稳随机过程</p>
+<p>若随机过程<span
+class="math inline">\(X(t)\)</span>的数学期望为一常数，自相关函数只与时间间隔<span
+class="math inline">\(\tau=t_2-t_1\)</span>有关，且它的均方根有限，即
+<span class="math display">\[
+\left\{
+\begin{align}
+&amp;E[X(t)]=m_X\newline
+&amp;R_X(t_1,t_2)=E[X(t_1)X(t_2)]=R_X(\tau)\newline
+&amp;E[X^2(t)]&lt;\infty
+\end{align}
+\right.
+\]</span> 则称<span class="math inline">\(X(t)\)</span>为宽平稳过程</p>
+<p><strong>宽平稳与二阶严平稳等价；严平稳随机过程必定是宽平稳，反正不一定</strong></p></li>
+</ul>
+<p><strong>当<span
+class="math inline">\(X(t)\)</span>为广义平稳随机过程，有</strong> <span
+class="math display">\[
+\begin{align}
+&amp;C_X(t_1,t_2)=R_X(t_1,t_2)-m_X(t_1)m_X(t_2)\newline
+\Rightarrow &amp;C_X(\tau)=R_X(\tau)-m_X^2\newline
+\Rightarrow &amp;C_X(0)=R_X(0)-m_X^2\newline
+\Rightarrow &amp;\sigma^2_X=E[X^2(t)]-m_X^2
+\end{align}
+\]</span></p>
+<p>证明广义平稳：首先证明<span
+class="math inline">\(E[X(t)]\)</span>为与<span
+class="math inline">\(t\)</span>无关的定值，其次证明<span
+class="math inline">\(R(t,t+\tau)\)</span>只与<span
+class="math inline">\(\tau\)</span>有关</p>
+<h4
+id="广义平稳随机过程相关函数的性质">广义平稳随机过程相关函数的性质</h4>
+<ul>
+<li><p>自相关函数</p>
+<ul>
+<li><span class="math inline">\(R_X(0)=E[X^2(t)]\ge0\)</span></li>
+<li><span
+class="math inline">\(R_X(\tau)=R_X(-\tau)\)</span>，可由定义式证明</li>
+<li><span class="math inline">\(R_X(0)\ge|R(\tau)|\)</span>，即<span
+class="math inline">\(X(t)\)</span>在同一时刻取值的相关性最大</li>
+<li><strong>如果<span class="math inline">\(E[X(t)]=m_X\neq
+0\)</span>，那么<span class="math inline">\(\lim\limits_{\tau\rightarrow
+\infty}R_X(\tau)=m_X^2\)</span></strong></li>
+<li>如果<span class="math inline">\(X(t)\)</span>含有周期分量，那么<span
+class="math inline">\(R_X(\tau)\)</span>也将含有相同周期的周期分量</li>
+</ul>
+<figure>
+<img src="\img\post\pc\自相关函数曲线.png" srcset="/img/loading.gif" lazyload
+alt="image-20230920204044338" />
+<figcaption aria-hidden="true">image-20230920204044338</figcaption>
+</figure>
+<p><strong>注意：<span
+class="math inline">\(R_X(\tau)\)</span>可以存在小于0的部分</strong></p></li>
+<li><p>互相关函数：若<span
+class="math inline">\(R_{XY}(t_1,t_2)=R_{XY}(t_2-t_1)=R_{XY}(\tau)\)</span>，则称$$</p>
+<ul>
+<li><span class="math inline">\(R_{XY}(-\tau)=R_{YX}(\tau)\)</span></li>
+<li><span
+class="math inline">\(|R_{XY}(\tau)|\le\sqrt{R_X(0)R_Y(0)}\le\frac{1}{2}[R_X(0)+R_Y(0)]\)</span></li>
+</ul></li>
+</ul>
+<h4 id="随机过程的各态遍历性">随机过程的各态遍历性</h4>
+<ul>
+<li><p>时间均值：<span
+class="math inline">\(\left&lt;X(t)\right&gt;=\lim\limits_{T\rightarrow\infty}\frac{1}{2T}\int_{-T}^{T}X(t)dt\)</span></p></li>
+<li><p>时间自相关函数：<span
+class="math inline">\(\left&lt;X(t),X(t+\tau)\right&gt;=\lim\limits_{T\rightarrow\infty}\frac{1}{2T}\int_{-T}^TX(t)X(t+\tau)dt\)</span></p></li>
+<li><p>各态遍历性</p>
+<p>设<span class="math inline">\(X(t)\)</span>为平稳随机过程，若 <span
+class="math display">\[
+\left\{
+\begin{align}
+&amp;\left&lt;X(t)\right&gt;=E[X(t)]=m_X\newline
+&amp;\left&lt;X(t)X(t+\tau)\right&gt;=E[X(t)X(t+\tau)]=R_X(\tau)
+\end{align}
+\right.
+\]</span> 即<span
+class="math inline">\(X(t)\)</span>的<strong>时间均值等于它的统计均值，时间自相关函数等于统计自相关函数</strong>，则称<span
+class="math inline">\(X(t)\)</span>为遍历过程，或具有各态遍历性。</p></li>
+</ul>
+<p><strong>遍历过程一定是平稳的，但平稳随机过程并不都具有遍历性。</strong></p>
+<p><strong>当<span
+class="math inline">\(X(t)\)</span>为各态遍历的随机信号，则</strong></p>
+<ul>
+<li><p><span
+class="math inline">\(E[X(t)]=\left&lt;X(t)\right&gt;\)</span>，代表信号的<strong>直流分量</strong></p></li>
+<li><p><span
+class="math inline">\(E[X^2(t)]=\left&lt;X^2(t)\right&gt;\)</span>，代表信号的<strong>平均功率</strong></p></li>
+<li><p><span
+class="math inline">\(\sigma^2_X(t)=E[X^2(t)]-m_X^2(t)\)</span>，代表信号的<strong>交流功率</strong></p></li>
+</ul>
 <h3 id="随机过程的功率谱密度">随机过程的功率谱密度</h3>
+<h4 id="功率谱密度的定义">功率谱密度的定义</h4>
+<p>引入<span class="math inline">\(x(t)\)</span>的截尾函数<span
+class="math inline">\(x_T(t)\)</span>，<span
+class="math inline">\(x_T(t)\)</span>的频谱为<span
+class="math inline">\(X_T(f)=\int_{-T}^Tx_T(t)e^{-j2\pi
+ft}dt\)</span>，根据Parseval方程，有 <span class="math display">\[
+\begin{align}
+P&amp;=\lim\limits_{T\rightarrow\infty}\frac{1}{2T}\int_{-T}^Tx^2(t)dt\newline
+&amp;=\lim\limits_{T\rightarrow\infty}\frac{1}{2T}\int_{-T}^Tx_T^2(t)dt\newline
+&amp;=\lim\limits_{T\rightarrow\infty}\frac{1}{2T}\int_{-\infty}^{\infty}|X_T(f)|^2df\newline
+&amp;=\int_{-\infty}^{\infty}\lim\limits_{T\rightarrow\infty}\frac{|X_T(f)|^2}{2T}df\newline
+\Rightarrow
+S_X(f)&amp;=\lim\limits_{T\rightarrow\infty}\frac{|X_T(f)|^2}{2T}
+\end{align}
+\]</span> 其中，<span class="math inline">\(S_X(f)\)</span>为<span
+class="math inline">\(x(t)\)</span>的功率谱密度。</p>
+<p>对随机过程<span class="math inline">\(X(t)\)</span>，<span
+class="math inline">\(x(t)\)</span>的时间平均功率具有随机性，对其进一步求统计平均，则随机过程<span
+class="math inline">\(X(t)\)</span>的功率谱密度为 <span
+class="math display">\[
+S_X(f)=\lim\limits_{T\rightarrow\infty}\frac{E[|X_T(f)|^2]}{2T}
+\]</span></p>
+<h4 id="功率谱密度与自相关函数">功率谱密度与自相关函数</h4>
+<p>对任意随机过程，有 <span class="math display">\[
+S_X(f)\leftrightarrow\left&lt;R_X(t,t+\tau)\right&gt;
+\]</span> <strong>维纳辛钦定理：对于广义平稳随机过程有<span
+class="math inline">\(\left&lt;R_X(t,t+\tau)\right&gt;=R_X(\tau)\)</span>，则</strong>
+<span class="math display">\[
+S_X(f)\leftrightarrow\left&lt;R_X(\tau)\right&gt;
+\]</span></p>
+<h4 id="功率谱密度的性质">功率谱密度的性质</h4>
+<ul>
+<li><p><span class="math inline">\(S_X(f)\ge0\)</span></p></li>
+<li><p><span class="math inline">\(S_X(f)\)</span>总是实函数</p></li>
+<li><p><span class="math inline">\(S_X(-f)=S_X(f)\)</span>，当<span
+class="math inline">\(X(t)\)</span>为实信号</p></li>
+</ul>
+<p><strong>平均功率的求法</strong></p>
+<ul>
+<li><span class="math inline">\(P_X=\int S_X(f)df\)</span></li>
+<li><span class="math inline">\(P_X=R_X(0)=E[X^2(t)]\)</span>，若<span
+class="math inline">\(X(t)\)</span>满足各态遍历性，则还有<span
+class="math inline">\(P_X=\left&lt;X^2(t)\right&gt;\)</span></li>
+</ul>
+<p>相关时间</p>
+<p>功率谱等效带宽</p>
+<h4 id="互功率谱密度">互功率谱密度</h4>
 <h3 id="线性系统对随机信号的响应">线性系统对随机信号的响应</h3>
 <h3 id="高斯过程和白噪声过程">高斯过程和白噪声过程</h3>
 <h3 id="正弦信号与窄带噪声">正弦信号与窄带噪声</h3>

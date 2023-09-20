@@ -24,7 +24,7 @@
 <meta property="og:description" content="GAN">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2023-09-17T14:03:38.000Z">
-<meta property="article:modified_time" content="2023-09-17T14:49:34.241Z">
+<meta property="article:modified_time" content="2023-09-20T07:23:12.758Z">
 <meta property="article:author" content="Eternity">
 <meta property="article:tag" content="深度学习">
 <meta name="twitter:card" content="summary_large_image">
@@ -253,7 +253,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          506 words
+          619 words
         
       </span>
     
@@ -264,7 +264,7 @@
         
         
         
-          5 mins
+          6 mins
         
       </span>
     
@@ -315,6 +315,7 @@
               <div class="markdown-body">
                 
                 <p>Generative Adversarial Network</p>
+<p><em>No pain, no gan.</em></p>
 <p>同一输入有多种输出。</p>
 <p>让机器的输出是由<strong>有分布的</strong>。</p>
 <p>Generator：根据低位输入(不同分布，Normal
@@ -337,6 +338,11 @@ Distribution)，输出高维张量(Complex Distribution)</p>
 <p>理论</p>
 <p><span
 class="math inline">\(G^*=\text{arg}\underline{\text{min}}Div(P_G,P_{data})\)</span></p>
+<p>Generator目的就是拟合真实数据的分布、</p>
+<p><strong>不需要知道数据分布，只需要从其中取样</strong> <span
+class="math display">\[
+V(G,D)=E_{y~P_{data}}[\log D(y)]+E_{y~P_G}[\log (1-D(y))]
+\]</span></p>
 
                 
               </div>
