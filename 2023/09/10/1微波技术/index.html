@@ -23,10 +23,15 @@
 <meta property="og:site_name" content="Eternity&#39;s Blog">
 <meta property="og:description" content="微波技术笔记">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://eternity0126.top/img/post/microwave_tech/%E5%B9%B3%E6%9D%BF.png">
+<meta property="og:image" content="http://eternity0126.top/img/post/microwave_tech/lumped.png">
+<meta property="og:image" content="http://eternity0126.top/img/post/microwave_tech/parameters.png">
 <meta property="article:published_time" content="2023-09-10T13:21:58.000Z">
-<meta property="article:modified_time" content="2023-09-19T15:01:05.263Z">
+<meta property="article:modified_time" content="2023-09-21T13:31:17.492Z">
 <meta property="article:author" content="Eternity">
+<meta property="article:tag" content="课程内容">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://eternity0126.top/img/post/microwave_tech/%E5%B9%B3%E6%9D%BF.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
@@ -252,7 +257,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.5k words
+          4.2k words
         
       </span>
     
@@ -263,7 +268,7 @@
         
         
         
-          21 mins
+          35 mins
         
       </span>
     
@@ -415,6 +420,7 @@ class="math inline">\(\epsilon&#39;&#39;=\frac{\sigma}{\omega}\gg
 <h3 id="传输线理论">传输线理论</h3>
 <h4 id="传输线">传输线</h4>
 <p>将场转换为电路</p>
+<p><img src="\img\post\microwave_tech\平板.png" srcset="/img/loading.gif" lazyload /></p>
 <p>考虑平行电容板，假设如图所示，满足 <span class="math display">\[
 \begin{align}
 \vec E&amp;=-\hat{y}E_0(z)\newline
@@ -432,9 +438,78 @@ class="math inline">\(\epsilon&#39;&#39;=\frac{\sigma}{\omega}\gg
 \end{align}\]</span> <span class="math display">\[
 则，
 \]</span> <span class="math display">\[\begin{align}
-I^+(z)=W|\vec J|=WH_0(z)\newline
-V(z)=d|E_y|dE_0(z)
+I^+(z)&amp;=W|\vec J|=WH_0(z)\newline
+V(z)&amp;=d|E_y|=dE_0(z)
 \end{align}\]</span> $$</p>
+<p>推得 <span class="math display">\[
+\begin{align}
+\frac{\partial V(z)}{\partial z}&amp;=-j\omega\frac{\mu
+d}{W}I^+(z)\newline
+\frac{\partial I^+(z)}{\partial z}&amp;=-j\omega\frac{\epsilon W}{d}V(z)
+\end{align}
+\]</span> <strong>实现了从麦克斯韦方程推得电报方程(Telegrapher
+equations)</strong></p>
+<p>传输线理论补充了场论分析和基础电路分析之间的缺失部分。</p>
+<p><img src="\img\post\microwave_tech\lumped.png" srcset="/img/loading.gif" lazyload /></p>
+<p><strong>注意此处的<span
+class="math inline">\(R,L,G,C\)</span>均为单位长度上</strong></p>
+<p>根据上图，由基尔霍夫电压、电流定律进行分析，得 <span
+class="math display">\[
+\begin{align}
+v(z,t)-R\Delta zi(z,t)-L\Delta z\frac{\partial i(z,t)}{\partial
+t}-v(z+\Delta z,t)&amp;=0\newline
+i(z,t)-G\Delta zv(z+\Delta z,t)-C\Delta z\frac{\partial v(z+\Delta
+z,t)}{\partial z}-i(z+\Delta z,t)&amp;=0
+\end{align}
+\]</span> 当<span class="math inline">\(z\rightarrow 0\)</span>时，有
+<span class="math display">\[
+\begin{align}
+\frac{\partial v(z,t)}{\partial z}&amp;=-Ri(z,t)-L\frac{\partial
+i(z,t)}{\partial t}\newline
+\frac{\partial i(z,t)}{\partial z}&amp;=-Gv(z,t)-C\frac{\partial
+v(z,t)}{\partial t}
+\end{align}
+\]</span>
+该方程组为<strong>电报方程</strong>，又称为<strong>传输线方程</strong></p>
+<p>对于稳态条件，在频域上有 <span class="math display">\[
+\begin{align}
+\frac{dV(z)}{dz}&amp;=-(R+j\omega L)I(z)\newline
+\frac{dI(z)}{dz}&amp;=-(G+j\omega C)V(z)
+\end{align}
+\]</span> 上述方程可以转化为波动方程： <span class="math display">\[
+\begin{align}
+\frac{d^2V(z)}{dz^2}-\gamma^2V(z)&amp;=0\newline
+\frac{d^2I(z)}{dz^2}-\gamma^2I(z)&amp;=0
+\end{align}
+\]</span> 此处<span
+class="math inline">\(\gamma=\alpha+j\beta=\sqrt{(R+j\omega L)(G+j\omega
+C)}\)</span></p>
+<p>可解得 <span class="math display">\[
+\begin{align}
+V(z)&amp;=V_0^+e^{-\gamma z}+V_0^-e^{-\gamma z}\newline
+I(z)&amp;=I_0^+e^{-\gamma z}+I_0^-e^{-\gamma z}
+\end{align}
+\]</span> 进一步推出特征阻抗(characteristic impendance) <span
+class="math display">\[
+Z_0=\frac{R+j\omega L}{\gamma}=\sqrt{\frac{R+j\omega L}{G+j\omega
+C}}=\frac{V_0^+}{I_0^+}=-\frac{V_0^-}{I_0^-}
+\]</span></p>
+<h4 id="无损耗导线">无损耗导线</h4>
+<p>对于无损耗导线，有<span
+class="math inline">\(\gamma=\alpha+j\beta=j\omega\sqrt{LC}\)</span>（<strong>此处<span
+class="math inline">\(L,C\)</span>为单位长度上的</strong>），特征阻抗为<span
+class="math inline">\(Z_0=\sqrt{\frac{L}{C}}\)</span></p>
+<p>则可以推得<span
+class="math inline">\(\lambda=\frac{2\pi}{\beta}=\frac{2\pi}{\omega\sqrt{LC}},v_p=\frac{\omega}{\beta}=\frac{1}{\sqrt{LC}}\)</span></p>
+<h4 id="典型导线的传输线参数">典型导线的传输线参数</h4>
+<p><img src="\img\post\microwave_tech\parameters.png" srcset="/img/loading.gif" lazyload /></p>
+<h4 id="电压反射系数">电压反射系数</h4>
+<p>定义反射电压幅值与入射电压幅值的比值为电压反射系数 <span
+class="math display">\[
+\Gamma=\frac{V_0^-}{V_0^+}=\frac{Z_L-Z_0}{Z_L+Z_0}
+\]</span> 对于驻波(standing wave)，有<span
+class="math inline">\(\Gamma=0\)</span> $$</p>
+<p>$$</p>
 
                 
               </div>
@@ -443,6 +518,13 @@ V(z)=d|E_y|dE_0(z)
             <div>
               <div class="post-metas my-3">
   
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E8%AF%BE%E7%A8%8B%E5%86%85%E5%AE%B9/" class="print-no-link">#课程内容</a>
+      
+    </div>
   
 </div>
 

@@ -1,0 +1,888 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/avatar/mizuki.png">
+  <link rel="icon" href="/img/avatar/mizuki.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Eternity">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="VHDL笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="VHDL">
+<meta property="og:url" content="http://eternity0126.top/2023/09/24/VHDL/index.html">
+<meta property="og:site_name" content="Eternity&#39;s Blog">
+<meta property="og:description" content="VHDL笔记">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-09-24T07:58:21.000Z">
+<meta property="article:modified_time" content="2023-09-24T13:29:52.398Z">
+<meta property="article:author" content="Eternity">
+<meta property="article:tag" content="课程内容">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>VHDL - Eternity&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"eternity0126.top","root":"/","version":"1.9.5","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Eternity@SJTU</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/playlist/" target="_self">
+                <i class="iconfont icon-music"></i>
+                <span>Playlist</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>Links</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/bg/bg_index.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="VHDL"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-09-24 15:58" pubdate>
+          September 24, 2023 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          4.7k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          39 mins
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> views
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">VHDL</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="vhdl">VHDL</h1>
+<h2 id="vhdl程序的基本结构">VHDL程序的基本结构</h2>
+<h3 id="vhdl设计的基本单元及其构成">1.1 VHDL设计的基本单元及其构成</h3>
+<p>VHDL设计的基本单元(Design Entity)，都是由实体说明(Entity
+Declaration)和构造体(Architecture Body)构成的。</p>
+<p>实体说明规定了设计单元的输入、输出接口信号或引脚，构造体部分定义了设计单元的具体构造和操作。</p>
+<p>示例1：</p>
+<figure class="highlight vhdl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs vhdl"><span class="hljs-keyword">ENTITY</span> mux <span class="hljs-keyword">IS</span><br>	<span class="hljs-keyword">GENERIC</span>(m:<span class="hljs-built_in">TIME</span>:=<span class="hljs-number">1</span>ns);<br>	<span class="hljs-keyword">PORT</span>(d0,d1,sel:<span class="hljs-keyword">IN</span> <span class="hljs-built_in">BIT</span>;q:<span class="hljs-keyword">OUT</span> <span class="hljs-built_in">BIT</span>);<br><span class="hljs-keyword">END</span> <span class="hljs-keyword">ENTITY</span> mux;<br><br><span class="hljs-keyword">ARCHITECTURE</span> connect <span class="hljs-keyword">OF</span> mux <span class="hljs-keyword">IS</span><br><span class="hljs-keyword">SIGNAL</span> tmp:<span class="hljs-built_in">BIT</span>;<br><span class="hljs-keyword">BEGIN</span><br>    cale:<span class="hljs-keyword">PROCESS</span>(d0,d1,sel)<span class="hljs-keyword">IS</span><br>    <span class="hljs-keyword">VARIABLE</span> tmp1,tmp2,tmp3:<span class="hljs-built_in">BIT</span>;<br>	<span class="hljs-keyword">BEGIN</span><br>        tmp1:=d0 <span class="hljs-keyword">AND</span> sel;<br>		tmp2:=d1 <span class="hljs-keyword">AND</span> (<span class="hljs-keyword">NOT</span> sel);<br>		tmp3:=tmp1 <span class="hljs-keyword">OR</span> tmp2;<br>		tmp&lt;=tmp3;<br>		q&lt;=tmp <span class="hljs-keyword">AFTER</span> <span class="hljs-number">1</span>ns;<br>	<span class="hljs-keyword">END</span> <span class="hljs-keyword">PROCESS</span> cale;<br><span class="hljs-keyword">END</span> <span class="hljs-keyword">ARCHITECTURE</span> connect;<br></code></pre></td></tr></table></figure>
+<h4 id="实体说明">1.1.1 实体说明</h4>
+<p>实体说明具有如下结构(大小写均可，一般框架内容大写)：</p>
+<figure class="highlight vhdl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs vhdl"><span class="hljs-keyword">ENTITY</span> 实体名 <span class="hljs-keyword">IS</span><br>    [类属参数说明];<br>    [端口说明];<br><span class="hljs-keyword">END</span> <span class="hljs-keyword">ENTITY</span> 实体名;<br></code></pre></td></tr></table></figure>
+<ul>
+<li><p>类属参数说明</p>
+<p>类属参数必须放在端口说明之前，用于指定参数，相当于C语言中的声明变量以及初始化值，如示例1中的<code>GENERIC(m:TIME:=1ns)</code>，该语句指定了构造体内<code>m</code>的值为1ns。这样语句<code>tmp1:=d0 AND sel AFTER m;</code>表示<code>d0</code>和<code>sel</code>两个输入信号相与后，经过1ns延迟才送到<code>tmp1</code>。</p></li>
+<li><p>端口说明</p>
+<p>端口说明是对基本设计实体与外部接口的描述，也即对外部引脚信号的名称、数据类型，以及输入、输出方向的描述，书写格式为</p>
+<figure class="highlight vhdl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs vhdl"><span class="hljs-keyword">PORT</span>(端口名&#123;,端口名&#125;:方向 数据类型名;<br>	...<br>	端口名&#123;,端口名&#125;:方向 数据类型名)<br></code></pre></td></tr></table></figure>
+<ul>
+<li><p>端口名</p>
+<p>端口名是外部引脚的名称，用小写英文字母与数字的组合命名</p></li>
+<li><p>端口方向</p>
+<p>端口方向用于定义引脚的信号方向是输入还是输出。如示例1中的<code>d0</code>、<code>d1</code>、<code>sel</code>为输入引脚，所以方向要用<code>IN</code>来说明，而<code>q</code>为输出引脚，用<code>OUT</code>来说明。</p>
+<p><code>INOUT</code>说明端口是双向的，<code>BUFFER</code>说明端口可以输出信号，且在构造体内部也能使用该输出信号。</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;">方向定义</th>
+<th style="text-align: center;">含义</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">IN</td>
+<td style="text-align: center;">输入</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">OUT</td>
+<td style="text-align: center;">输出(构造体内部不能再使用)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">INOUT</td>
+<td style="text-align: center;">双向</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">BUFFER</td>
+<td style="text-align: center;">输出(构造体内部可再使用)</td>
+</tr>
+</tbody>
+</table></li>
+</ul></li>
+<li><p>数据类型（常见的部分）</p>
+<table>
+<thead>
+<tr class="header">
+<th>数据类型</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Integer</td>
+<td>32位整型数</td>
+</tr>
+<tr class="even">
+<td>Real</td>
+<td>浮点数</td>
+</tr>
+<tr class="odd">
+<td>Bit</td>
+<td>逻辑值0或1</td>
+</tr>
+<tr class="even">
+<td>Bit_Vector</td>
+<td>位字符串</td>
+</tr>
+<tr class="odd">
+<td>Boolean</td>
+<td>布尔值True或False</td>
+</tr>
+<tr class="even">
+<td>Character</td>
+<td>ASCII文字</td>
+</tr>
+<tr class="odd">
+<td>Time</td>
+<td>时间的物理类型fs,ps,ns,us,ms,sec,min,hr</td>
+</tr>
+<tr class="even">
+<td>Severity level</td>
+<td>消息类型注</td>
+</tr>
+</tbody>
+</table>
+<p>示例：</p>
+<figure class="highlight vhdl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs vhdl"><span class="hljs-keyword">PORT</span>(d0,d1,sel:<span class="hljs-keyword">IN</span> <span class="hljs-built_in">BIT</span>;<br>    q:<span class="hljs-keyword">OUT</span> <span class="hljs-built_in">BIT</span>;<br>    <span class="hljs-keyword">bus</span>:<span class="hljs-keyword">OUT</span> <span class="hljs-built_in">BIT_VECTOR</span>(<span class="hljs-number">7</span> <span class="hljs-keyword">DOWNTO</span> <span class="hljs-number">0</span>));<br></code></pre></td></tr></table></figure>
+<p><code>d0</code>、<code>d1</code>、<code>sel</code>、<code>q</code>都是<code>BIT</code>数据类型，而<code>bus</code>是<code>BIT_VECTOR</code>类型<code>(7 DOWNTO 0)</code>表示该端口是一个8位端口，由<code>B7~B0</code>共8位构成。位矢量长度为8位。</p></li>
+</ul>
+<h4 id="构造体">1.1.2 构造体</h4>
+<p>构造体是对实体功能的具体描述，因此需要跟在实体后面。</p>
+<p>构造体的具体结构：</p>
+<figure class="highlight vhdl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs vhdl"><span class="hljs-keyword">ARCHITECTURE</span> 构造体名 <span class="hljs-keyword">OF</span> 实体名 <span class="hljs-keyword">IS</span><br>[定义语句] 内部信号,常数,数据类型,函数等的定义;<br><span class="hljs-keyword">BEGIN</span><br>    [并行处理语句];<br><span class="hljs-keyword">END</span> <span class="hljs-keyword">ARCHITECTURE</span> 构造体名;<br></code></pre></td></tr></table></figure>
+<ul>
+<li><p>定义语句</p>
+<p>定义语句位于<code>ARCHITECTURE</code>与<code>BEGIN</code>之间，
+用于对构造体内部所使用的信号、常数、数据类型和函数进行定义，<strong>这些信号是内部连接所使用的，不需要定义方向</strong>。如：</p>
+<figure class="highlight vhdl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs vhdl"><span class="hljs-keyword">ARCHITECTURE</span> behav <span class="hljs-keyword">OF</span> mux <span class="hljs-keyword">IS</span><br><span class="hljs-keyword">SIGNAL</span> nes1:<span class="hljs-built_in">BIT</span>;<br><span class="hljs-keyword">BEGIN</span><br>    ...<br><span class="hljs-keyword">END</span> <span class="hljs-keyword">ARCHITECTURE</span> behav;<br></code></pre></td></tr></table></figure></li>
+<li><p>并行处理语句</p>
+<p>并行处理语句位于<code>BEGIN</code>与<code>END</code>之间，描述了构造体的行为与连接关系。<strong>构造体内部的语句都是并行执行的。</strong></p>
+<figure class="highlight vhdl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs vhdl"><span class="hljs-keyword">ENTITY</span> mux <span class="hljs-keyword">IS</span><br>    <span class="hljs-keyword">PORT</span>(d0,d1:<span class="hljs-keyword">IN</span> <span class="hljs-built_in">BIT</span>;<br>        sel:<span class="hljs-keyword">IN</span> <span class="hljs-built_in">BIT</span>;<br>        q:<span class="hljs-keyword">OUT</span> <span class="hljs-built_in">BIT</span>);<br><span class="hljs-keyword">END</span> <span class="hljs-keyword">ENTITY</span> mux;<br><span class="hljs-keyword">ARCHITECTURE</span> dataflow <span class="hljs-keyword">OF</span> mux <span class="hljs-keyword">IS</span><br><span class="hljs-keyword">BEGIN</span><br>    q &lt;= (d0 <span class="hljs-keyword">AND</span> sel) <span class="hljs-keyword">OR</span> (<span class="hljs-keyword">NOT</span> sel <span class="hljs-keyword">AND</span> d1);<br><span class="hljs-keyword">END</span> <span class="hljs-keyword">ARCHITECTURE</span> dataflow;<br></code></pre></td></tr></table></figure>
+<p>符号<code>&lt;=</code>表示传送(代入)的意思，即将逻辑运算结果送<code>q</code>输出。</p></li>
+</ul>
+<h3 id="vhdl构造体的子结构描述">1.2 VHDL构造体的子结构描述</h3>
+<h4 id="block语句结构描述">1.2.1 BLOCK语句结构描述</h4>
+<ul>
+<li><p>BLOCK语句的结构</p>
+<figure class="highlight vhdl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs vhdl">块结构名:<br><span class="hljs-keyword">BLOCK</span><br><span class="hljs-keyword">BEGIN</span><br>    ...<br><span class="hljs-keyword">END</span> <span class="hljs-keyword">BLOCK</span> 块结构名;<br></code></pre></td></tr></table></figure>
+<p>使用BLOCK语句描述二选一电路：</p>
+<figure class="highlight vhdl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs vhdl"><span class="hljs-keyword">ENTITY</span> mux <span class="hljs-keyword">IS</span><br>    <span class="hljs-keyword">PORT</span>(d0,d1:<span class="hljs-keyword">IN</span> <span class="hljs-built_in">BIT</span>;<br>        sel:<span class="hljs-keyword">IN</span> <span class="hljs-built_in">BIT</span>;<br>        q:<span class="hljs-keyword">OUT</span> <span class="hljs-built_in">BIT</span>);<br><span class="hljs-keyword">END</span> <span class="hljs-keyword">ENTITY</span> mux;<br><span class="hljs-keyword">ARCHITECTURE</span> connect <span class="hljs-keyword">OF</span> mux <span class="hljs-keyword">IS</span><br><span class="hljs-keyword">SIGNAL</span> tmp1,tmp2,tmp3:<span class="hljs-built_in">BIT</span>;<br><span class="hljs-keyword">BEGIN</span><br>    cale:<br>    <span class="hljs-keyword">BLOCK</span><br>    <span class="hljs-keyword">BEGIN</span><br>        tmp1 &lt;= d0 <span class="hljs-keyword">AND</span> sel;<br>    	tmp2 &lt;= d1 <span class="hljs-keyword">AND</span> (<span class="hljs-keyword">NOT</span> sel);<br>        tmp3 &lt;= tmp1 <span class="hljs-keyword">OR</span> tmp2;<br>		q &lt;= tmp3;<br>    <span class="hljs-keyword">END</span> <span class="hljs-keyword">BLOCK</span> cale;<br><span class="hljs-keyword">END</span> <span class="hljs-keyword">ARCHITECTURE</span> connect;<br></code></pre></td></tr></table></figure>
+<p>BLOCK的作用是将一个大规模的构造体分为多个BLOCK块构成，每个BLOCK块对应一张子原理图。</p></li>
+<li><p>BLOCK中语句的并发性</p>
+<p><strong>BLOCK语句中的各个语句是并行执行的。</strong></p></li>
+<li><p>卫式BLOCK(Guarded BLOCK)</p>
+<p>卫式BLOCK可用于实现条件执行BLOCK块，具体为</p>
+<figure class="highlight vhdl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs vhdl">块结构名:<br><span class="hljs-keyword">BLOCK</span> [卫式布尔表达式]<br><span class="hljs-keyword">BEGIN</span><br>    ... <span class="hljs-comment">--传送语句需要添加前卫关键词GUARDED,，表明只有卫式表达式为真时，语句才执行</span><br><span class="hljs-keyword">END</span> <span class="hljs-keyword">BLOCK</span> 块结构名;<br></code></pre></td></tr></table></figure>
+<p>示例：</p>
+<figure class="highlight vhdl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs vhdl"><span class="hljs-keyword">ENTITY</span> latch <span class="hljs-keyword">IS</span><br>    <span class="hljs-keyword">PORT</span>(d,clk:<span class="hljs-keyword">IN</span> <span class="hljs-built_in">BIT</span>;<br>        q,qb:<span class="hljs-keyword">OUT</span> <span class="hljs-built_in">BIT</span>);<br><span class="hljs-keyword">END</span> <span class="hljs-keyword">ENTITY</span> latch;<br><span class="hljs-keyword">ARCHITECTURE</span> latch_guard <span class="hljs-keyword">OF</span> latch <span class="hljs-keyword">IS</span><br><span class="hljs-keyword">BEGIN</span><br>    G1:<br>    <span class="hljs-keyword">BLOCK</span>(clk=<span class="hljs-string">&#x27;1&#x27;</span>)<br>    <span class="hljs-keyword">BEGIN</span><br>        q &lt;= <span class="hljs-keyword">GUARDED</span> d <span class="hljs-keyword">AFTER</span> <span class="hljs-number">5</span>ns;<br>    	qb &lt;= <span class="hljs-keyword">GUARDED</span> <span class="hljs-keyword">NOT</span>(d) <span class="hljs-keyword">AFTER</span> <span class="hljs-number">7</span>ns;<br>    <span class="hljs-keyword">END</span> <span class="hljs-keyword">BLOCK</span> G1;<br><span class="hljs-keyword">END</span> <span class="hljs-keyword">ARCHITECTURE</span> latch_guard;<br></code></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="process语句结构描述">1.2.2 PROCESS语句结构描述</h4>
+<ul>
+<li><p>PROCESS语句的结构</p>
+<figure class="highlight vhdl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs vhdl">[进程名]:<span class="hljs-keyword">PROCESS</span>(信号<span class="hljs-number">1</span>,信号<span class="hljs-number">2</span>，...) <span class="hljs-keyword">IS</span><br><span class="hljs-keyword">BEGIN</span><br>	...<br><span class="hljs-keyword">END</span> <span class="hljs-keyword">PROCESS</span>;<br></code></pre></td></tr></table></figure>
+<p>进程名可以有，也可以省略。执行PROCESS语句时，通常带有若干个信号量，这些信号量将在PROCESS结构的语句中使用。</p>
+<figure class="highlight vhdl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs vhdl"><span class="hljs-keyword">ENTITY</span> mux <span class="hljs-keyword">IS</span><br>    <span class="hljs-keyword">PORT</span>(d0,d1:<span class="hljs-keyword">IN</span> <span class="hljs-built_in">BIT</span>;<br>        sel:<span class="hljs-keyword">IN</span> <span class="hljs-built_in">BIT</span>;<br>        q:<span class="hljs-keyword">OUT</span> <span class="hljs-built_in">BIT</span>);<br><span class="hljs-keyword">END</span> <span class="hljs-keyword">ENTITY</span> mux;<br><span class="hljs-keyword">ARCHITECTURE</span> connect <span class="hljs-keyword">OF</span> mux <span class="hljs-keyword">IS</span><br><span class="hljs-keyword">BEGIN</span><br>    cale:<span class="hljs-keyword">PROCESS</span>(d0,d1,sel) <span class="hljs-keyword">IS</span><br>    <span class="hljs-keyword">VARIABLE</span> tmp1,tmp2,tmp3:<span class="hljs-built_in">BIT</span>;<br>    <span class="hljs-keyword">BEGIN</span><br>        tmp1 &lt;= d0 <span class="hljs-keyword">AND</span> sel;<br>    	tmp2 &lt;= d1 <span class="hljs-keyword">AND</span> (<span class="hljs-keyword">NOT</span> sel);<br>        tmp3 &lt;= tmp1 <span class="hljs-keyword">OR</span> tmp2;<br>		q &lt;= tmp3;<br>    <span class="hljs-keyword">END</span> <span class="hljs-keyword">PROCESS</span> cale;<br><span class="hljs-keyword">END</span> <span class="hljs-keyword">ARCHITECTURE</span> connect;<br></code></pre></td></tr></table></figure></li>
+<li><p>PROCESS中语句的顺序性</p>
+<p><strong>PROCESS结构中的语句是顺序执行的。</strong></p></li>
+<li><p>PROCESS的启动</p>
+<p>PROCESS后面括号内的都是信号量，也称为敏感量。<strong>这些信号无论哪个发生变化都将启动该PROCESS语句，之后PROCESS内的语句将顺序执行一遍。</strong></p></li>
+<li><p>PROCESS的同步描述</p>
+<p>同一个构造体中可以有多个进程存在，且不同进程之间1可以通信语句并行同步执行。如</p>
+<figure class="highlight vhdl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs vhdl"><span class="hljs-keyword">ENTITY</span> pros_com <span class="hljs-keyword">IS</span><br>    <span class="hljs-keyword">PORT</span>(event_a:<span class="hljs-keyword">IN</span> <span class="hljs-built_in">BIT</span>);<br><span class="hljs-keyword">END</span> <span class="hljs-keyword">ENTITY</span> pros_com;<br><span class="hljs-keyword">ARCHITECTURE</span> catch_ball <span class="hljs-keyword">OF</span> pro_com <span class="hljs-keyword">IS</span><br><span class="hljs-keyword">SIGNAL</span> to_a,to_b:<span class="hljs-built_in">BIT</span>:=<span class="hljs-string">&#x27;0&#x27;</span>;<br>A:<br><span class="hljs-keyword">PROCESS</span>(event_a,to_a) <span class="hljs-keyword">IS</span><br><span class="hljs-keyword">BEGIN</span><br>    <span class="hljs-keyword">IF</span>(event_a<span class="hljs-symbol">&#x27;EVENT</span> <span class="hljs-keyword">AND</span> event_a=<span class="hljs-string">&#x27;1&#x27;</span>) <span class="hljs-keyword">OR</span> (to_a<span class="hljs-symbol">&#x27;EVENT</span> <span class="hljs-keyword">AND</span> to_a=<span class="hljs-string">&#x27;1&#x27;</span>) <span class="hljs-keyword">THEN</span><br>        to_b &lt;= <span class="hljs-string">&#x27;1&#x27;</span> <span class="hljs-keyword">AFTER</span> <span class="hljs-number">20</span>ns,<span class="hljs-string">&#x27;0&#x27;</span> <span class="hljs-keyword">AFTER</span> <span class="hljs-number">30</span>ns;<br>    <span class="hljs-keyword">END</span> <span class="hljs-keyword">IF</span>;<br><span class="hljs-keyword">END</span> <span class="hljs-keyword">PROCESS</span> A;<br>B:<br><span class="hljs-keyword">PROCESS</span>(to_b) <span class="hljs-keyword">IS</span><br><span class="hljs-keyword">BEGIN</span><br>    <span class="hljs-keyword">IF</span>(to_b<span class="hljs-symbol">&#x27;EVENT</span> <span class="hljs-keyword">AND</span> to_b=<span class="hljs-string">&#x27;1&#x27;</span>) <span class="hljs-keyword">THEN</span>	<span class="hljs-comment">--to_b发生变化且变为1时</span><br>        to_a &lt;= <span class="hljs-string">&#x27;1&#x27;</span> <span class="hljs-keyword">AFTER</span> <span class="hljs-number">10</span>ns,<span class="hljs-string">&#x27;0&#x27;</span> <span class="hljs-keyword">AFTER</span> <span class="hljs-number">20</span>ns;<br>    <span class="hljs-keyword">END</span> <span class="hljs-keyword">IF</span>;<br><span class="hljs-keyword">END</span> <span class="hljs-keyword">PROCESS</span> B;<br><span class="hljs-keyword">END</span> <span class="hljs-keyword">ARCHITECTURE</span> catch_ball;<br></code></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="subprogram语句结构描述">1.2.3 SUBPROGRAM语句结构描述</h4>
+<p>子程序就是主程序调用后能将处理结果返回主程序的程序模块。<strong>子程序调用时首先要初始化，执行结束后子程序就终止，再调用时再进行初始化，内部的值不能保持，是一个非重入的程序。</strong></p>
+<p>VHDL中子程序有两种类型：过程(Procedure)和函数(Function)。</p>
+<ul>
+<li><p>过程语句</p>
+<ul>
+<li><p>过程语句的结构</p>
+<figure class="highlight vhdl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs vhdl"><span class="hljs-keyword">PROCEDURE</span> 过程名(参数<span class="hljs-number">1</span>;参数<span class="hljs-number">2</span>;...) <span class="hljs-keyword">IS</span><br>[定义语句];(变量等定义)<br><span class="hljs-keyword">BEGIN</span><br>    [顺序处理语句];(过程的语句)<br><span class="hljs-keyword">END</span> <span class="hljs-keyword">PROCEDURE</span> 过程名;<br></code></pre></td></tr></table></figure>
+<p><strong>在PROCEDURE结构中，参数可以是输入或者输出。即过程中的输入、输出都应列在紧跟过程名的括号内。</strong>将位矢量转化为整数的程序可以这样实现：</p>
+<figure class="highlight vhdl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs vhdl"><span class="hljs-keyword">PROCEDURE</span> vector_to_int<br>    (z:<span class="hljs-keyword">IN</span> <span class="hljs-built_in">STD_LOGIC_VECTOR</span>;<br>    x_flag:<span class="hljs-keyword">OUT</span> <span class="hljs-built_in">BOOLEAN</span>;<br>    q:<span class="hljs-keyword">INOUT</span> <span class="hljs-built_in">INTEGER</span>) <span class="hljs-keyword">IS</span><br><span class="hljs-keyword">BEGIN</span><br>    q:=<span class="hljs-number">0</span>;<br>	x_flag:=<span class="hljs-literal">FALSE</span>;<br>	<span class="hljs-keyword">FOR</span> i <span class="hljs-keyword">IN</span> z<span class="hljs-symbol">&#x27;RANGE</span> <span class="hljs-keyword">LOOP</span><br>        q:=q*<span class="hljs-number">2</span>;<br>		<span class="hljs-keyword">IF</span>(z(i)=<span class="hljs-number">1</span>) <span class="hljs-keyword">THEN</span><br>            q:=q+<span class="hljs-number">1</span>;<br>		<span class="hljs-keyword">ELSIF</span>(z(i)/=<span class="hljs-number">0</span>) <span class="hljs-keyword">THEN</span><br>            x_flag:=<span class="hljs-literal">TRUE</span>;<br>        <span class="hljs-keyword">END</span> <span class="hljs-keyword">IF</span><br>    <span class="hljs-keyword">END</span> <span class="hljs-keyword">LOOP</span>;<br><span class="hljs-keyword">END</span> <span class="hljs-keyword">PROCEDURE</span> vector_to_int;<br></code></pre></td></tr></table></figure>
+<p>该过程调用后，如果<code>x_flag=TRUE</code>，则说明转换失败。</p></li>
+<li><p>过程结构中语句的顺序性</p>
+<p><strong>过程结构中的语句是顺序执行的。</strong></p></li>
+</ul></li>
+<li><p>函数语句</p>
+<ul>
+<li><p>函数语句的结构</p>
+<figure class="highlight vhdl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs vhdl"><span class="hljs-keyword">FUNCTION</span> 函数名(参数<span class="hljs-number">1</span>;参数<span class="hljs-number">2</span>;...)<br>    <span class="hljs-keyword">RETURN</span> 数据类型名 <span class="hljs-keyword">IS</span><br>[定义语句];<br><span class="hljs-keyword">BEGIN</span><br>    [顺序处理语句];<br>	<span class="hljs-keyword">RETURN</span> [返回变量名];<br><span class="hljs-keyword">END</span> <span class="hljs-keyword">FUNCTION</span>[函数名];<br></code></pre></td></tr></table></figure>
+<p><strong>在FUNCTION结构中，所有参数都是输入参数，因此不需要指定<code>IN</code>。</strong>FUNCTION的输入值由调用者拷贝到输入参数中，如果没有特别指定，则在FUNCTION语句中按常数处理。通常各种功能的FUNCTION语句的程序都被集中在包集合(Package)中。</p></li>
+</ul></li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E8%AF%BE%E7%A8%8B%E5%86%85%E5%AE%B9/" class="print-no-link">#课程内容</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>VHDL</div>
+      <div>http://eternity0126.top/2023/09/24/VHDL/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Eternity</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>September 24, 2023</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/09/10/1%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/" title="离散数学">
+                        <span class="hidden-mobile">离散数学</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+  <script>
+  Fluid.utils.createScript('https://lib.baomitu.com/mermaid/8.14.0/mermaid.min.js', function() {
+    mermaid.initialize({"theme":"default"});
+
+    Fluid.utils.listenDOMLoaded(function() {
+      Fluid.events.registerRefreshCallback(function() {
+        if ('mermaid' in window) {
+          mermaid.init();
+        }
+      });
+    });
+  });
+</script>
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+      <!-- <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> -->
+    </div>
+  
+  
+  
+  
+</div>
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+
+
+</body>
+</html>
