@@ -27,7 +27,7 @@
 <meta property="og:image" content="http://eternity0126.top/img/post/microwave_tech/lumped.png">
 <meta property="og:image" content="http://eternity0126.top/img/post/microwave_tech/parameters.png">
 <meta property="article:published_time" content="2023-09-10T13:21:58.000Z">
-<meta property="article:modified_time" content="2023-09-21T13:31:17.492Z">
+<meta property="article:modified_time" content="2023-10-14T07:24:11.495Z">
 <meta property="article:author" content="Eternity">
 <meta property="article:tag" content="课程内容">
 <meta name="twitter:card" content="summary_large_image">
@@ -257,7 +257,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          4.2k words
+          6.1k words
         
       </span>
     
@@ -268,7 +268,7 @@
         
         
         
-          35 mins
+          51 mins
         
       </span>
     
@@ -510,6 +510,94 @@ class="math display">\[
 \]</span> 对于驻波(standing wave)，有<span
 class="math inline">\(\Gamma=0\)</span> $$</p>
 <p>$$</p>
+<h3 id="史密斯圆图">史密斯圆图</h3>
+<h4 id="阻抗圆图">阻抗圆图</h4>
+<p>一般阻抗可以表示成<span class="math inline">\(Z=R+jX\)</span></p>
+<p>点z处的电压反射系数<span
+class="math inline">\(\Gamma=\Gamma(z)=\Gamma_le^{-j2\beta
+z}=|\Gamma_l|e^{j(\phi_l-2\beta
+z)}=|\Gamma_l|e^{j\theta}=\Gamma_u+j\Gamma_v\)</span></p>
+<p>则有<span
+class="math inline">\(\Gamma_u^2+\Gamma_v^2=|\Gamma|^2\)</span>，可组成一个等反射系数圆。圆心处<span
+class="math inline">\(\Gamma=0\)</span>，该点便是<strong>阻抗匹配点</strong>。</p>
+<p>规定单位圆与正实轴的交点（即开路点）为<span
+class="math inline">\(\theta=0°\)</span>。从该点逆时针旋转一周，<span
+class="math inline">\(\theta\)</span>从<span
+class="math inline">\(0°\)</span>增加到<span
+class="math inline">\(360°\)</span>。</p>
+<p>同时<span class="math inline">\(\Delta \theta\)</span>与<span
+class="math inline">\(\frac{\Delta
+z}{\lambda}\)</span>有关，因此可用电长度来表示幅角，一个圆周对应<span
+class="math inline">\(0.5\lambda\)</span>。<strong>因为传输线上两点间的距离与旋转的电长度对应，通常把<span
+class="math inline">\(\theta≈180°\)</span>(即短路点)作为电长度的零点</strong>。</p>
+<p>定义线上任意点z处的归一化阻抗为<span
+class="math inline">\(z=\frac{Z}{Z_c}=\frac{1+\Gamma}{1-\Gamma}\)</span>，代入得
+<span class="math display">\[
+\begin{aligned}
+r=\frac{1-(\Gamma_u^2+\Gamma_v^2)}{(1-\Gamma_u^2)+\Gamma_v^2}\newline
+x=\frac{2\Gamma_v}{(1-\Gamma_u^2)+\Gamma_v^2}
+\end{aligned}
+\]</span> 整理得归一化等电阻圆和归一化等电抗圆 <span
+class="math display">\[
+\begin{aligned}
+(\Gamma_u-\frac{r}{1+r})^2+\Gamma_v^2=(\frac{1}{1+r})^2\newline
+(\Gamma_u-1)^2+(\Gamma_v-\frac{1}{x})^2=(\frac{1}{x})^2
+\end{aligned}
+\]</span> 分析有以下结论：</p>
+<ul>
+<li>圆图中心对应于<span
+class="math inline">\(\Gamma=0,x=0,r=1\)</span>（即<span
+class="math inline">\(Z_{\text{in}}=Z_e\)</span>），此时<span
+class="math inline">\(ρ=1\)</span>，是匹配点；<strong>实轴上所有点（除两端点）表示纯归一化电阻</strong>，这是因为当<span
+class="math inline">\(x=0\)</span>时，等电抗圆退化成实轴，实轴左端点对应<span
+class="math inline">\(\Gamma=-1,z=0\)</span>，所以该点时短路点；实轴右端点对应<span
+class="math inline">\(\Gamma=1,z=\infty\)</span>，故该点是开路点。</li>
+<li>圆图的单位圆对应<span
+class="math inline">\(\Gamma=1,r=0,z=jx\)</span>，故该圆是纯归一化电抗圆。实轴以上半圆的等<span
+class="math inline">\(x\)</span>圆曲线对应<span
+class="math inline">\(x&gt;0\)</span>，故上半圆中各点代表感性复阻抗的归一化值，同理，下半圆各点代表容性复阻抗的归一化值。</li>
+<li>圆图右半实轴上的点对应于传输线上电压的同相位点，故是电压波腹点（电流波节点），<span
+class="math inline">\(r\)</span>的值即为驻波系数<span
+class="math inline">\(ρ\)</span>的值；圆图左半实轴上的点对应于传输线上电流的同相位点，故是电流波腹点（电压波节点），<span
+class="math inline">\(r\)</span>的值即为行波系数<span
+class="math inline">\(K\)</span>的值。</li>
+</ul>
+<h4 id="导纳圆图">导纳圆图</h4>
+<p>考虑传输线上并联元件或分支线的问题，导纳计算更加方便。</p>
+<p>传输线上任意点归一化导纳为<span
+class="math inline">\(y=g+jb=\frac{Y}{Y_c}=\frac{1-\Gamma}{1+\Gamma}\)</span></p>
+<p><strong>传输线上任意点<span
+class="math inline">\(z=l\)</span>处的归一化阻抗与相隔<span
+class="math inline">\(\frac{\lambda}{4}\)</span>位置处的归一化输入导纳是相等的，即在圆图上阻抗圆上的一点沿圆图中心旋转<span
+class="math inline">\(180°\)</span>后在阻抗圆上的数值即为对应的导纳值。</strong></p>
+<h3 id="传输线的阻抗匹配">传输线的阻抗匹配</h3>
+<h4 id="阻抗匹配的概念">阻抗匹配的概念</h4>
+<ul>
+<li>共轭匹配：信源的内阻抗<span
+class="math inline">\(Z_g\)</span>与微博传输线的输入阻抗<span
+class="math inline">\(Z_{\text{in}}\)</span>间的匹配，从而使信源有较大的功率传输给传输线。</li>
+<li>无反射匹配：负载阻抗<span
+class="math inline">\(Z_l\)</span>与传输线的特性阻抗<span
+class="math inline">\(Z_c\)</span>间恒等匹配，达成无反射的传输条件。</li>
+</ul>
+<p>阻抗变换实际上就是通过插入阻抗匹配器使原来不等于传输线特性阻抗的负载阻抗变为特性阻抗。</p>
+<h4 id="支节调配器">支节调配器</h4>
+<p>在主传输线合适位置串并联合适的电纳电抗元件，以产生附加反射来抵消负载所产生的反射，达到匹配。<strong>电纳电抗可以使用中断短路线或终端开路线实现。</strong></p>
+<ul>
+<li>单支节调配器的原理是当<span class="math inline">\(Z_l\ne
+Z_c\)</span>时，传输线与负载不匹配，但是在传输线上找到某一处，其归一化导纳为<span
+class="math inline">\(y_1=1\pm
+jb_1\)</span>，然后在此处并联一个大小相等、性质相反的归一化电纳<span
+class="math inline">\(y_2=\mp
+jb_1\)</span>的短路线，抵消电纳分量，使得<span
+class="math inline">\(z=1\)</span></li>
+</ul>
+<h4 id="双支节调配器">双支节调配器</h4>
+<p>单支节调配器的缺点是当负载变化时，需要调整支节线接入位置。而双支节调配器可固定支节线的位置，间距<span
+class="math inline">\(d_2\)</span>一般取<span
+class="math inline">\(\frac{\lambda}{8}\)</span>或其整数倍，但不能取为<span
+class="math inline">\(\frac{\lambda}{2}\)</span>或其整数倍。</p>
+<p>存在匹配盲区</p>
 
                 
               </div>

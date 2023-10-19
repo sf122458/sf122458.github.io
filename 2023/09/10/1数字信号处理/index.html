@@ -24,7 +24,7 @@
 <meta property="og:description" content="数字信号处理笔记">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2023-09-10T13:21:05.000Z">
-<meta property="article:modified_time" content="2023-09-16T09:28:46.071Z">
+<meta property="article:modified_time" content="2023-10-14T07:24:28.373Z">
 <meta property="article:author" content="Eternity">
 <meta property="article:tag" content="课程内容">
 <meta name="twitter:card" content="summary_large_image">
@@ -253,7 +253,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.6k words
+          4.2k words
         
       </span>
     
@@ -264,7 +264,7 @@
         
         
         
-          22 mins
+          35 mins
         
       </span>
     
@@ -422,7 +422,7 @@ N_1+N_3,\text{length}=L_1+L_2-1\)</span></strong></p></li>
 <ul>
 <li><p>互相关：绝对值越大相似度越高 <span class="math display">\[
 r_{xy}[n]=\sum_{k=-\infty}^{\infty}x^*[k]y[k+n]=x^*[-n]*y[n]=r^*_{yx}[-n]\\
-\overline{r}_{xy}[n]=\sum_{k=-\infty}^{\infty}x^*[k]y[k-n]=x^*[n]*y[-n]=\overline{r}_{yx}[-n]\\
+\overline{r}_{xy}[n]=\sum_{k=-\infty}^{\infty}x^*[k]y[k-n]=x^*[n]*y[-n]=\overline{r}_{yx}^*[-n]\\
 \overline{r}_{xy}[n]=r_{xy}[-n]
 \]</span></p></li>
 <li><p>自相关：<strong>绝对值越大则随机性越小</strong> <span
@@ -475,6 +475,89 @@ class="math inline">\(\text{ROC}=\{z=re^{j\omega},\text{such that}
 <li><p>线性</p></li>
 <li><p>时域平移</p>
 <p>如果<span class="math inline">\(x[n-n_0]\)</span></p></li>
+</ul>
+<h1 id="傅里叶变换与离散傅里叶级数">傅里叶变换与离散傅里叶级数</h1>
+<h2 id="dtft的定义">DTFT的定义</h2>
+<p>很多非周期信号都可以表示成复指数序列的加权积分。</p>
+<ul>
+<li><p>傅里叶逆变换：<span
+class="math inline">\(x[n]=\frac{1}{2\pi}\int_{-\pi}^{\pi}X(e^{j\omega})e^{j\omega
+n }d\omega\)</span></p></li>
+<li><p>傅里叶变换：<span
+class="math inline">\(X(e^{j\omega})=\sum_{-\infty}^{\infty}x[n]e^{-j\omega
+n}\)</span></p></li>
+</ul>
+<p>DTFT具有周期性，频域以<span
+class="math inline">\(2\pi\)</span>为周期，存在特殊变换对： <span
+class="math display">\[
+\begin{aligned}
+\sum_{n=-\infty}^{\infty}x[n]&amp;=X(e^{j\omega})|_{\omega=0}\newline
+\int_{-\pi}^{\pi}X(e^{j\omega})d\omega&amp;=2\pi x[n]|_{n=0}
+\end{aligned}
+\]</span> 一般信号的频域都是复数函数：<span
+class="math inline">\(X(e^{j\omega})=|X(e^{j\omega})|e^{j\angle
+X(e^{j\omega})}\)</span></p>
+<p><strong>矩阵序列的傅里叶变换</strong>： <span class="math display">\[
+\begin{aligned}
+R_{M+1}[n]=\left\{
+\begin{aligned}
+&amp;1,&amp;0\le n\le M\newline
+&amp;0,&amp;\text{other}
+\end{aligned}
+\right.
+\end{aligned}
+\]</span> 对应的傅里叶变换为 <span class="math display">\[
+R_{M+1}(e^{j\omega})=e^{-j\omega
+M/2}\frac{\sin\left[\omega(M+1)/2\right]}{\sin(\omega/2)}
+\]</span> 矩形窗的特点：</p>
+<ul>
+<li>最大旁瓣幅度/主瓣幅度约为<span
+class="math inline">\(\frac{3\pi}{2}\)</span>，为常数</li>
+<li>主瓣宽<span
+class="math inline">\(\frac{4\pi}{M+1}\)</span>与窗长成反比</li>
+</ul>
+<h1 id="lti系统的变换域分析">LTI系统的变换域分析</h1>
+<h2 id="系统函数">系统函数</h2>
+<h3 id="系统函数的定义">系统函数的定义</h3>
+<p>系统函数定义为：<span
+class="math inline">\(H(z)=\sum_{n=-\infty}^{\infty}h[n]z^{-n}\)</span></p>
+<p>零状态响应为<span class="math inline">\(y[n]=x[n]*h[n]\)</span></p>
+<h3 id="系统函数与差分方程的关系">系统函数与差分方程的关系</h3>
+<p>给定差分方程：<span
+class="math inline">\(\sum_{k=0}^{N}a_ky[n-k]=\sum_{k=0}^Mb_kx[n-k]\)</span></p>
+<p>对应的系统函数为<span
+class="math inline">\(H(z)=\frac{Y(z)}{X(z)}=\frac{\sum_{k=0}^{M}b_kz^{-k}}{\sum_{k=0}^{N}a_kz^{-k}}\)</span></p>
+<p><strong>任何系统的差分方程形式不唯一，可通过任意增加相同的零极点得到不同的差分方程。</strong></p>
+<h3
+id="系统函数的零点极点和roc的特点">系统函数的零点极点和ROC的特点</h3>
+<ul>
+<li><p>若考虑原点和无穷远处的零极点，则零点极点数量相等。</p></li>
+<li><p><strong>若<span
+class="math inline">\(H(z)\)</span>的系数都是实数或<span
+class="math inline">\(h[n]\)</span>为实序列，则复数零点（或极点）两两共轭。</strong></p></li>
+<li><p>LTI系统因果的充要条件：<span
+class="math inline">\(h[n]\)</span>为因果序列，即ROC包含<span
+class="math inline">\(|z|=\infty\)</span>。<span
+class="math inline">\(z=\infty\)</span>不是极点不能推出LTI系统是因果系统（要保持<span
+class="math inline">\(\sum_{k=M}^{N}x[k]z^{-k}\)</span>有界）。</p></li>
+<li><p>LTI系统稳定的充要条件：<span
+class="math inline">\(h[n]\)</span>绝对可和，即ROC包含<span
+class="math inline">\(|z|=1\)</span>。单位圆上不能有极点。</p></li>
+<li><p><strong>极点全在单位圆内，是LTI系统因果稳定的必要条件。</strong></p></li>
+<li><p>FIR系统的特点：<span
+class="math inline">\(h[n]\)</span>有限长。<strong>ROC是整个平面(<span
+class="math inline">\(z=0\)</span>和<span
+class="math inline">\(z=\infty\)</span>)可能例外</strong>。因为一定包含<span
+class="math inline">\(|z|=1\)</span>，且没有<span
+class="math inline">\(z=0\)</span>和<span
+class="math inline">\(z=\infty\)</span>以外的极点，所以<strong>FIR系统一定稳定且<span
+class="math inline">\(H(z)\)</span>化简后是有限项整式，差分方程无递归（可由卷积实现）或有递归。</strong></p></li>
+<li><p>IIR系统的特点：<span
+class="math inline">\(h[n]\)</span>无限长。所以z平面上一定有除<span
+class="math inline">\(z=0\)</span>和<span
+class="math inline">\(z=\infty\)</span>以外的极点。则<span
+class="math inline">\(H(z)\)</span>一定为有理分式，<strong>差分方程一定有递归</strong>。</p></li>
+<li></li>
 </ul>
 
                 

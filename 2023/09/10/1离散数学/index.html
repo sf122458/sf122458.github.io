@@ -23,11 +23,13 @@
 <meta property="og:site_name" content="Eternity&#39;s Blog">
 <meta property="og:description" content="离散数学笔记">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="c:\Users\Eternity\AppData\Roaming\Typora\typora-user-images\image-20231019201853748.png">
 <meta property="article:published_time" content="2023-09-10T13:22:08.000Z">
-<meta property="article:modified_time" content="2023-09-17T04:48:39.183Z">
+<meta property="article:modified_time" content="2023-10-19T13:39:07.945Z">
 <meta property="article:author" content="Eternity">
 <meta property="article:tag" content="课程内容">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="c:\Users\Eternity\AppData\Roaming\Typora\typora-user-images\image-20231019201853748.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
@@ -253,7 +255,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          4k words
+          6.2k words
         
       </span>
     
@@ -264,7 +266,7 @@
         
         
         
-          34 mins
+          53 mins
         
       </span>
     
@@ -381,7 +383,7 @@ class="math inline">\(d^- (v)\)</span>，<strong>有<span
 class="math inline">\(d^+ (v)+d^- (v)=d(v)\)</span></strong></p>
 <p><strong><span class="math inline">\(N_n\)</span>中顶点的度为0；<span
 class="math inline">\(K_n\)</span>中顶点的度为<span
-class="math inline">\(n-1\)</span></strong></p>
+class="math inline">\(n-1\)</span>。</strong></p>
 <h4 id="二分图和正则图">二分图和正则图</h4>
 <p>定义二分图：如果图<span
 class="math inline">\(G\)</span>的顶点集可划分为不相交的非空子集<span
@@ -401,6 +403,14 @@ class="math inline">\(k\)</span>度正则图</li>
 <li><span class="math inline">\(K_n\)</span>即为<span
 class="math inline">\(n\)</span>个顶点的<span
 class="math inline">\(n-1\)</span>度正则图</li>
+</ul>
+<h4 id="图的基本性质">图的基本性质</h4>
+<ul>
+<li><p><strong>图<span
+class="math inline">\(G\)</span>度的和为边数的2倍，度为奇数的顶点必为偶数个。</strong></p></li>
+<li><p>有向图中正度等于负度。</p></li>
+<li><p><span class="math inline">\(K_n\)</span>的边数为<span
+class="math inline">\(\frac{n(n-1)}{2}\)</span></p></li>
 </ul>
 <h4 id="赋权图">赋权图</h4>
 <h4 id="子图">子图</h4>
@@ -458,13 +468,37 @@ class="math inline">\(G_2\)</span>的导出子图与其同构</li>
 <h3 id="图的代数表示">图的代数表示</h3>
 <h4 id="矩阵表示">矩阵表示</h4>
 <ul>
-<li><p>邻接矩阵</p></li>
-<li><p>权矩阵</p></li>
-<li><p>关联矩阵</p></li>
+<li>邻接矩阵</li>
 </ul>
+<p>有向图，<span class="math inline">\(n\)</span>阶方阵，元素为 <span
+class="math display">\[
+\begin{aligned}
+a_{ij}=
+\left\{
+\begin{aligned}
+1,(v_i,v_j)\in E \newline
+0,\text{o.w.}
+\end{aligned}
+\right.
+\end{aligned}
+\]</span> 无向图邻接矩阵对称。</p>
+<p>无法表示重边，可表示自环。</p>
+<ul>
+<li>权矩阵</li>
+</ul>
+<p>即将邻接矩阵中的值替换为权重。</p>
+<ul>
+<li>关联矩阵</li>
+</ul>
+<p>可看作顶点和边之间关系。关联矩阵是<span class="math inline">\(n\times
+m\)</span>的矩阵，每列只有两个非零元，1对应出度，-1对应入度。无向图的关联矩阵元素只有1。</p>
+<p>能表示重边，无法表示自环。</p>
 <h4 id="表表示">表表示</h4>
 <ul>
-<li><p>边列表</p></li>
+<li>边列表</li>
+</ul>
+<p><img src="C:\Users\Eternity\AppData\Roaming\Typora\typora-user-images\image-20231019201853748.png" srcset="/img/loading.gif" lazyload alt="image-20231019201853748" style="zoom:50%;" /></p>
+<ul>
 <li><p>正向表、逆向表</p></li>
 <li><p>邻接表</p></li>
 </ul>
@@ -499,9 +533,10 @@ class="math inline">\(P\)</span>为回路，则称<span
 class="math inline">\(P\)</span>为初级有向回路。</strong></p>
 <p><strong>可以得出，初级有向道路（回路）一定是简单有向道路（回路）。</strong></p>
 <h4
-id="无向图的道路和回路简答道路和初级道路">无向图的道路和回路、简答道路和初级道路</h4>
+id="无向图的道路和回路简单道路和初级道路">无向图的道路和回路、简单道路和初级道路</h4>
 <p>定义无向图的道路和回路：</p>
-<p>无向图G=(V,E)中，若点边交替序列<span
+<p>无向图<span
+class="math inline">\(G=(V,E)\)</span>中，若点边交替序列<span
 class="math inline">\(P=(v_{j_0},e_{i_1},v_{j_1},e_{i_2},…,e_{i_q},v_{j_q})\)</span>满足<span
 class="math inline">\(v_{j_{k-1} },v_{j_k}\)</span>是<span
 class="math inline">\(e_{i_k}\)</span>的两个端点，则称<span
@@ -634,7 +669,147 @@ class="math inline">\(G\)</span>的任意顶点的度均大于等于<span
 class="math inline">\(\frac{n}{2}\)</span>，则<span
 class="math inline">\(G\)</span>中存在哈密顿回路。</p>
 <h4 id="闭合图">闭合图</h4>
-<h3 id="习题">习题</h3>
+<h3 id="section"></h3>
+<h2 id="树">树</h2>
+<h3 id="树的有关定义">树的有关定义</h3>
+<h4 id="树的定义">树的定义</h4>
+<p><strong>不含回路</strong>的图称为林，其中连通图称为树。</p>
+<p>定义：不含任何回路的连通图称为树，用<span
+class="math inline">\(T\)</span>表示。<span
+class="math inline">\(T\)</span>中的边称为树枝，度为1的顶点称为树叶。</p>
+<p>对于有向图，去掉方向，若得到的是树，也称此有向图为有向树。</p>
+<h4 id="树的性质">树的性质</h4>
+<p>设<span class="math inline">\(T\)</span>是定点数<span
+class="math inline">\(n\ge2\)</span>的图，则<span
+class="math inline">\(T\)</span>是树等价于：</p>
+<ul>
+<li>连通且无回路</li>
+<li>连通且每条边都是割边</li>
+<li>连通且有<span class="math inline">\(n-1\)</span>条边</li>
+<li>有<span class="math inline">\(n-1\)</span>条边且无回路</li>
+<li>任意两顶点之间有唯一道路</li>
+<li>无回路，但在任意两顶点间加上一条边后有一个回路</li>
+</ul>
+<p><strong>树是极小的连通图，是极大的无回路图。</strong></p>
+<h4 id="支撑树">支撑树</h4>
+<p>如果树<span class="math inline">\(T\)</span>是图<span
+class="math inline">\(G\)</span>的支撑子图，则称<span
+class="math inline">\(T\)</span>是<span
+class="math inline">\(G\)</span>的支撑树，或称生成树。</p>
+<p><strong>任何连通图都存在支撑树。</strong></p>
+<h3 id="基本关联矩阵及其性质">基本关联矩阵及其性质</h3>
+<p>在有向连通图的关联矩阵中去掉任意一行(代表顶点<span
+class="math inline">\(v_k\)</span>)，得到基本关联矩阵<span
+class="math inline">\(B_k\)</span>，为<span
+class="math inline">\((n-1)\times m\)</span>的矩阵。</p>
+<p>基本关联矩阵是行满秩矩阵。</p>
+<h3 id="支撑树的计数">支撑树的计数</h3>
+<p>定理：对矩阵<span class="math inline">\(A=(a_{ij})_{m\times
+n}\)</span>，<span class="math inline">\(B=(b_{ij})_{n\times
+m}\)</span>，<span class="math inline">\(m\le n\)</span>，<span
+class="math inline">\(det(AB)=\sum_i|A_i||B_i|\)</span>，<span
+class="math inline">\(A_i,B_i\)</span>包括取遍<span
+class="math inline">\(A,B\)</span>所有<span
+class="math inline">\(m\)</span>列</p>
+<h3 id="huffman树">Huffman树</h3>
+<h4 id="二叉树">二叉树</h4>
+<p>除树叶外，其余顶点的正度最多为2的外向树称为二叉树。</p>
+<h4 id="赋权二叉树">赋权二叉树</h4>
+<p>记<span class="math inline">\(l_i\)</span>为根顶点到<span
+class="math inline">\(v_i\)</span>的道路的长度。则定义二叉树的带权路径总长度为<span
+class="math inline">\(WPL=\sum_il_iw_i\)</span>。</p>
+<p>最优二叉树即给定带权叶顶点后，<span
+class="math inline">\(WPL\)</span>最小的树。</p>
+<h4 id="huffman编码">Huffman编码</h4>
+<p>根据不同字符出现的频率构造Huffman树。按照频率权重由小到大排列，权重最小的两个节点求和获得一个新顶点，再与原有的顶点进行比较，直至最后剩余一个顶点。</p>
+<h3 id="最短树">最短树</h3>
+<p>找到图的支撑子图，使其所有边的权值和最小。</p>
+<h4 id="kruskal算法">Kruskal算法</h4>
+<p>算法描述：构建图的边集<span
+class="math inline">\(E\)</span>，以及一个空的最短树边集<span
+class="math inline">\(T\)</span>，每次从<span
+class="math inline">\(E\)</span>中取出一个权重最小的边<span
+class="math inline">\(e\)</span>，如果<span
+class="math inline">\(T+e\)</span>没有回路，则将<span
+class="math inline">\(e\)</span>加入到到<span
+class="math inline">\(T\)</span>中。如果<span
+class="math inline">\(|T|&lt;n-1\)</span>，则没有最短树，否则输出<span
+class="math inline">\(T\)</span>。</p>
+<p>特点：每次寻找边都需要遍历剩余所有的边，适用于边数较少的图。</p>
+<h4 id="prim算法">Prim算法</h4>
+<p>每次总是选出一个离生成树距离最小的点去加入生成树，最后实现最小生成树。</p>
+<p>特点：每次只需对树中顶点的关联边做判断，适用于边数较多的图。</p>
+<h2 id="平面图与树的着色">平面图与树的着色</h2>
+<h3 id="平面图">平面图</h3>
+<p>若存在单射将<span
+class="math inline">\(G\)</span>中的定点映射到平面上的点，边映射到点到点的曲线，且任何两条边除公共端点外不相交，称<span
+class="math inline">\(G\)</span>为可嵌入平面，或可平面图。</p>
+<p>域：平面图的边所围成的区域如果不包含任何顶点和边，就称该区域为平面图的一个面或域。</p>
+<p><strong>8型平面图只有两个域。孤立顶点也可以是域的边界。</strong></p>
+<h4 id="域边界的构成">域边界的构成</h4>
+<p>性质：若平面图至少有两个域，则每个域的边界都至少包含一条回路。</p>
+<p><strong><span
+class="math inline">\(e\)</span>是两个域的共同边界，当且仅当<span
+class="math inline">\(e\)</span>不是割边。</strong></p>
+<h4 id="欧拉公式">欧拉公式</h4>
+<p>定理：令<span class="math inline">\(G\)</span>为平面连通图，<span
+class="math inline">\(d\)</span>为<span
+class="math inline">\(G\)</span>的域的数量，则有： <span
+class="math display">\[
+n-m+d=2
+\]</span> 推论：若平面图有<span
+class="math inline">\(k\)</span>个连通支， <span class="math display">\[
+n-m+d=k+1
+\]</span> 对于一般平面图，有 <span class="math display">\[
+n-m+d\ge2
+\]</span></p>
+<h3 id="极大平面图">极大平面图</h3>
+<p>定义：设<span class="math inline">\(G\)</span>是一个<span
+class="math inline">\(n\ge3\)</span>的简单平面图，若在任意两个不相邻的顶点<span
+class="math inline">\(v_i,v_j\)</span>之间加入边<span
+class="math inline">\((v_i,v_j)\)</span>就会破坏图的平面性，则称<span
+class="math inline">\(G\)</span>是极大平面图。</p>
+<p>性质：极大平面图每个域的边界数都是3。</p>
+<p><strong>令<span class="math inline">\(G\)</span>是简单平面图且<span
+class="math inline">\(n\ge3\)</span>，则<span
+class="math inline">\(G\)</span>是极大平面图当且仅当以下任意条件之一成立：<span
+class="math inline">\(3d=2m;m=3n-6;d=2n-4\)</span>；简单平面图中始终有<span
+class="math inline">\(m\le3n-6;d\le2n-4\)</span></strong></p>
+<h4 id="可平面图的等价条件">可平面图的等价条件</h4>
+<ul>
+<li><p>当且仅当不存在任何子图是<span
+class="math inline">\(K_5\)</span>或<span
+class="math inline">\(K_{3,3}\)</span>的细分（即加入新顶点，并断开原来一条边，两端点分别与新顶点连接）。</p></li>
+<li><p>每个不含割点的极大连通子图（称为块）都可平面。</p></li>
+<li><p>去掉自环和重边之后是可平面的。</p></li>
+<li><p>细分依旧可平面。</p></li>
+</ul>
+<p><strong>若<span class="math inline">\(m&lt;9\)</span>或<span
+class="math inline">\(n&lt;5\)</span>；<span
+class="math inline">\(G\)</span>是可平面的。</strong></p>
+<p><strong>若<span class="math inline">\(m&gt;3n-6\)</span>；<span
+class="math inline">\(G\)</span>是非可平面的。</strong></p>
+<h3 id="对偶图">对偶图</h3>
+<p>将<span
+class="math inline">\(G\)</span>中域看作顶点，域之间的相邻关系看作边，得到对偶图<span
+class="math inline">\(G^*\)</span>。</p>
+<p>性质：</p>
+<ul>
+<li><p><span class="math inline">\(G^*\)</span>是连通图。</p></li>
+<li><p><span class="math inline">\(G\)</span>和<span
+class="math inline">\(G^*\)</span>之间满足：<span
+class="math inline">\(m=m^*,n=d^*,d=n^*\)</span></p></li>
+<li><p><strong>若<span
+class="math inline">\(G\)</span>是平面连通图，则<span
+class="math inline">\((G^*)^*=G\)</span>。</strong></p></li>
+</ul>
+<p><strong><span
+class="math inline">\(G\)</span>有对偶图的充要条件为<span
+class="math inline">\(G\)</span>是可平面图。</strong></p>
+<h4 id="图的着色">图的着色</h4>
+<p>每个平面图都是5-可着色的。</p>
+<p>存在哈密顿回路的图是4-可着色的。</p>
+<h1 id="section-1"></h1>
 
                 
               </div>
