@@ -27,7 +27,7 @@
 <meta property="og:image" content="http://eternity0126.top/img/post/microwave_tech/lumped.png">
 <meta property="og:image" content="http://eternity0126.top/img/post/microwave_tech/parameters.png">
 <meta property="article:published_time" content="2023-09-10T13:21:58.000Z">
-<meta property="article:modified_time" content="2023-10-14T07:24:11.495Z">
+<meta property="article:modified_time" content="2023-12-14T06:53:57.587Z">
 <meta property="article:author" content="Eternity">
 <meta property="article:tag" content="课程内容">
 <meta name="twitter:card" content="summary_large_image">
@@ -257,7 +257,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          6.1k words
+          8.6k words
         
       </span>
     
@@ -268,7 +268,7 @@
         
         
         
-          51 mins
+          73 mins
         
       </span>
     
@@ -598,6 +598,107 @@ class="math inline">\(d_2\)</span>一般取<span
 class="math inline">\(\frac{\lambda}{8}\)</span>或其整数倍，但不能取为<span
 class="math inline">\(\frac{\lambda}{2}\)</span>或其整数倍。</p>
 <p>存在匹配盲区</p>
+<h4 id="fraclambda4调配器"><span
+class="math inline">\(\frac{\lambda}{4}\)</span>调配器</h4>
+<h2 id="第三章-传输线与波导">第三章 传输线与波导</h2>
+<p>将电磁场分为传输方向<span
+class="math inline">\(z\)</span>与垂直于传输方向的方向<span
+class="math inline">\(u_1,u_2\)</span>，则拉普拉斯算子可以转换成<span
+class="math inline">\(\grad^2=\frac{1}{h_1h_2}[\frac{\partial}{\partial
+u_1}(\frac{h_2}{h_1}\frac{\partial}{\partial
+u_1})+\frac{\partial}{\partial
+u_2}(\frac{h_1}{h_2}\frac{\partial}{\partial
+u_2})]+\frac{\partial^2}{\partial
+z^2}=\grad^2_t+\frac{\partial^2}{\partial z^2}\)</span></p>
+<p>将纵向的电场可以分解为<span
+class="math inline">\(E_z(u_1,u_2,z)=E_z(T)Z(z)\)</span></p>
+<p>代入<span class="math inline">\(\grad^2E_z+k^2E_z=0\)</span>，得
+<span class="math display">\[
+\frac{1}{Z(z)}\frac{d^2Z(z)}{dz^2}=-\frac{1}{E_z(T)}(\grad^2_t+k^2)E_z(T)=\gamma^2
+\]</span> 解得 <span class="math display">\[
+\begin{aligned}
+&amp;Z(z)=A^+e^{-\gamma z}+A^-e^{\gamma z}\newline
+&amp;\grad^2_tE_z(T)+(k^2+\gamma^2)E_z(T)=0
+\end{aligned}
+\]</span> 令<span
+class="math inline">\(k_c^2=k^2+\gamma^2\)</span>，这里<span
+class="math inline">\(k_c\)</span>定义为截止波数。</p>
+<p>结合方程 <span class="math display">\[
+\begin{aligned}
+\grad\times \vec{E}&amp;=-j\omega\mu\vec{H}\newline
+\grad\times\vec{H}&amp;=j\omega\epsilon\vec{E}
+\end{aligned}
+\]</span> 解得 <span class="math display">\[
+\left[
+\begin{aligned}
+\vec{E_t}\newline
+\vec{H_t}
+\end{aligned}
+\right]=\frac{1}{k_c^2}
+\left[
+\begin{aligned}
+&amp;-\gamma &amp;j\omega\mu\vec{a_z}\times\newline
+&amp;-j\omega\epsilon\vec{a_z}\times &amp;-\gamma
+\end{aligned}
+\right]
+\left[
+\begin{aligned}
+\grad_t{E_z}\newline
+\grad_t{H_z}
+\end{aligned}
+\right]
+\]</span></p>
+<p>TEM波</p>
+<p>TEM波特点：<span
+class="math inline">\(E_z=H_z=0\)</span>，即在波传播方向无电磁场分量。</p>
+<p>此时，<span
+class="math inline">\(k_c^2=k^2+\gamma^2=0\)</span>，有<span
+class="math inline">\(\gamma=jk=j\beta=j\omega\sqrt{\mu\epsilon}\)</span></p>
+<p>TEM波在横向的电磁场分量满足静态场的分布，因此TEM波只能在两个以上的导体结构中传播。</p>
+<p>波阻抗：<span
+class="math inline">\(Z_{TEM}=\frac{E_1}{H_2}=\sqrt{\frac{\mu}{\epsilon}}=\eta≈377\ohm\)</span>，有<span
+class="math inline">\(\vec{H}(x,y)=\frac{1}{Z_{TEM}}\vec{a_z}\times
+\vec{E}(x,y)\)</span></p>
+<p>TE波</p>
+<p>TE波特点：<span
+class="math inline">\(E_z=0,H_z\neq0\)</span>，即在波传播方向无电场分量。
+<span class="math display">\[
+\begin{aligned}
+\vec{E}_t&amp;=\frac{j\omega\mu}{k_c^2}\vec{a}_z\times\grad_tH_z\newline
+\vec{H}_t&amp;=-\frac{\gamma}{k_c^2}\grad_tH_z
+\end{aligned}
+\]</span> 此时，<span
+class="math inline">\(k_c\neq0,\gamma=j\beta=j\sqrt{k^2-k_c^2}\)</span></p>
+<p>波阻抗：<span
+class="math inline">\(Z_{TE}=\frac{\omega\mu}{\beta}=\frac{k\eta}{\beta}=\frac{j\omega\mu}{\gamma}\)</span>，表现为感性</p>
+<p>TM波</p>
+<p>TM波特点：<span
+class="math inline">\(E_z\neq0,H_z=0\)</span>，即在波传播方向无磁场分量。
+<span class="math display">\[
+\begin{aligned}
+\vec{E}_t&amp;=-\frac{\gamma}{k_c^2}\grad_tE_z\newline
+\vec{H}_t&amp;=-\frac{j\omega\mu}{k_c^2}\vec{a}_z\times\grad_tE_z
+\end{aligned}
+\]</span> 此时，<span
+class="math inline">\(k_c\neq0,\gamma=j\beta=j\sqrt{k^2-k_c^2}\)</span></p>
+<p>波阻抗：<span
+class="math inline">\(Z_{TM}=\frac{\beta}{\omega\epsilon}=\frac{\beta\eta}{k}=\frac{\gamma}{j\omega\epsilon}\)</span>，表现为容性</p>
+<p>无耗波导中传播的截止频率与截止波长</p>
+<ul>
+<li>当<span
+class="math inline">\(k&lt;k_c\)</span>时，为消逝波(evanescent
+mode)，<span
+class="math inline">\(\gamma=\sqrt{k_c^2-k^2}=\alpha\)</span>，仅有衰减常数</li>
+<li>当<span
+class="math inline">\(k=k_c\)</span>时，此时截止，无幅度、相位变化，截止频率为<span
+class="math inline">\(f_c=\frac{k_c}{2\pi\sqrt{\mu\epsilon}}\)</span>，截止波长为<span
+class="math inline">\(\lambda_c=\frac{2\pi}{k_c}\)</span></li>
+<li>当<span class="math inline">\(k&gt;k_c\)</span>时，为传播模式，<span
+class="math inline">\(\gamma=\sqrt{k^2-k_c^2}=j\beta\)</span>，导波波长为<span
+class="math inline">\(\lambda_g=\frac{2\pi}{\beta}=\frac{2\pi}{\sqrt{k^2-k^2_c}}\)</span>，相速为<span
+class="math inline">\(v_p=\lambda_gf=\frac{\omega}{\beta}=\frac{v}{\sqrt{1-(\frac{k_c}{k})^2}}\)</span>，群速为<span
+class="math inline">\(v_g=(\frac{\partial\beta}{\partial\omega})^{-1}=v\sqrt{1-(\frac{k_c}{k})^2}\)</span></li>
+</ul>
 
                 
               </div>

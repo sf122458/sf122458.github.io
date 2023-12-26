@@ -24,7 +24,7 @@
 <meta property="og:description" content="数字信号处理笔记">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2023-09-10T13:21:05.000Z">
-<meta property="article:modified_time" content="2023-10-14T07:24:28.373Z">
+<meta property="article:modified_time" content="2023-12-24T14:45:59.950Z">
 <meta property="article:author" content="Eternity">
 <meta property="article:tag" content="课程内容">
 <meta name="twitter:card" content="summary_large_image">
@@ -253,7 +253,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          4.2k words
+          8.3k words
         
       </span>
     
@@ -264,7 +264,7 @@
         
         
         
-          35 mins
+          70 mins
         
       </span>
     
@@ -454,8 +454,51 @@ class="math inline">\(s[n]\)</span></p></li>
 <h4 id="线性时不变系统">线性时不变系统</h4>
 <p><span
 class="math inline">\(y[n]=\sum_{k=-\infty}^{\infty}x[n-k]h[k]\)</span></p>
+<p>FIR系统：<span class="math inline">\(h[n]\)</span>有限长</p>
+<p>IIR系统：<span class="math inline">\(h[n]\)</span>无限长</p>
+<p>稳定充要条件：<span
+class="math inline">\(\sum_{n=-\infty}^{\infty}|h[n]|&lt;\infty\)</span></p>
 <h4 id="线性常系数差分方程">线性常系数差分方程</h4>
+<p><span class="math display">\[
+\sum_{k=0}^Na_ky[n-k]=\sum_{k=0}^{M}b_kx[n-k]
+\]</span></p>
+<p><strong>某些LTI系统能用差分方程表示；差分方程表示的不一定是LTI系统。</strong></p>
+<p><strong>非递归的差分方程一定是FIR，递归方程FIR、IIR都可以。</strong></p>
+<p>FIR的卷积表示的就是一种差分方程。</p>
 <h4 id="lti系统的直接实现">LTI系统的直接实现</h4>
+<table>
+
+<thead>
+<tr class="header">
+<th></th>
+<th>FIR</th>
+<th>IIR</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(h[n]\)</span></td>
+<td>有限长</td>
+<td>无限长</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(y[n]\)</span>由<span
+class="math inline">\(x[n]\)</span>加权求和</td>
+<td>有限项</td>
+<td>无限项</td>
+</tr>
+<tr class="odd">
+<td>实现</td>
+<td>卷积（无递归）或差分方程（有递归）</td>
+<td>差分方程（一定有递归）</td>
+</tr>
+<tr class="even">
+<td>稳定性</td>
+<td><strong>一定稳定</strong></td>
+<td>不一定稳定</td>
+</tr>
+</tbody>
+</table>
 <h2 id="z变换">Z变换</h2>
 <h3 id="z变换的定义">Z变换的定义</h3>
 <p>定义式： <span class="math display">\[
@@ -463,6 +506,58 @@ X(z)=\sum_{n=-\infty}^{\infty}x[n]z^{-n}
 \]</span> 收敛域满足<span
 class="math inline">\(\text{ROC}=\{z=re^{j\omega},\text{such that}
 \sum_{n=-\infty}^{\infty}|x[n]r^{-n}|&lt;\infty\}\)</span></p>
+<p>常用Z变换：</p>
+<table>
+
+<thead>
+<tr class="header">
+<th><span class="math inline">\(x[n]\)</span></th>
+<th><span class="math inline">\(X(z)\)</span></th>
+<th>ROC</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(\delta[n]\)</span></td>
+<td><span class="math inline">\(1\)</span></td>
+<td><span class="math inline">\(0\le|z|\le\infty\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(u[n]\)</span></td>
+<td><span class="math inline">\(\frac{1}{1-z^{-1}}\)</span></td>
+<td><span class="math inline">\(|z|&gt;1\)</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(-u[-n-1]\)</span></td>
+<td><span class="math inline">\(\frac{1}{1-z^{-1}}\)</span></td>
+<td><span class="math inline">\(|z|&lt;1\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(R_N[n]\)</span></td>
+<td><span
+class="math inline">\(\frac{1-z^{-N}}{1-z^{-1}}=1+z^{-1}+z^{-2}+...+z^{-(N-1)}\)</span></td>
+<td><span class="math inline">\(|z|&gt;0\)</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(a^nu[n]\)</span></td>
+<td><span class="math inline">\(\frac{1}{1-az^{-1}}\)</span></td>
+<td><span class="math inline">\(|z|&gt;|a|\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(-a^nu[-n-1]\)</span></td>
+<td><span class="math inline">\(\frac{1}{1-az^{-1}}\)</span></td>
+<td><span class="math inline">\(|z|&lt;|a|\)</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(a^nR_N[n]\)</span></td>
+<td><span
+class="math inline">\(\frac{1-a^Nz^{-N}}{1-az^{-1}}\)</span></td>
+<td><span class="math inline">\(|z|&gt;0\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>零极点：将z变化化成标准的有理式函数<strong>(分子分母全为z的负幂次方)</strong>：分子根为零点，分母根为极点，<strong>零极点个数相等（包含<span
+class="math inline">\(|z|=0,\infty\)</span>）</strong></p>
 <h3 id="z变换的收敛域性质">Z变换的收敛域性质</h3>
 <ul>
 <li>收敛域是中心为原点的圆域与圆环域</li>
@@ -474,10 +569,29 @@ class="math inline">\(\text{ROC}=\{z=re^{j\omega},\text{such that}
 <ul>
 <li><p>线性</p></li>
 <li><p>时域平移</p>
-<p>如果<span class="math inline">\(x[n-n_0]\)</span></p></li>
+<p><span class="math display">\[
+x[n-n_0]\longleftrightarrow z^{-n_0}X(z)\quad\text{ROC}=R_x
+\]</span></p></li>
+<li><p>时域乘以指数序列 <span class="math display">\[
+z_0^nx[n]\longleftrightarrow X(\frac{z}{z_0})\quad\text{ROC}=R_x
+\]</span></p></li>
+<li><p>Z域微分 <span class="math display">\[
+nx[n]\longleftrightarrow -z\frac{dX(z)}{dz}\quad\text{ROC}=R_x
+\]</span></p></li>
+<li><p>序列取共轭 <span class="math display">\[
+x^*[n]\longleftrightarrow X^*(z^*)\\
+\Re[x[n]]\longleftrightarrow\frac{1}{2}(X(z)+X^*(z^*))\\
+\Im[x[n]]\longleftrightarrow \frac{1}{2j}(X(z)-X^*(z^*))
+\]</span>
+<strong>实数绪论z变换的复数零极点以共轭对存在</strong></p></li>
+<li><p>时间反转 <span class="math display">\[
+x[-n]\longleftrightarrow X(\frac{1}{z}) \quad\text{ROC}=\frac{1}{R_x}\\
+x^*[-n]\longleftrightarrow X^*(\frac{1}{z^*})
+\quad\text{ROC}=\frac{1}{R_x}
+\]</span></p></li>
 </ul>
-<h1 id="傅里叶变换与离散傅里叶级数">傅里叶变换与离散傅里叶级数</h1>
-<h2 id="dtft的定义">DTFT的定义</h2>
+<h2 id="傅里叶变换与离散傅里叶级数">傅里叶变换与离散傅里叶级数</h2>
+<h3 id="dtft的定义">DTFT的定义</h3>
 <p>很多非周期信号都可以表示成复指数序列的加权积分。</p>
 <ul>
 <li><p>傅里叶逆变换：<span
@@ -516,20 +630,20 @@ class="math inline">\(\frac{3\pi}{2}\)</span>，为常数</li>
 <li>主瓣宽<span
 class="math inline">\(\frac{4\pi}{M+1}\)</span>与窗长成反比</li>
 </ul>
-<h1 id="lti系统的变换域分析">LTI系统的变换域分析</h1>
-<h2 id="系统函数">系统函数</h2>
-<h3 id="系统函数的定义">系统函数的定义</h3>
+<h2 id="lti系统的变换域分析">LTI系统的变换域分析</h2>
+<h3 id="系统函数">系统函数</h3>
+<h4 id="系统函数的定义">系统函数的定义</h4>
 <p>系统函数定义为：<span
 class="math inline">\(H(z)=\sum_{n=-\infty}^{\infty}h[n]z^{-n}\)</span></p>
 <p>零状态响应为<span class="math inline">\(y[n]=x[n]*h[n]\)</span></p>
-<h3 id="系统函数与差分方程的关系">系统函数与差分方程的关系</h3>
+<h4 id="系统函数与差分方程的关系">系统函数与差分方程的关系</h4>
 <p>给定差分方程：<span
 class="math inline">\(\sum_{k=0}^{N}a_ky[n-k]=\sum_{k=0}^Mb_kx[n-k]\)</span></p>
 <p>对应的系统函数为<span
 class="math inline">\(H(z)=\frac{Y(z)}{X(z)}=\frac{\sum_{k=0}^{M}b_kz^{-k}}{\sum_{k=0}^{N}a_kz^{-k}}\)</span></p>
 <p><strong>任何系统的差分方程形式不唯一，可通过任意增加相同的零极点得到不同的差分方程。</strong></p>
-<h3
-id="系统函数的零点极点和roc的特点">系统函数的零点极点和ROC的特点</h3>
+<h4
+id="系统函数的零点极点和roc的特点">系统函数的零点极点和ROC的特点</h4>
 <ul>
 <li><p>若考虑原点和无穷远处的零极点，则零点极点数量相等。</p></li>
 <li><p><strong>若<span
@@ -557,8 +671,144 @@ class="math inline">\(h[n]\)</span>无限长。所以z平面上一定有除<span
 class="math inline">\(z=0\)</span>和<span
 class="math inline">\(z=\infty\)</span>以外的极点。则<span
 class="math inline">\(H(z)\)</span>一定为有理分式，<strong>差分方程一定有递归</strong>。</p></li>
-<li></li>
 </ul>
+<h2 id="第三章-傅里叶变换和离散傅里叶级数">第三章
+傅里叶变换和离散傅里叶级数</h2>
+<ul>
+<li><p>对称性： <span class="math display">\[
+x^*[n]\longleftrightarrow X^*(e^{-j\omega})\\
+\]</span></p></li>
+<li><p>时间反转： <span class="math display">\[
+x[-n]\longleftrightarrow X(e^{-j\omega})
+\]</span></p></li>
+</ul>
+<p>推论：<strong>序列的实部（虚部）为序列本身与序列共轭之和（差）的一半，序列的偶部（奇部）为序列本身与序列共轭对称之和（差）的一半。</strong>
+<span class="math display">\[
+Re[x[n]]=\frac{x[n]+x^*[n]}{2}\rightarrow
+X_e(e^{j\omega})=\frac{X(e^{j\omega})+X^*(e^{-j\omega})}{2}
+\]</span>
+<strong>实数序列的傅里叶变换为共轭对称函数，纯虚序列的傅里叶变换为共轭反对称函数，共轭对称序列的傅里叶变换为实函数，共轭反对称序列的傅里叶变换为纯虚函数，且上述关系可逆。</strong></p>
+<h3
+id="周期序列的傅里叶变换离散傅里叶级数">周期序列的傅里叶变换——离散傅里叶级数</h3>
+<ul>
+<li><p>对称性： <span class="math display">\[
+\tilde{x}^*[n]\longleftrightarrow \tilde{X}^*(-k)\\
+\tilde{x}^*[-n]\longleftrightarrow \tilde{X}^*(k)
+\]</span></p></li>
+<li><p>周期卷积： <span class="math display">\[
+\tilde{x}[n]=\sum_{m=0}^{N-1}\tilde{x}_1[m]\tilde{x}_2[n-m]
+\]</span>
+<strong>周期卷积等效于两个周期信号的主周期做线性卷积，再以N为周期的延拓；由于线性卷积的长度为2N-1，所以各延拓周期之间有重叠。</strong></p></li>
+</ul>
+<h2 id="第四章-lti系统变换域分析">第四章 LTI系统变换域分析</h2>
+<ul>
+<li><p>因果性：<span
+class="math inline">\(z=\infty\)</span>无极点</p></li>
+<li><p>稳定性：<span class="math inline">\(\text{ROC}\)</span>包括<span
+class="math inline">\(|z|=1\)</span>，在单位圆上无极点</p></li>
+<li><p>因果稳定系统：<span
+class="math inline">\(\text{ROC}:R_-&lt;|z|&lt;\infty,R_-&lt;1\)</span>，全部极点位于单位圆内</p></li>
+<li><p><strong>最小相位系统：零、极点全在单位圆内</strong></p></li>
+<li><p><strong>FIR：<span
+class="math inline">\(\text{ROC}\)</span>包含整个z平面（<span
+class="math inline">\(z=0,\infty\)</span>可能除外），系统稳定</strong></p></li>
+<li><p><strong>IIR：<span
+class="math inline">\(\text{ROC}\)</span>可能是圆的内部，圆的外部或者圆环</strong></p></li>
+</ul>
+<p><strong>系统函数是有理函数的系统一定有逆系统；一个因果稳定系统，只有系统函数的零点全部位于单位圆内，其逆系统才是因果稳定的。</strong></p>
+<ul>
+<li>群延迟定义： <span class="math display">\[
+\tau(\omega)=-\frac{d}{d\omega}\{\arg[H(e^{j\omega})]\}
+\]</span></li>
+</ul>
+<h3 id="有理函数的频率响应">有理函数的频率响应</h3>
+<ul>
+<li><p>全通系统： <span class="math display">\[
+H_{ap}(z)=\frac{z^{-1}-a^*}{1-az^{-1}}\Rightarrow
+|H_{ap}(z)|=1,arg[H_{ap}(z)]=-\omega-2\arctan(\frac{r\sin(\omega-\theta)}{1-r\cos(\omega-\theta)})
+\]</span> 一般形式： <span class="math display">\[
+H_{ap}(z)=A\prod_{k=1}^{M_r}\frac{z^{-1}-d_k}{1-d_kz^{-1}}\prod_{k=1}^{M_c}\frac{(z^{-1}-e_k^*)(z^{-1}-e_k)}{(1-e_kz^{-1})(1-e_k^*z^{-1})}
+\]</span> <strong>全通系统零极点互为共轭倒数关系。</strong></p></li>
+<li><p>最小相位系统：</p></li>
+</ul>
+<p>可将系统函数分解为全通系统与最小相位系统的级联： <span
+class="math display">\[
+H_d(z)=H_{min}(z)H_{ap}(z)
+\]</span>
+<strong>分解时要注意保证最小相位系统的零点全在单位圆内，即单位圆外的零点属于全通系统</strong></p>
+<p>幅度补偿系统为 <span class="math display">\[
+H_c(z)=\frac{1}{H_{min}(z)}
+\]</span></p>
+<h3 id="广义线性相位系统变换域分析">广义线性相位系统变换域分析</h3>
+<h4 id="广义线性相位系统">广义线性相位系统</h4>
+<p>将系统函数分解为<span
+class="math inline">\(H(e^{j\omega})=A(e^{j\omega})e^{\arg[H(e^{j\omega})]}\)</span>，则</p>
+<ul>
+<li>线性相位：相位为<span
+class="math inline">\(\arg[H(e^{j\omega})]=-\alpha\omega\)</span></li>
+<li>广义线性相位：相位为<span
+class="math inline">\(\arg[H(e^{j\omega})]=\beta-\alpha\omega\)</span></li>
+</ul>
+<p>广义线性相位系统也即常群延迟系统，<span
+class="math inline">\(\tau(\omega)=\alpha\)</span></p>
+<p>要求<span
+class="math inline">\(\sum_{n=-\infty}^{\infty}h[n]\sin(\omega(n-a)+\beta)=0\)</span>对所有<span
+class="math inline">\(\omega\)</span>恒成立，推出两种情况</p>
+<ul>
+<li><span class="math inline">\(\beta=0,\pi\rightarrow
+h[2n-a]=h[n]\)</span></li>
+<li><span
+class="math inline">\(\beta=\frac{\pi}{2},\frac{3\pi}{2}\rightarrow
+h[2n-a]=-h[n]\)</span></li>
+</ul>
+<h4 id="因果广义线性相位系统">因果广义线性相位系统</h4>
+<p>特点：<span class="math inline">\(h[n]\)</span>序列长度为<span
+class="math inline">\(M+1\)</span></p>
+<ul>
+<li>对于<span
+class="math inline">\(h[M-n]=h[n]\)</span>，系统函数相位为<span
+class="math inline">\(\phi(\omega)=-\frac{\omega
+M}{2}\)</span>，群延迟为<span
+class="math inline">\(\tau(\omega)=\frac{M}{2}\)</span>，<span
+class="math inline">\(H(z)=z^{-M}H(z^{-1})\)</span></li>
+<li>对于<span
+class="math inline">\(h[M-n]=-h[n]\)</span>，系统函数相位为<span
+class="math inline">\(\phi(\omega)=-\frac{\omega
+M}{2}+\frac{\pi}{2}\)</span>，群延迟为<span
+class="math inline">\(\tau(\omega)=\frac{M}{2}\)</span>，<span
+class="math inline">\(H(z)=-z^{-M}H(z^{-1})\)</span></li>
+</ul>
+<p>再根据<span class="math inline">\(M\)</span>奇偶，分为四类：</p>
+<ul>
+<li>类型I：<span class="math inline">\(h[M-n]=h[n]\)</span>，<span
+class="math inline">\(M\)</span>为偶数，无固定零点，可做任意类型滤波器</li>
+<li>类型II：<span class="math inline">\(h[M-n]=h[n]\)</span>，<span
+class="math inline">\(M\)</span>为奇数，固定零点为<span
+class="math inline">\(z=-1\)</span>，高频响应差，不能做高通和带阻滤波器</li>
+<li>类型III：<span class="math inline">\(h[M-n]=-h[n]\)</span>，<span
+class="math inline">\(M\)</span>为偶数，固定零点为<span
+class="math inline">\(z=\pm1\)</span>，<strong>只能</strong>做带通滤波器</li>
+<li>类型IV：<span class="math inline">\(h[M-n]=-h[n]\)</span>，<span
+class="math inline">\(M\)</span>为奇数，固定零点为<span
+class="math inline">\(z=1\)</span>，不能做低通和带阻滤波器</li>
+</ul>
+<h2 id="第五章-连续时间信号采样">第五章 连续时间信号采样</h2>
+<h3 id="周期性采样">周期性采样</h3>
+<p>采样周期为<span class="math inline">\(T_s\)</span>，采样频率为<span
+class="math inline">\(\frac{1}{f_s}\)</span>，采样角频率为<span
+class="math inline">\(\Omega_s=\frac{2\pi}{T}\)</span>。</p>
+<p>最后转换的结果<span
+class="math inline">\(x[n]=x_c(nT),-\infty&lt;n&lt;\infty\)</span></p>
+<h3 id="采样的频域表示">采样的频域表示</h3>
+<p><span class="math display">\[
+x_s(t)=x_c(t)s(t)=x_c(t)\sum_{n=-\infty}^{\infty}\delta(t-nT)=\sum_{n=-\infty}^{\infty}x_c(nT)\delta(t-nT)
+\]</span></p>
+<p>考虑频域下， <span class="math display">\[
+\begin{aligned}
+S(j\Omega)&amp;=\frac{2\pi}{T}\sum_{k=-\infty}^{\infty}\delta(\Omega-k\Omega_s)\newline
+X_s(j\Omega)&amp;=\frac{1}{2\pi}X_c(j\Omega)*S(j\Omega)=\frac{1}{T}\sum_{k=-\infty}^{\infty}X_c[j(\Omega-k\Omega_s)]
+\end{aligned}
+\]</span> Nyquist</p>
 
                 
               </div>
